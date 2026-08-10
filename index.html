@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Meeting Report Generator — Timedoor Academy</title>
+  <meta name="description"
+    content="Generate meeting reports and daily student progress reports for Timedoor Academy classes. Export to PNG, PDF, or share via WhatsApp.">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- html2canvas & jsPDF sengaja TIDAK dimuat di sini — keduanya cuma
+       dipakai saat Export PDF/PNG diklik. Lazy-load on-demand, lihat
+       js/pdf-builder.js (ensurePdfLibsLoaded_). Ini menghemat ~600KB+
+       yang tadinya selalu dimuat walau guru tidak pernah export. -->
+
+</head>
+
+<body>
+
+  <nav class="topnav">
+    <img src="timedoor_logo_putih.webp" class="topnav-logo" alt="Timedoor Academy">
+    <div class="topnav-divider"></div>
+    <h1>Meeting Report Generator</h1>
+  </nav>
+
+  <div style="max-width:1500px;margin:0 auto;">
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('auto')">⚡ Daily Auto Report</button>
+      <button class="tab-btn" onclick="switchTab('exam')">🎓 Exam Report</button>
+      <button class="tab-btn" onclick="switchTab('murid')">👥 Kelola Murid</button>
+    </div>
+  </div>
+
+  <div class="app-layout">
+
+    <!-- TAB: AUTO RAPOR -->
+    <div id="tab-auto" class="tab-content active">
+      <aside class="sidebar">
+        <div class="card">
+          <div class="card-title">📅 Muat Jadwal dari Sistem</div>
+          <div class="jadwal-loader-row">
+            <select id="jadwal-hari-select">
+              <option value="">-- Pilih Hari --</option>
+              <option value="Senin">Senin</option>
+              <option value="Selasa">Selasa</option>
+              <option value="Rabu">Rabu</option>
+              <option value="Kamis">Kamis</option>
+              <option value="Jumat">Jumat</option>
+              <option value="Sabtu">Sabtu</option>
+            </select>
+            <select id="jadwal-kelas-select" onchange="onJadwalKelasChange()"><option value="">-- Pilih Hari Dulu --</option></select>
+          </div>
+          <button type="button" class="btn-load-jadwal" onclick="loadMuridFromJadwal()">⚡ Muat Murid Otomatis</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Class Information</div>
+          <div class="form-row">
+            <div class="form-group"><label>Class Name</label><input type="text" id="auto-kelas" value="BGR-CE-01"
+                oninput="autoUpdatePreview()"></div>
+            <div class="form-group"><label>Date</label><input type="date" id="auto-tanggal"
+                onchange="autoUpdatePreview()"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🌐 Report Language</div>
+          <div class="lang-toggle">
+            <button id="lang-btn-en" class="lang-btn active" onclick="setLang('en')">English</button>
+            <button id="lang-btn-id" class="lang-btn" onclick="setLang('id')">Indonesia</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Documentation Photos</div>
+          <div class="rpt-photos-grid" id="auto-photo-grid-input"></div>
+          <label class="photo-add-dashed">
+            + Add Photo
+            <input type="file" accept="image/*" multiple style="display:none" onchange="handlePhotoAdd(event, true)">
+          </label>
+        </div>
+
+        <div class="card">
+          <div class="card-title" id="auto-student-card-title">Student Data & Generate Report</div>
+          <div class="students-list" id="auto-students-container"></div>
+          <button class="btn-add" id="auto-add-btn" onclick="addAutoStudent()">+ Add Student</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Export & Share</div>
+          <div class="download-group">
+            <div class="download-row">
+              <button class="btn-dl btn-dl-png" id="abtn-png" onclick="downloadAutoPNG()">Download PNG</button>
+              <button class="btn-dl btn-dl-pdf" id="abtn-pdf" onclick="downloadAutoPDF()">Export PDF</button>
+            </div>
+            <button class="btn-dl btn-dl-wa" id="abtn-wa" onclick="openAutoWhatsApp()" style="width:100%"
+              id="auto-wa-btn">Send to WhatsApp</button>
+          </div>
+          <div class="wa-preview">
+            <div class="wa-preview-header">
+              <div class="wa-preview-title" id="auto-wa-title">WhatsApp Message Preview</div>
+              <button type="button" class="btn-copy-wa" id="auto-btn-copy-wa" onclick="copyAutoWAMessage()" title="Copy Text">📋 Copy Text</button>
+            </div>
+            <div class="wa-bubble" id="auto-wa-bubble"></div>
+          </div>
+          <div class="tip-box" id="auto-tip-box"><strong>How to use:</strong> Enter student name → select level,
+            course, and lesson status → click ⚡ Generate to auto-create progress text.
+          </div>
+        </div>
+      </aside>
+
+      <div class="preview-area">
+        <div class="preview-header-bar">
+          <div class="preview-label"><span class="live-dot"></span><span id="auto-preview-label-text">Live Preview — Daily Report</span></div>
+          <button type="button" class="btn-zoom-toggle" id="btn-zoom-auto" onclick="toggleZoomMode('auto')" title="Toggle View Mode">🔍 Fit to Screen</button>
+        </div>
+        <div class="preview-scroll" id="scroll-auto">
+          <div class="preview-scale-wrapper" id="wrapper-auto">
+            <div id="auto-report-preview">
+            <div class="blob blob-tl"></div>
+            <div class="blob blob-tr"></div>
+            <div class="blob blob-br"></div>
+            <div class="blob blob-bl"></div>
+
+            <!-- Executive Header Banner -->
+            <div class="rpt-header rc">
+              <div class="rpt-header-left">
+                <div class="rpt-title" id="auto-rpt-title">Student<br><span>Progress Report</span></div>
+              </div>
+              <div class="rpt-header-center">
+                <div class="rpt-logo-pill">
+                  <img src="timedoor_logo_putih.webp" class="rpt-logo-img" alt="Timedoor Academy">
+                </div>
+              </div>
+              <div class="rpt-header-right">
+                <div class="rpt-meta-pill"><span id="auto-label-kelas">Class</span>: <strong id="aprev-kelas">BGR-CE-01</strong></div>
+                <div class="rpt-meta-pill"><span id="auto-label-tanggal">Date</span>: <strong id="aprev-tanggal">—</strong></div>
+              </div>
+            </div>
+
+            <!-- Documentation Activity Photos -->
+            <div class="rpt-section rc" id="auto-photo-section" style="display:none;">
+              <div class="rpt-section-header">
+                <span>📸</span><span id="auto-photo-sec-title">Classroom Activity Snapshots</span>
+              </div>
+              <div class="rpt-photos-grid" id="auto-photo-grid"></div>
+            </div>
+
+            <!-- Student Progress Stream -->
+            <div class="rpt-section rc">
+              <div class="rpt-section-header">
+                <span>🎓</span><span id="auto-progress-sec-title">Student Learning & Progress</span>
+              </div>
+              <div class="rpt-stream-wrap">
+                <div class="timeline-track"></div>
+                <div class="rpt-stream-list" id="aprev-tbody"></div>
+                <div class="rpt-legend" id="auto-legend">
+                  <span class="legend-item"><span class="legend-dot dot-done"></span> <span id="auto-legend-done">Completed Lesson</span></span>
+                  <span class="legend-item"><span class="legend-dot dot-progress"></span> <span id="auto-legend-prog">In Progress</span></span>
+                </div>
+              </div>
+            </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TAB: EXAM REPORT                                              -->
+    <!-- ============================================================ -->
+    <div id="tab-exam" class="tab-content">
+      <aside class="sidebar">
+        <div class="card">
+          <div class="card-title">🔔 Siswa yang Perlu Di-Exam</div>
+          <select id="exam-pending-select" onchange="onPendingExamSelect()">
+            <option value="">-- Memuat daftar... --</option>
+          </select>
+          <button type="button" class="btn-load-jadwal" onclick="loadPendingExams()">🔄 Muat Ulang Daftar</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Data Siswa</div>
+          <label>Nama Murid</label>
+          <input type="text" id="exam-student" placeholder="Nama murid (nama panggilan)">
+          <input type="hidden" id="exam-nama-lengkap" value="">
+          <div style="font-size:11px;color:var(--muted);margin-top:-6px;margin-bottom:6px;">Nama lengkap dipakai di belakang layar untuk pencocokan data — terisi otomatis kalau pilih dari daftar pending.</div>
+          <label>Kelas</label>
+          <input type="text" id="exam-kelas" placeholder="Nama kelas">
+          <button type="button" class="btn-load-jadwal" onclick="autoFillCriteriaAndCourse(document.getElementById('exam-kelas').value, document.getElementById('exam-student').value)">🔍 Tarik Criteria & Course Terakhir</button>
+          <label>Lesson (kelipatan 8)</label>
+          <input type="number" id="exam-lesson" placeholder="misal 8, 16, 24">
+          <label>Criteria</label>
+          <select id="exam-criteria" onchange="onExamCriteriaChange()">
+            <option value="">-- Pilih Criteria --</option>
+            <option value="Junior">Junior</option>
+            <option value="Kids">Kids</option>
+            <option value="Teens">Teens</option>
+          </select>
+          <label>Course</label>
+          <select id="exam-course" onchange="onExamCourseChange()"><option value="">-- Pilih Criteria Dulu --</option></select>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Tanggal</div>
+          <input type="date" id="exam-tanggal">
+        </div>
+      </aside>
+
+      <section class="main-panel">
+        <div class="card">
+          <div class="card-title">📊 Penilaian</div>
+          <button type="button" class="btn-load-jadwal" onclick="fetchExamTemplates()">🪄 Ambil Template dari Sistem</button>
+          <button type="button" class="btn-load-jadwal" style="background:#ede9fe;color:#6d28d9;border-color:#ddd6fe;margin-top:6px;" onclick="fetchAIExamTemplates()">🤖 Generate dengan AI</button>
+          <div id="exam-tab-map-hint" class="auth-error" style="text-align:left;margin-top:6px;"></div>
+
+          <div class="exam-criteria-block">
+            <div class="exam-criteria-header">
+              <span>📘 Coding Literacy & Concept</span>
+              <select id="exam-grade-literacy" onchange="fetchExamTemplates()">
+                <option value="A">A — Sangat Baik</option>
+                <option value="B" selected>B — Baik</option>
+                <option value="C">C — Cukup Baik</option>
+              </select>
+              <button type="button" class="btn-variant" onclick="cycleVariant('literacy')">🔄 Varian Lain</button>
+            </div>
+            <textarea id="exam-text-literacy" rows="4" placeholder="Klik 'Ambil Template dari Sistem', atau ketik manual di sini"></textarea>
+          </div>
+
+          <div class="exam-criteria-block">
+            <div class="exam-criteria-header">
+              <span>💻 Coding Application</span>
+              <select id="exam-grade-application" onchange="fetchExamTemplates()">
+                <option value="A">A — Sangat Baik</option>
+                <option value="B" selected>B — Baik</option>
+                <option value="C">C — Cukup Baik</option>
+              </select>
+              <button type="button" class="btn-variant" onclick="cycleVariant('application')">🔄 Varian Lain</button>
+            </div>
+            <textarea id="exam-text-application" rows="4" placeholder="Klik 'Ambil Template dari Sistem', atau ketik manual di sini"></textarea>
+          </div>
+
+          <div class="exam-criteria-block">
+            <div class="exam-criteria-header">
+              <span>🌟 Character</span>
+              <select id="exam-grade-character" onchange="fetchExamTemplates()">
+                <option value="A">A — Sangat Baik</option>
+                <option value="B" selected>B — Baik</option>
+                <option value="C">C — Cukup Baik</option>
+              </select>
+              <button type="button" class="btn-variant" onclick="cycleVariant('character')">🔄 Varian Lain</button>
+            </div>
+            <textarea id="exam-text-character" rows="4" placeholder="Klik 'Ambil Template dari Sistem', atau ketik manual di sini"></textarea>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">💬 Preview Pesan WhatsApp</div>
+          <div class="wa-preview">
+            <div class="wa-preview-header">
+              <div class="wa-preview-title">WhatsApp Message Preview</div>
+              <button type="button" class="btn-copy-wa" onclick="copyExamWAMessage()" title="Copy Text">📋 Copy Text</button>
+            </div>
+            <div class="wa-bubble" id="exam-wa-bubble"></div>
+          </div>
+          <div class="download-group" style="margin-top:16px;">
+            <div class="download-row">
+              <button class="btn-dl btn-dl-pdf" id="ebtn-pdf" onclick="downloadExamPDF()">📄 Export PDF</button>
+              <button class="btn-dl btn-dl-wa" id="ebtn-wa" onclick="openExamWhatsApp()">📤 Send to WhatsApp</button>
+            </div>
+            <button class="btn-dl" id="ebtn-save" onclick="submitExamToSheet()" style="width:100%;background:var(--g700);">💾 Simpan ke Sistem (Tandai Selesai)</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TAB: KELOLA MURID                                             -->
+    <!-- ============================================================ -->
+    <div id="tab-murid" class="tab-content">
+      <section class="main-panel" style="width:100%;">
+        <div class="card">
+          <div class="card-title">➕ Tambah Kelas / Murid Baru</div>
+          <div class="murid-add-row">
+            <select id="murid-new-hari">
+              <option value="">-- Pilih Hari --</option>
+              <option value="Senin">Senin</option>
+              <option value="Selasa">Selasa</option>
+              <option value="Rabu">Rabu</option>
+              <option value="Kamis">Kamis</option>
+              <option value="Jumat">Jumat</option>
+              <option value="Sabtu">Sabtu</option>
+            </select>
+            <input type="text" id="murid-new-kelas" placeholder="Nama Kelas (misal T14B)">
+            <input type="text" id="murid-new-lengkap" placeholder="Nama Lengkap">
+            <input type="text" id="murid-new-panggilan" placeholder="Nama Panggilan">
+            <button type="button" class="btn-dl" onclick="submitAddStudent(null)">➕ Tambah</button>
+          </div>
+        </div>
+
+        <div id="murid-loading" class="card" style="text-align:center;color:var(--muted);">Memuat data kelas...</div>
+        <div id="murid-container"></div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div>© 2026 <strong>Timedoor Academy</strong> — Meeting Report Generator</div>
+    <div>All Rights Reserved &middot; Concept by <strong>FFR</strong> &middot; Developed by <strong>Hirumi</strong> ☕🧑&zwj;💻</div>
+    <button type="button" id="btn-health-check" onclick="runHealthCheckUI()" title="Cek kesiapan setup sistem">🩺 Health Check</button>
+  </footer>
+
+  <div id="health-check-modal" class="hc-modal-overlay" style="display:none;">
+    <div class="hc-modal-box">
+      <div class="hc-modal-header">
+        <span>🩺 System Health Check</span>
+        <button type="button" onclick="closeHealthCheckModal()">✕</button>
+      </div>
+      <div id="hc-modal-body" class="hc-modal-body">Memeriksa...</div>
+    </div>
+  </div>
+
+  <div id="toast">Processing...</div>
+
+  <!-- Static data: course list, lesson objectives, templates -->
+  <script src="js/data.js" defer></script>
+  <script src="js/templates.js" defer></script>
+  <!-- Mapping nama course dropdown -> nama tab spreadsheet exam (lihat isi file untuk TODO) -->
+  <script src="js/course-tab-map.js" defer></script>
+  <!-- Backend connection: Google Apps Script wrapper + PIN login gate -->
+  <!-- Config lokal (URL Web App) — TIDAK ikut ter-commit, lihat .gitignore -->
+  <script src="js/config.js" defer></script>
+  <script src="js/api.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <!-- Core utilities: format tanggal, toast, escHtml, init -->
+  <script src="js/app.js" defer></script>
+  <!-- Sistem upload foto dinamis (dipakai Auto tab) -->
+  <script src="js/photo-manager.js" defer></script>
+  <!-- Generator PDF/PNG (dipakai Auto tab & Exam tab) -->
+  <script src="js/pdf-builder.js" defer></script>
+  <!-- Daily Auto Report tab logic (landing page utama) -->
+  <script src="js/auto-tab.js" defer></script>
+  <!-- Exam Report tab logic -->
+  <script src="js/exam.js" defer></script>
+  <!-- Kelola Murid tab logic -->
+  <script src="js/kelola-murid.js" defer></script>
+  <!-- Health Check tool (footer) -->
+  <script src="js/health-check.js" defer></script>
+
+</body>
+
+</html>

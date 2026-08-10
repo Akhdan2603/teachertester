@@ -1,0 +1,6 @@
+*.bak
+.DS_Store
+Thumbs.db
+
+# Berisi GAS_URL asli — jangan ikut ter-commit. Copy dari config.example.js
+js/config.js
