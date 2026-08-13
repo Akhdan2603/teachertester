@@ -114,17 +114,14 @@ function getLessonTag(s) {
 }
 
 // ============================================================
-// INIT
+// INIT (bagian yang tidak bergantung fungsi tab-specific)
 // ============================================================
 const _t = new Date();
 const _mm = String(_t.getMonth()+1).padStart(2,'0');
 const _dd = String(_t.getDate()).padStart(2,'0');
 const todayVal = _t.getFullYear()+'-'+_mm+'-'+_dd;
-
 document.getElementById('auto-tanggal').value = todayVal;
-
-// (tidak ada lagi seed data dummy — sekarang Daily Auto Report jadi landing
-// page, guru langsung "Muat Jadwal" atau tambah murid manual dari kosong)
-setLang('en');
-autoUpdatePreview();
-setTimeout(fitPreviewScale, 100);
+// Sisa init (setLang, autoUpdatePreview, fitPreviewScale) dipindah ke
+// akhir auto-tab.js — fungsi-fungsi itu didefinisikan di sana, dan
+// dengan <script defer>, app.js jalan DULUAN sebelum auto-tab.js selesai
+// dimuat, jadi manggilnya dari sini bakal "is not defined".

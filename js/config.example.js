@@ -9,4 +9,4 @@
 //
 // PENTING: URL POLOS SAJA, jangan tambahkan ?action=... di belakangnya.
 // ============================================================
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbw_-mGJb6OzEszaFEpRQft_YlX1GI_wXs5T_bzrZXToZViRZJxgJwpxSPZFaJPPC8bXTQ/exec';
+const GAS_URL = 'PASTE_URL_WEB_APP_ANDA_DI_SINI';

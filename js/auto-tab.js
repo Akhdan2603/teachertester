@@ -658,3 +658,13 @@ async function downloadAutoPDF(){
     }
   });
 }
+
+// ============================================================
+// INIT — dijalankan di sini (bukan app.js) karena butuh setLang,
+// autoUpdatePreview, fitPreviewScale yang baru terdefinisi di file ini.
+// (tidak ada lagi seed data dummy — sekarang Daily Auto Report jadi
+// landing page, guru langsung "Muat Jadwal" atau tambah murid manual)
+// ============================================================
+setLang('en');
+autoUpdatePreview();
+setTimeout(fitPreviewScale, 100);
