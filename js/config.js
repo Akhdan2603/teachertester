@@ -1,8 +1,12 @@
 // ============================================================
-// CONFIG — URL Web App Apps Script Anda
+// CONFIG TEMPLATE — copy file ini jadi "config.js" (buang ".example"),
+// lalu isi GAS_URL dengan URL Web App hasil deploy Apps Script Anda.
 // ============================================================
-// File ini SENGAJA masuk .gitignore, TIDAK ikut ter-commit ke GitHub.
-// Kalau Anda clone repo ini di device/browser lain, copy dulu dari
-// js/config.example.js, isi GAS_URL dengan URL Web App Anda sendiri.
+// Cara dapat URL-nya: Apps Script editor > Deploy > New deployment
+// (atau Manage deployments kalau sudah pernah deploy) > Web app >
+// copy "Web app URL". Contoh formatnya:
+//   https://script.google.com/macros/s/AKfycb.../exec
+//
+// PENTING: URL POLOS SAJA, jangan tambahkan ?action=... di belakangnya.
 // ============================================================
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbwa7uHP17q4MgOhK6oYjo-9tzf3dypyB00WWVjNtiJjT2NwtOkzq7car0ybLdkk6bhPuQ/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbw_-mGJb6OzEszaFEpRQft_YlX1GI_wXs5T_bzrZXToZViRZJxgJwpxSPZFaJPPC8bXTQ/exec';
