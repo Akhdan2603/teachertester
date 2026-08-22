@@ -79,7 +79,13 @@ function formatDate(s) {
 }
 function escHtml(s) {
   if (!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  // Escape semua 5 karakter HTML-sensitif, termasuk kutip tunggal ('),
+  // karena escHtml() dipakai juga untuk merender nilai ke dalam atribut
+  // HTML yang didelimit kutip tunggal (mis. onclick='...'), bukan cuma
+  // sebagai text content biasa. Tanpa escaping kutip tunggal, nilai yang
+  // mengandung karakter ' bisa memutus delimiter atribut dan menyuntikkan
+  // JavaScript arbitrer (stored XSS).
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 function formatProgressHTML(text) {
   if (!text) return '<em style="color:#94a3b8">—</em>';

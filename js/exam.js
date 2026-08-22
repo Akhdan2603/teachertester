@@ -316,7 +316,7 @@ async function downloadExamPDF() {
       colName: 'NAME',
       colProgress: 'EXAM RESULT',
       photoEmpty: () => 'No Photo',
-      fileName: (k) => `ExamReport_${k}_${student.replace(/\s+/g, '_')}`,
+      fileName: `ExamReport_${kelas.replace(/\s+/g, '_')}_${student.replace(/\s+/g, '_')}`,
     },
   });
 }

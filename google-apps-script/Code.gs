@@ -648,6 +648,15 @@ function notifyTeacherExamDue_(teacher, namaPanggilan, kelas, course, checkpoint
 // lalu diulang tiap 3 hari sekali.
 // ------------------------------------------------------------
 function cronReminderKelipatan8() {
+  // Dibungkus withLock_ supaya tidak race dengan submitDailyReport/
+  // submitExamReport/markReportDoneAction dkk (yang semuanya sudah
+  // pakai lock yang sama di doGet) kalau cron ini kebetulan jalan
+  // persis bersamaan dengan salah satu guru submit report — keduanya
+  // baca-lalu-tulis tab Student, jadi harus saling eksklusif.
+  withLock_(() => cronReminderKelipatan8_());
+}
+
+function cronReminderKelipatan8_() {
   const config = getConfig_();
   const ss = SpreadsheetApp.openById(config.mainSheetId);
   const sheet = ss.getSheetByName(TABS.STUDENT);
