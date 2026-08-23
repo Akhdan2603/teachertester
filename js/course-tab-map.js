@@ -22,12 +22,12 @@ const COURSE_TAB_MAP = {
   Junior: {
     "3D ANIMATOR": "3D_ANIMATOR",
     "Website Designer": "WEBSITE_DESIGNER",
-    "Virtual World Maker": null,   // TODO: belum ada tab yang cocok di spreadsheet JUNIORS
-    "Little Programmer": null,     // TODO: belum ada tab yang cocok di spreadsheet JUNIORS
+    "Virtual World Maker": "VIRTUAL_WORLD_MAKER", // Diisi otomatis dari sintesis daily-report objectives (lihat dokumentasi terpisah)
+    "Little Programmer": "LITTLE_PROGRAMMER",     // Diisi otomatis dari sintesis daily-report objectives (lihat dokumentasi terpisah)
   },
   Kids: {
     "Coding Explorer": "XPLORER",                        // TODO: mungkin "XPLORER"? mohon konfirmasi
-    "Tech Explorer": null,                                // TODO: course baru, belum ada tab exam template
+    "Tech Explorer": "TECH_EXPLORER",                     // Diisi otomatis dari sintesis daily-report objectives (lihat dokumentasi terpisah)
     "Game Developer": "GAMEDEV",                         // TODO: mungkin "GAMEDEV"? mohon konfirmasi
     "Code and Design with Roblox": "ROBLOX_EXPLORER",             // TODO: salah satu dari ROBLOX_DESIGNER/ROBLOX_CODER/dst?
     "Interactive Mechanics on Roblox": "ROBLOX_DESIGNER",         // TODO
@@ -45,17 +45,19 @@ const COURSE_TAB_MAP = {
     "Python for Data Science": "PYTHON_FOR_DATA_SCIENCE(16)",
     "AI Machine Learning": "PYTHON_FOR_ML(16)",
     "AI Computer Vision": "PYTHON_FOR_CV(16)",        // TODO: mungkin "PYTHON_FOR_CV(16)"? mohon konfirmasi
-    "JavaScript Developer": null,      // TODO: belum jelas cocok ke tab yang mana
+    "JavaScript Developer": "JAVASCRIPT_DEVELOPER",    // Diisi otomatis dari sintesis daily-report objectives (lihat dokumentasi terpisah)
     "Android Developer": "APP_DEV",         // TODO: mungkin "APP_DEV"? mohon konfirmasi
     "Python Coder": "PYTHON_CODER",    // CONFIRMED: cocok persis dengan tab "PYTHON_CODER" di spreadsheet TEENS
-    "Python for AI": null,             // TODO: kandidat tab "PYTHON AI (32Meeting)" ada di spreadsheet TEENS,
-                                        // tapi nama tab pakai konvensi berbeda ("32Meeting") yang tidak
-                                        // dijelaskan di manapun — JANGAN ditebak, perlu konfirmasi manual ke
-                                        // pemilik spreadsheet dulu sebelum dipasang.
-    "Python Game Developer": null,     // Manual-only by design: tidak ada tab yang jelas cocok untuk course ini
-                                        // di spreadsheet TEENS (tab "PYTHON_GAMER" cuma ada di spreadsheet KIDS,
-                                        // beda criteria). Ini bukan gap yang lupa diisi — sampai ada tab yang
-                                        // jelas dibuat khusus, guru diarahkan ke mode manual (form kosong).
+    "Python for AI": "PYTHON AI (32Meeting)",  // Dipakai sesuai instruksi — CATATAN: isi tab ini belum
+                                        // di-generalize pakai placeholder [NAMA_STUDENT]/[grade] (lihat
+                                        // dokumentasi terpisah), dan blok 2 masih kosong total.
+
+    "Python Game Developer": "PYTHON_GAME_DEV",  // Diisi otomatis dari sintesis daily-report objectives (lihat dokumentasi terpisah).
+                                        // Catatan: tab "PYTHON_GAMER" yang ada di spreadsheet KIDS TETAP TIDAK
+                                        // dipakai untuk ini — beda criteria/level, isinya juga untuk course Kids
+                                        // yang berbeda. Tab "PYTHON_GAME_DEV" ini baru & khusus dibuat di
+                                        // spreadsheet TEENS.
+
   },
 };
 

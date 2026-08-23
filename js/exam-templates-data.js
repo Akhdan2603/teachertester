@@ -92,6 +92,76 @@ const EXAM_TEMPLATES = {
         ],
         "character": []
       }
+    },
+    "VIRTUAL_WORLD_MAKER": {
+      "1": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa mengingat dan memahami kembali konsep dasar coding dengan [sangat baik/ baik/ cukup baik], yaitu algoritma, event, loop, dan conditional (code If). [NAMA_STUDENT] juga mempelajari literasi digital seperti pengaruh screen time & gadget addiction, cara mencegah cyber bullying, media balance, dan perbedaan komunikasi langsung dengan online. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Well done [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa mengerjakan latihan coding dengan [sangat baik/ baik/ cukup baik], mulai dari membuat animasi dan menggerakkan karakter dengan code If di Scratch, memprogram robot dengan platform baru, hingga mengenal dan mengendalikan Drone secara virtual. Good job [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa mengingat kembali dan memahami konsep coding dengan [sangat baik/ baik/ cukup baik], yaitu conditional (bug & debugging), function, conditional loop, dan forever loop. [NAMA_STUDENT] juga mempelajari literasi digital seperti pentingnya menghargai copyright, cara mengenali dan menghindari spam, serta pentingnya tetap berusaha dan pantang menyerah. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Awesome [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep coding yang sudah dipelajari dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] berhasil membuat Bug Hunter Game dan Beetle Race Game di Scratch menggunakan kode Glide, mengaplikasikan function pada coding game dan robot, serta memprogram Micro:bit dengan kode Forever. Nice work [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "3": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep coding lanjutan, yaitu function, variable, dan operator. [NAMA_STUDENT] juga mempelajari literasi digital seperti perkembangan teknologi dalam kehidupan manusia serta cara mengenali dan menghindari hoax. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Great job [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep coding pada project Virtual Reality dengan [sangat baik/ baik/ cukup baik], mulai dari membuat VR pameran hewan dan VR \"Finding Animal\" menggunakan function, VR City Tour, Math Game dengan operator, hingga multiple diorama VR dan project akhir Solar System VR yang dipresentasikan dengan baik. Keep it up [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      }
+    },
+    "LITTLE_PROGRAMMER": {
+      "1": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami konsep coding dasar dengan [sangat baik/ baik/ cukup baik], yaitu variable, list, dan broadcast. [NAMA_STUDENT] juga mempelajari literasi digital seperti Cloud Storage, Internet of Things (IoT) untuk membantu kehidupan sehari-hari, jejak digital, komunitas online dan perkembangannya, serta virus komputer dan cara mengatasinya. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Well done [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa mengerjakan latihan coding dengan [sangat baik/ baik/ cukup baik], mulai dari mengaplikasikan variable pada Micro:bit, membuat animasi Greeting Card dengan kode Broadcast, mengkombinasikan robot Maqueen dengan Micro:bit, membuat animasi Lost in Space dan Flying Game di Scratch, hingga membuat game animasi menggunakan konsep List. Good job [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa mengingat kembali dan memahami konsep coding dengan [sangat baik/ baik/ cukup baik], yaitu clone dan wireless controller (koneksi antar device). [NAMA_STUDENT] juga mempelajari literasi digital seperti apa itu Operating System dan konsep Addictive Design pada game maupun aplikasi. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Awesome [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep coding dan desain dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] berhasil membuat quiz interaktif dan Augmented Reality (AR) tentang bangunan bersejarah di berbagai negara, coding Wireless Controller pada Micro:bit dan Maqueen, animasi Clone War di Scratch, serta mengerjakan project game \"Create Your Own World\" dari awal hingga bagian kedua. Nice work [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "3": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep coding lanjutan, yaitu text coding dengan bahasa Python serta penerapan operator dan variable pada robot. [NAMA_STUDENT] juga mempelajari literasi digital seperti pengenalan kecerdasan buatan (AI) dan internet sebagai sumber informasi dan tempat belajar. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Great job [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep coding yang sudah dipelajari dengan [sangat baik/ baik/ cukup baik] untuk membuat project game sendiri. [NAMA_STUDENT] membuat Soccer Game di Scratch, menentukan ide dan mengumpulkan asset, menyusun layout, coding logic permainan (life, score, dan next level), hingga launch game dan mempersiapkan presentasi. Keep it up [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      }
     }
   },
   "Kids": {
@@ -349,6 +419,41 @@ const EXAM_TEMPLATES = {
         "literacy": [],
         "application": [],
         "character": []
+      }
+    },
+    "TECH_EXPLORER": {
+      "1": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami konsep coding dasar dengan [sangat baik/ baik/ cukup baik], yaitu algoritma, event, dan loop. [NAMA_STUDENT] juga mempelajari literasi digital seperti kecanduan game (game loop, login harian, FOMO saat event game online), probabilitas (RNG) dalam permainan, strategi top up game yang bijak, dan bahaya bubble information. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Well done [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa mengerjakan latihan coding dan desain dengan [sangat baik/ baik/ cukup baik]. Latihan tersebut meliputi membuat project Virtual Reality (VR) yang lebih canggih dan project Augmented Reality (AR) di DelightEx — seperti mendesain Merge Cube, membuat kuis interaktif, mengunggah video, mendesain rumah sederhana dengan konsep warna 3D, serta menambahkan animasi dan teks. Good job [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep-konsep coding block pada Scratch, yaitu event, loop, broadcast, looping control (perulangan), dan conditional logic (percabangan). [NAMA_STUDENT] juga mempelajari literasi digital seperti bahaya stranger danger di dunia maya, keamanan digital melalui QR Code, manfaat dan keamanan cloud storage, serta cara kerja search engine. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Awesome [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa mengoperasikan Scratch dan menerapkan block coding dengan [sangat baik/ baik/ cukup baik], mulai dari block Motion, Looks, Sound, hingga Sensing. [NAMA_STUDENT] berhasil membuat beberapa project seperti animasi sederhana, Beetle Race Game, dan Bug Hunter Game menggunakan konsep conditional. Nice work [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "3": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep coding lanjutan pada Scratch, yaitu operator, variable, list, dan function (My Blocks), serta konsep otomasi dalam kehidupan sehari-hari. [NAMA_STUDENT] juga mempelajari literasi digital seperti membuat password yang kuat, mengenali deepfake, dasar teknologi Generative AI, teknik prompting yang efektif, dan etika/kejujuran dalam berkarya dengan AI. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Great job [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan seluruh konsep yang sudah dipelajari dengan [sangat baik/ baik/ cukup baik] untuk menyelesaikan project game final. [NAMA_STUDENT] mengumpulkan asset game (termasuk dari AI), mengintegrasikan AI Buddy ke dalam VR Edu Delightex, menyelesaikan tahap coding project, hingga mempresentasikan hasil project dengan baik. Keep it up [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
       }
     }
   },
@@ -715,6 +820,54 @@ const EXAM_TEMPLATES = {
         "character": [
           "El is very active in class. He asks relevant questions about material when needed, showing interest in learning new programming concepts. El usually stays focused during lessons, though occasionally needs gentle reminders when topics become challenging, when he gets overly energetic, or on days when he's feeling tired. Keep it up, El!",
           "Araya sangat aktif di dalam kelas dan selalu menunjukkan antusiasme yang tinggi dalam mempelajari konsep pemrograman baru. Ia tidak ragu untuk mengajukan pertanyaan yang relevan. Araya umumnya mampu menjaga fokus, meskipun terkadang membutuhkan pengingat dari pengajar saat ia merasa terlalu bersemangat atau ketika materi mulai menjadi lebih menantang."
+        ]
+      }
+    },
+    "JAVASCRIPT_DEVELOPER": {
+      "1": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] dasar-dasar bahasa pemrograman JavaScript, yaitu algoritma, variabel dan tipe data, operator (aritmatika, penugasan, comparison, dan logical), array, conditional (if/else, switch statement, ternary operator), dan loop. [NAMA_STUDENT] juga mempelajari literasi digital seperti cara mengidentifikasi hoax, mengatasi cyberbullying, dan menjaga keseimbangan hidup (media balance). Saat ujian JavaScript Developer, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Well done [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan dasar-dasar JavaScript dengan [sangat baik/ baik/ cukup baik] melalui latihan coding menggunakan variabel, array, operator, dan struktur conditional (if/else, switch, ternary). [NAMA_STUDENT] juga sudah bisa memecahkan masalah sederhana menggunakan logika program dan loop. Good job [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep JavaScript lanjutan, yaitu nested for loop, conditional loop, function beserta parameter dan return statement, scope, dan for each looping. [NAMA_STUDENT] juga mempelajari literasi digital seperti dampak manipulasi foto dan video, pentingnya menghargai hak cipta suatu karya, dan cara bereaksi yang tepat terhadap breaking news. Saat ujian JavaScript Developer, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Awesome [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep JavaScript lanjutan dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] berhasil membuat beberapa program JavaScript untuk mempraktikkan konsep yang sudah dipelajari, termasuk menggunakan function dengan parameter, return statement, dan for each looping. Nice work [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      }
+    },
+    "PYTHON_GAME_DEV": {
+      "1": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami konsep dasar Game Development menggunakan Pygame dengan [sangat baik/ baik/ cukup baik]. Konsep-konsep yang dipelajari yaitu event controller, custom/user event, FPS (Frames Per Second), functional programming (modular & reusable), konsep Gravity (velocity vs acceleration), collision detection, global variable, transform function (scale & rotate), dan cara meng-convert game menjadi executable file. Nilai ujian teorinya juga bagus yaitu [MASUKAN_NILAI UJIAN]. Well done [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep Pygame yang sudah dipelajari dengan [sangat baik/ baik/ cukup baik]. Semua latihan diselesaikan dengan baik, mulai dari setup environment dan penambahan object, load assets & sound effect, penerapan gravity dan pergerakan object, collision handling dan high score system, eksplorasi multiplayer game dan transform function, hingga membuat custom event, winning screen, dan meng-convert game menjadi executable file. Keep it up [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep animasi dan game development lanjutan pada Pygame, yaitu animation sprite, animation frame, kondisi spawning object/enemy, dan Game Over condition. Nilai ujian teorinya juga bagus yaitu [MASUKAN_NILAI UJIAN]. Awesome [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep yang sudah dipelajari dengan [sangat baik/ baik/ cukup baik] untuk menyelesaikan project game mandiri. [NAMA_STUDENT] mengeksplorasi ide dan mengumpulkan asset, membuat timeline development, mendesain screen dan menambahkan sprite, coding logic permainan beserta enemies, hingga build game menjadi executable file dan mem-publish game tersebut. Nice work [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
         ]
       }
     }
