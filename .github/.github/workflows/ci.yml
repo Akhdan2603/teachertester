@@ -1,0 +1,54 @@
+name: CI
+
+# Cakupan workflow ini SENGAJA dibatasi ke 1 hal dulu: coverage-check mapping
+# course↔tab (rencana-10-10-non-security.md bagian 4.2, poin ke-3 dari 3).
+# `npm run lint` dan `npm test` (Jest) BELUM di-setup di proyek ini — itu
+# scope terpisah (bagian 4.2 poin 1-2), jangan ditambah step lint/test palsu
+# di sini sebelum benar-benar ada.
+#
+# Yang divalidasi gate ini:
+#   - Compile 3 spreadsheet exam template (excel/*.xlsx) berhasil tanpa
+#     exception.
+#   - Setiap course di COURSE_MAP (js/data.js) punya entri di COURSE_TAB_MAP
+#     (js/course-tab-map.js) — boleh null (manual mode), tapi tidak boleh
+#     absen sama sekali (ini persis skenario BUG-007 yang pernah terjadi).
+#   - Setiap tabName non-null di COURSE_TAB_MAP benar-benar ada sebagai tab
+#     di spreadsheet exam template terkait (bukan salah ketik / tab yang
+#     sudah dihapus/di-rename).
+#
+# Kalau ada [ERROR] di log compile, exit code script-nya 1 → job ini gagal →
+# PR diblokir sampai COURSE_TAB_MAP diperbaiki. Lihat PANDUAN.md bagian 3.6.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  exam-template-mapping-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install compile-script dependency (xlsx)
+        run: npm install --no-save xlsx
+
+      - name: Compile exam templates + validasi mapping course↔tab
+        run: node scripts/compile-exam-templates.js
+
+      - name: Pastikan hasil compile tidak beda dari yang sudah di-commit
+        # Kalau ada perbedaan, berarti seseorang lupa jalankan compile
+        # script setelah edit excel/*.xlsx (atau lupa commit hasilnya).
+        # Lihat PANDUAN.md bagian 3.6 untuk SOP yang benar.
+        run: |
+          if ! git diff --quiet -- js/exam-templates-data.js; then
+            echo "::error::js/exam-templates-data.js tidak sinkron dengan spreadsheet excel/*.xlsx."
+            echo "::error::Jalankan 'node scripts/compile-exam-templates.js' secara lokal, lalu commit hasilnya."
+            git diff -- js/exam-templates-data.js | head -100
+            exit 1
+          fi

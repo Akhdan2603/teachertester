@@ -1,0 +1,24 @@
+{
+  "name": "teachertester",
+  "version": "1.0.0",
+  "description": "Web app internal untuk guru Timedoor Academy — otomatisasi pembuatan laporan harian (Daily Report) dan laporan ujian (Exam Report) murid, terintegrasi dengan Google Sheets sebagai database dan Telegram untuk reminder otomatis.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile-exam-templates": "node scripts/compile-exam-templates.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akhdan2603/teachertester.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Akhdan2603/teachertester/issues"
+  },
+  "homepage": "https://github.com/Akhdan2603/teachertester#readme",
+  "devDependencies": {
+    "xlsx": "^0.18.5"
+  }
+}
