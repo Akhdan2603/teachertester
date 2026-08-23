@@ -95,18 +95,76 @@ function runHealthCheck() {
     addCheck(`Tab hari: ${hari}`, missing.length === 0 ? 'ok' : 'error', missing.length === 0 ? 'Header lengkap' : `Kolom hilang: ${missing.join(', ')}`);
   });
 
-  // 8. Spreadsheet Exam Template (Junior/Kids/Teens) bisa dibuka?
+  // 8. Spreadsheet Exam Template (Junior/Kids/Teens) — sumber yang dibaca
+  // scripts/compile-exam-templates.js (Node, di luar GAS), BUKAN lagi
+  // dibaca runtime saat guru pakai fitur "🪄 Ambil Template dari Sistem"
+  // (itu sekarang lookup lokal ke js/exam-templates-data.js hasil compile
+  // — lihat rencana-10-10-non-security.md bagian 2.2 / Opsi B - Hybrid).
+  // Cek ini tetap berguna untuk pastikan Script Property ID-nya masih
+  // benar & spreadsheet masih bisa diakses SEBELUM admin lupa dan baru
+  // ketahuan saat mau compile ulang, tapi TIDAK ADA LAGI fitur guru yang
+  // gagal kalau spreadsheet ini pindah/dihapus di tengah hari — dampaknya
+  // sekarang cuma ke proses compile, bukan ke aplikasi yang sedang dipakai.
   const config = getConfig_();
   Object.keys(config.examSheetIds).forEach(criteria => {
     const id = config.examSheetIds[criteria];
     if (!id) return; // sudah ditandai error di Script Properties check
     try {
       const examSs = SpreadsheetApp.openById(id);
-      addCheck(`Spreadsheet Exam Template: ${criteria}`, 'ok', `Berhasil dibuka: "${examSs.getName()}"`);
+      addCheck(`Spreadsheet Exam Template: ${criteria}`, 'ok', `Berhasil dibuka: "${examSs.getName()}" (dipakai scripts/compile-exam-templates.js, bukan runtime aplikasi)`);
     } catch (err) {
-      addCheck(`Spreadsheet Exam Template: ${criteria}`, 'error', 'Gagal dibuka — cek ID benar dan akses.');
+      addCheck(`Spreadsheet Exam Template: ${criteria}`, 'warning', 'Gagal dibuka — cek ID benar dan akses. Aplikasi tetap jalan normal (exam template sudah di-compile ke JS), tapi compile ulang berikutnya akan gagal sampai ini diperbaiki.');
     }
   });
+
+  // 8b. Validasi mapping course↔tab spreadsheet exam template (Fase 2 dari
+  // rencana-10-10-non-security.md bagian 1.2). Tujuannya: begitu ada course
+  // baru ditambah di COURSE_MAP tapi lupa dimapping (atau dimapping ke nama
+  // tab yang salah/sudah dihapus/di-rename), langsung merah di sini —
+  // bukan ketahuan berbulan-bulan kemudian dari guru yang komplain fitur
+  // auto-fetch nggak jalan (ini persis skenario BUG-007 yang sudah pernah
+  // terjadi: 3 course Teens tanpa entri COURSE_TAB_MAP walau tab-nya ada).
+  //
+  // Catatan: sejak migrasi exam template ke Opsi B - Hybrid, "tab" di sini
+  // artinya key di dalam js/exam-templates-data.js (EXAM_TEMPLATES), yang
+  // di-generate dari nama tab spreadsheet oleh scripts/compile-exam-templates.js
+  // — jadi validasi di bawah tetap membaca langsung dari spreadsheet exam
+  // template (bukan dari file JS hasil compile), supaya juga menangkap
+  // kasus "tab sudah di-rename di spreadsheet setelah compile terakhir,
+  // developer lupa compile ulang".
+  if (typeof COURSE_TAB_MAP !== 'undefined' && typeof COURSE_MAP !== 'undefined') {
+    Object.keys(COURSE_TAB_MAP).forEach(criteria => {
+      const sheetId = config.examSheetIds[criteria];
+      if (!sheetId) return; // sudah ditandai error di atas
+      let examSs;
+      try {
+        examSs = SpreadsheetApp.openById(sheetId);
+      } catch (err) {
+        return; // sudah ditandai error di check 8 di atas, jangan dobel
+      }
+      Object.entries(COURSE_TAB_MAP[criteria]).forEach(([course, tabName]) => {
+        if (!tabName) {
+          addCheck(`Mapping: ${criteria} / ${course}`, 'warning', 'Belum dimapping (manual mode) — guru isi form manual untuk course ini.');
+          return;
+        }
+        const exists = !!examSs.getSheetByName(tabName);
+        addCheck(`Mapping: ${criteria} / ${course} → "${tabName}"`, exists ? 'ok' : 'error',
+          exists ? 'Tab ditemukan' : `Tab "${tabName}" TIDAK DITEMUKAN di spreadsheet ${criteria} — mapping salah/tab dihapus/di-rename. Perbaiki COURSE_TAB_MAP lalu compile ulang.`);
+      });
+    });
+
+    // Course di COURSE_MAP yang sama sekali tidak punya key di COURSE_TAB_MAP
+    // (bukan null — memang absen, ini persis BUG-007).
+    Object.keys(COURSE_MAP).forEach(criteria => {
+      (COURSE_MAP[criteria] || []).forEach(course => {
+        if (!(course in (COURSE_TAB_MAP[criteria] || {}))) {
+          addCheck(`Mapping: ${criteria} / ${course}`, 'error', 'TIDAK ADA entri di COURSE_TAB_MAP sama sekali (bukan null — memang absen). Tambahkan entrinya (boleh null kalau memang belum ada tab yang cocok).');
+        }
+      });
+    });
+  } else {
+    addCheck('Mapping course↔tab (COURSE_TAB_MAP/COURSE_MAP)', 'warning', 'Tidak bisa divalidasi — COURSE_TAB_MAP/COURSE_MAP tidak tersedia di scope Apps Script ini (file-file itu ada di js/, sisi frontend, bukan di-load ke GAS). Validasi mapping course↔tab sebenarnya dilakukan otomatis oleh scripts/compile-exam-templates.js tiap kali dijalankan — lihat log compile-nya.');
+  }
 
   // 9. Telegram token valid? (panggil getMe, ringan & tidak mengirim apa pun)
   if (config.telegramToken) {

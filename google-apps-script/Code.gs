@@ -77,11 +77,12 @@ function doGet(e) {
       case 'getPendingExams':
         result = getPendingExamsForTeacher(p.teacher);
         break;
-      case 'getExamTemplate':
-        result = getExamTemplateText(p.criteria, p.course, parseInt(p.lesson, 10), p.namaPanggilan, {
-          literacy: p.gradeLiteracy, application: p.gradeApplication, character: p.gradeCharacter,
-        });
-        break;
+      // action 'getExamTemplate' DIHAPUS (Rencana B — Hybrid, lihat
+      // rencana-10-10-non-security.md bagian 2.2 & scripts/compile-exam-templates.js):
+      // fitur "🪄 Ambil Template dari Sistem" sekarang lookup lokal ke
+      // js/exam-templates-data.js di frontend, tidak lagi lewat backend GAS
+      // ini. ExamTemplates.gs (parser rapuh yang dulu di sini) juga sudah
+      // dihapus total dari proyek — kalau butuh riwayatnya, cek git log.
       case 'getAIExamText':
         result = generateAIExamTexts(p.course, parseInt(p.lesson, 10), p.namaPanggilan, JSON.parse(p.objectives || '[]'), {
           literacy: p.gradeLiteracy, application: p.gradeApplication, character: p.gradeCharacter,

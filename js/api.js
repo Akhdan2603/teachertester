@@ -53,14 +53,11 @@ function apiMarkAbsent(payload) {
 }
 
 // ---- Exam Template ----
-function apiGetExamTemplate(criteria, course, lesson, namaPanggilan, grades) {
-  return apiGet('getExamTemplate', {
-    criteria, course, lesson, namaPanggilan,
-    gradeLiteracy: grades.literacy || 'B',
-    gradeApplication: grades.application || 'B',
-    gradeCharacter: grades.character || 'B',
-  });
-}
+// apiGetExamTemplate() DIHAPUS (Rencana B — Hybrid, lihat
+// rencana-10-10-non-security.md bagian 2.2): fitur "🪄 Ambil Template dari
+// Sistem" sekarang lookup lokal ke EXAM_TEMPLATES (js/exam-templates-data.js,
+// lihat lookupExamTemplateLocal_() di js/exam.js) — tidak ada lagi network
+// call ke action 'getExamTemplate' di backend GAS.
 
 // ---- AI Exam Text ----
 function apiGetAIExamText(course, lesson, namaPanggilan, grades, objectives) {

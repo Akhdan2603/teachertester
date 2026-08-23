@@ -2,5 +2,10 @@
 .DS_Store
 Thumbs.db
 
+# Dependency npm (dipakai scripts/compile-exam-templates.js saja, lihat
+# package.json devDependencies) — jangan ikut ter-commit, install ulang
+# dengan `npm install`.
+node_modules/
+
 # Berisi GAS_URL asli — jangan ikut ter-commit. Copy dari config.example.js
 js/config.js

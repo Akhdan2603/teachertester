@@ -330,6 +330,10 @@
   <script src="js/templates.js" defer></script>
   <!-- Mapping nama course dropdown -> nama tab spreadsheet exam (lihat isi file untuk TODO) -->
   <script src="js/course-tab-map.js" defer></script>
+  <!-- Data exam template hasil compile spreadsheet (Rencana B — Hybrid).
+       Di-generate oleh scripts/compile-exam-templates.js, JANGAN edit manual.
+       Harus dimuat SEBELUM js/exam.js karena exam.js baca EXAM_TEMPLATES. -->
+  <script src="js/exam-templates-data.js" defer></script>
   <!-- Backend connection: Google Apps Script wrapper + PIN login gate -->
   <!-- Config lokal (URL Web App) — TIDAK ikut ter-commit, lihat .gitignore -->
   <script src="js/config.js" defer></script>

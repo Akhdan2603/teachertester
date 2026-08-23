@@ -36,6 +36,7 @@ Google Gemini free tier (AI generate opsional).
 │   ├── data.js             Data course & lesson objectives
 │   ├── templates.js        Template teks laporan (ID & EN) per lesson
 │   ├── course-tab-map.js   Mapping nama course → nama tab spreadsheet exam
+│   ├── exam-templates-data.js  Data exam template hasil compile (JANGAN edit manual — lihat scripts/)
 │   ├── api.js               Wrapper fetch ke Apps Script Web App
 │   ├── auth.js              Login PIN + session
 │   ├── app.js                Utilitas inti (format tanggal, toast, dll)
@@ -48,10 +49,15 @@ Google Gemini free tier (AI generate opsional).
 ├── google-apps-script/      Backend (deploy manual ke script.google.com)
 │   ├── Code.gs               Entry point (doGet), auth, daily/exam report, cron reminder
 │   ├── AdminSheets.gs        Sync view admin, absensi, Kelola Murid (CRUD)
-│   ├── ExamTemplates.gs      Parser template exam dari spreadsheet
 │   ├── AIGenerator.gs        Integrasi Gemini AI
 │   ├── HealthCheck.gs        Validasi setup
 │   └── appsscript.json       Manifest (OAuth scopes)
+├── scripts/
+│   └── compile-exam-templates.js  Compile excel/*.xlsx → js/exam-templates-data.js
+│                                   (jalankan tiap kali teks exam template diupdate,
+│                                   lihat PANDUAN.md bagian 3.6)
+├── excel/                   Spreadsheet sumber (admin/guru edit di sini): daily
+│                             report templates + 3 exam template (Junior/Kids/Teens)
 ├── PANDUAN.md               Panduan setup & pemakaian lengkap, step-by-step
 └── TODO.md                  Checklist yang masih perlu dikerjakan/diverifikasi
 ```

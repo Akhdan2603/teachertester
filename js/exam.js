@@ -1,7 +1,81 @@
 // ============================================================
 // EXAM REPORT TAB
-// Depends on: data.js (COURSE_MAP), course-tab-map.js, api.js, auth.js, app.js (buildAndSavePDF, toast, escHtml, formatDate)
+// Depends on: data.js (COURSE_MAP), course-tab-map.js, exam-templates-data.js
+// (EXAM_TEMPLATES — hasil compile spreadsheet, lihat scripts/compile-exam-templates.js),
+// auth.js, app.js (buildAndSavePDF, toast, escHtml, formatDate)
 // ============================================================
+
+// ------------------------------------------------------------
+// Lookup lokal ke EXAM_TEMPLATES (Opsi B — Hybrid, lihat
+// rencana-10-10-non-security.md bagian 2.2). Menggantikan
+// apiGetExamTemplate() yang dulu network call ke Google Apps Script
+// (ExamTemplates.gs) setiap tombol "🪄 Ambil Template dari Sistem"
+// ditekan — sekarang lookup objek lokal, instan, tanpa request.
+// ------------------------------------------------------------
+
+const EXAM_GRADE_TO_QUALITY = { A: 0, B: 1, C: 2 };
+
+/**
+ * Isi placeholder [NAMA_STUDENT]/[STUDENT_NAME] dan pilih opsi kualitas
+ * sesuai grade dari teks berformat [opsi_A/opsi_B/opsi_C].
+ * Port dari fillTemplateText_ di google-apps-script/ExamTemplates.gs
+ * (dulu dijalankan di backend, sekarang di frontend saat lookup lokal).
+ */
+function fillExamTemplateText_(rawText, studentName, grade) {
+  let text = String(rawText)
+    .replace(/\[NAMA_STUDENT\]/gi, studentName)
+    .replace(/\[STUDENT_NAME\]/gi, studentName);
+
+  const qualityIndex = EXAM_GRADE_TO_QUALITY[grade] !== undefined ? EXAM_GRADE_TO_QUALITY[grade] : 1;
+
+  text = text.replace(/\[([^\[\]]+\/[^\[\]]+)\]/g, (match, group) => {
+    const options = group.split('/').map(s => s.trim());
+    return options[qualityIndex] || options[options.length - 1];
+  });
+
+  // Safety-net: kalau masih ada sisa "[" atau "]" (kurung tidak seimbang di
+  // teks sumber spreadsheet), buang saja supaya minimal tidak tampil mentah
+  // ke orang tua murid. Perbaikan sesungguhnya tetap harus di spreadsheet.
+  text = text.replace(/[\[\]]/g, '');
+
+  return text.trim();
+}
+
+/**
+ * Ganti apiGetExamTemplate() lama: ambil array varian mentah dari
+ * EXAM_TEMPLATES lalu isi placeholder-nya untuk 1 (criteria, courseTab,
+ * lessonNumber). Return bentuknya sengaja disamakan dengan hasil
+ * getExamTemplateText() lama supaya caller (fetchExamTemplates) tidak
+ * perlu berubah banyak.
+ */
+function lookupExamTemplateLocal_(criteria, courseTab, lessonNumber, studentName, grades) {
+  if (typeof EXAM_TEMPLATES === 'undefined') {
+    return { success: false, error: 'js/exam-templates-data.js belum dimuat — cek urutan <script> di index.html.' };
+  }
+  const criteriaData = EXAM_TEMPLATES[criteria];
+  if (!criteriaData) {
+    return { success: false, error: `Tidak ada data exam template untuk criteria "${criteria}".` };
+  }
+  const courseData = criteriaData[courseTab];
+  if (!courseData) {
+    return { success: false, error: `Tab course "${courseTab}" tidak ditemukan di data exam template ${criteria}.` };
+  }
+
+  const examBlockNumber = Math.round(lessonNumber / 8); // lesson 8→blok 1, 16→blok 2, dst — sama seperti backend lama
+  const blockData = courseData[String(examBlockNumber)];
+  if (!blockData) {
+    return { success: false, error: `Blok ujian ke-${examBlockNumber} tidak ditemukan untuk course "${courseTab}".` };
+  }
+
+  const result = {};
+  ['literacy', 'application', 'character'].forEach(category => {
+    const variants = blockData[category] || [];
+    const grade = (grades && grades[category]) || 'B';
+    result[category] = variants.map(text => fillExamTemplateText_(text, studentName, grade));
+  });
+
+  return { success: true, blockNumber: examBlockNumber, texts: result };
+}
 
 let examVariants = { literacy: [], application: [], character: [] };
 let examVariantIndex = { literacy: 0, application: 0, character: 0 };
@@ -214,8 +288,9 @@ async function fetchExamTemplates() {
     character: document.getElementById('exam-grade-character').value,
   };
 
-  toast('Mengambil template dari sistem...', 'success');
-  const res = await apiGetExamTemplate(criteria, tabName, lesson, namaPanggilan, grades);
+  // Lookup lokal ke EXAM_TEMPLATES (hasil compile spreadsheet) — instan,
+  // tidak ada network call ke GAS lagi (lihat js/exam-templates-data.js).
+  const res = lookupExamTemplateLocal_(criteria, tabName, parseInt(lesson, 10), namaPanggilan, grades);
 
   if (!res.success) {
     toast(res.error || 'Gagal mengambil template.', 'error');

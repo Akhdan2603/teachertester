@@ -119,19 +119,65 @@ Tambahkan baris yang sama juga di `Log_Laporan`: `Teacher | Hari | Kelas | Stude
 > ⚠️ Kombinasi **Hari+Kelas+Student** harus SAMA PERSIS di semua tab.
 
 ### 3.4 Tambah Course Baru
+Checklist lengkap (urutan penting — kalau salah satu dilewat, Health Check
+akan menandainya merah/kuning, tapi lebih baik dicegah dari awal):
 1. Tambah di `COURSE_MAP` (`js/data.js`)
-2. Tambah mapping tab-nya di `js/course-tab-map.js`
-3. Tambah template daily report di `js/templates.js` kalau perlu (ikuti pola yang sudah ada, tulis dalam Bahasa Indonesia untuk `TEMPLATES`, Inggris untuk `TEMPLATES_EN`)
+2. Tambah mapping tab-nya di `COURSE_TAB_MAP` (`js/course-tab-map.js`) —
+   isi nama tab spreadsheet exam template yang sesuai, atau `null` kalau
+   memang belum ada tab yang cocok (course-nya jadi mode manual, guru isi
+   form sendiri — ini valid, bukan error).
+3. Kalau tab exam template-nya sudah ada di spreadsheet (Junior/Kids/Teens):
+   jalankan `node scripts/compile-exam-templates.js` supaya teks exam-nya
+   ikut ter-compile ke `js/exam-templates-data.js` — lihat SOP 3.6 di bawah.
+4. Tambah template daily report di `js/templates.js` kalau perlu (ikuti pola
+   yang sudah ada, tulis dalam Bahasa Indonesia untuk `TEMPLATES`, Inggris
+   untuk `TEMPLATES_EN`).
+5. Jalankan 🩺 Health Check di aplikasi — pastikan tidak ada mapping yang
+   merah (course baru tanpa entri `COURSE_TAB_MAP` sama sekali akan
+   ketahuan di sini).
 
 ### 3.5 Reset PIN / Nonaktifkan Guru
 Ubah kolom PIN atau `status` (TRUE→FALSE) di tab `Teacher`.
+
+### 3.6 Update Teks Exam Template (Opsi B — Hybrid)
+Sejak migrasi exam template (lihat `rencana-10-10-non-security.md` bagian 2),
+teks yang ditampilkan tombol "🪄 Ambil Template dari Sistem" di tab Exam
+Report TIDAK LAGI dibaca live dari Google Sheets — sudah di-compile ke
+`js/exam-templates-data.js` dan dipakai langsung tanpa network call. Tapi
+spreadsheet-nya (folder `excel/`: `JUNIORS report templates.xlsx`,
+`KIDS report templates.xlsx`, `Salinan dari TEENS report templates.xlsx`)
+TETAP jadi tempat admin/guru edit teksnya seperti biasa — cuma ada 1 langkah
+tambahan setelah selesai edit:
+
+1. Edit teksnya seperti biasa (kalau editnya di Google Sheets live, download
+   ulang sebagai `.xlsx` dan timpa file yang sesuai di folder `excel/`; kalau
+   editnya langsung di file `.xlsx` lokal, lewati langkah ini).
+2. Jalankan di terminal (dari folder root project):
+   ```
+   node scripts/compile-exam-templates.js
+   ```
+3. Baca ringkasan log-nya — kalau ada baris `[ERROR]` di bagian "Validasi
+   mapping", perbaiki `js/course-tab-map.js` dulu sebelum lanjut (biasanya
+   berarti nama tab di `COURSE_TAB_MAP` tidak cocok lagi dengan nama tab di
+   spreadsheet). Baris `[warn]` boleh diabaikan kalau memang disengaja
+   (kategori kosong di spreadsheet, atau course mode manual).
+4. Cek hasilnya: `git diff js/exam-templates-data.js` — review perubahan
+   teksnya masuk akal (bukan tiba-tiba semuanya kosong, dsb).
+5. Commit & push `js/exam-templates-data.js` (dan file `.xlsx` di `excel/`
+   kalau berubah) seperti commit biasa.
+
+> Kalau ini pertama kali dijalankan di komputer yang belum pernah pasang
+> dependency-nya: `npm install xlsx` dulu di folder root project (sekali
+> saja, `xlsx`/SheetJS dipakai compile script untuk baca file `.xlsx`).
 
 ---
 
 ## 💻 BAGIAN 4: CARA UPDATE KODE
 
 **Frontend**: edit file → push GitHub → Vercel/Pages auto-redeploy
-**Backend**: edit `Code.gs`/`ExamTemplates.gs` → **WAJIB** Deploy → Manage deployments → New version → Deploy
+**Backend**: edit `Code.gs`/`HealthCheck.gs`/`AIGenerator.gs`/`AdminSheets.gs` → **WAJIB** Deploy → Manage deployments → New version → Deploy
+**Teks Exam Template**: BUKAN lewat backend lagi — lihat SOP 3.6 di atas (edit spreadsheet → `node scripts/compile-exam-templates.js` → commit).
+Catatan: `ExamTemplates.gs` sudah DIHAPUS dari proyek ini (digantikan `js/exam-templates-data.js` + `scripts/compile-exam-templates.js`, lihat `rencana-10-10-non-security.md` bagian 2) — kalau ada dokumentasi lama yang masih menyebut file itu, sudah tidak berlaku.
 
 ---
 
