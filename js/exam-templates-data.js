@@ -30,69 +30,6 @@
 
 const EXAM_TEMPLATES = {
   "Junior": {
-    "3D_ANIMATOR": {
-      "1": {
-        "literacy": [
-          "\n[NAMA_STUDENT]  menunjukkan kemajuan yang [sangat baik/ baik/ cukup baik]. dalam belajar Coding\r\nuntuk pertama kalinya. [NAMA_STUDENT]  mulai memahami konsep dasar\r\nkomputer seperti mouse, keyboard dan layar dan\r\nmenggunakannya secara sederhana untuk navigasi dan input.\r\n[NAMA_STUDENT]  juga memahami literasi digital dengan [sangat baik/ baik/ cukup baik]. seperti\r\npentingnya media balance dan mencegah cyber bullying. Good\r\nJob [NAMA_STUDENT] !"
-        ],
-        "application": [
-          "[NAMA_STUDENT] bisa memahami konsep dasar seperti algoritma dan blok\nkode, dan mampu membuat animasi dasar dengan ScratchJr.\nSelain itu, [NAMA_STUDENT] mulai terbiasa menggunakan aplikasi Wonder\nuntuk mendukung proses belajarnya. Ini menunjukkan\nkemampuannya berkembang dalam memanfaatkan teknologi\ndigital untuk memperluas pengetahuannya. Good Job [NAMA_STUDENT]!\n"
-        ],
-        "character": [
-          "[NAMA_STUDENT] [sangat antusias/ antusias/ cukup antusia] setiap di kelas. [NAMA_STUDENT] mempunyai rasa ingin tahu\nyang [tinggi/ cukup tinggi] sehingga [mudah/kadang] terdistraksi dengan hal yang lain.\nWalaupun begitu, [NAMA_STUDENT] tidak ragu-ragu bertanya tentang hal-hal\nyang tidak diketahui dan juga menyampaikan pendapat di\ndalam kelas. Tetap semangat ya [NAMA_STUDENT]!"
-        ]
-      },
-      "2": {
-        "literacy": [
-          "[NAMA_STUDENT] menunjukkan pemahaman yang [sangat baik/ baik/ cukup baik] terhadap\nliterasi digital, dasar penggunaan komputer seperti keyboard\ndan mouse.[NAMA_STUDENT] juga cukup memahami coding konsep seperti\nconditional, debugging, dan animasi sederhana. Tetap\nsemangat ya [NAMA_STUDENT]!\n"
-        ],
-        "application": [
-          "[NAMA_STUDENT] bisa menyusun blok coding dengan [sangat baik/ baik/ cukup baik] di Scratch\nJunior, memberi instruksi pada Cue robot dan membuat animasi\nsederhana di scratch dan animasi\n3D di Kodu. Namun, [NAMA_STUDENT] masih membutuhkan perhatian khusus\nagar bisa fokus mengerjakan latihan coding.\nKeep it up [NAMA_STUDENT]!"
-        ],
-        "character": []
-      },
-      "3": {
-        "literacy": [
-          "[NAMA_STUDENT] telah menunjukkan pemahaman yang [sangat baik/ baik/ cukup baik] dalam\nmengenali gambar atau video palsu. [NAMA_STUDENT], Arka masih\nmembutuhkan bimbingan dalam memahami cara yang benar\nuntuk mendownload dan mengupload konten dengan hak cipta.\n[NAMA_STUDENT] juga semakin mahir dalam menggunakan dasar-dasar\nkomputer seperti keyboard dan mouse. Tetap semangat, [NAMA_STUDENT]!"
-        ],
-        "application": [
-          "Arka masih membutuhkan bimbingan dalam menggunakan\r\nplatform Kodu untuk membuat game 3D seperti underwater\r\ngame dan cycle race. Selain itu, Arka juga belum sepenuhnya\r\nmemahami konsep conditional loop. Tapi jika dibimbing teacher,\r\nArka dapat lebih fokus dan menunjukkan kemampuan coding\r\nyang semakin berkembang. Keep it up, Arka! You're doing great."
-        ],
-        "character": []
-      }
-    },
-    "WEBSITE_DESIGNER": {
-      "1": {
-        "literacy": [
-          "Gavin meningkatkan keterampilan motorik halusnya dengan berlatih mengoperasikan komputer, termasuk mengetik, mengklik, dan drag mouse dengan menggunakan berbagai platform coding. Dia menunjukkan pemahaman yang sangat baik di bidang konsep komputer dan literasi digital. Ia juga mampu menguasai materi dengan cepat . Ke depannya, Gavin bisa meningkatkan fokus pada detail untuk memperkuat kemampuan analisisnya."
-        ],
-        "application": [
-          "Gavin telah mempelajari dan menerapkan konsep coding seperti conditional loop dan function melalui game coding sederhana. Dia  juga telah mengeksplor cara menggunakan konsep-konsep tersebut untuk membuat animasi sederhana menggunakan telknologi  VR dan AR. Gavin sangat antusias belajar, namun perlu terus berlatih menyusun kode yang lebih kompleks agar lebih percaya diri."
-        ],
-        "character": [
-          "[NAMA_STUDENT] [sangat antusias/ antusias/ cukup antusia] setiap di kelas. [NAMA_STUDENT] mempunyai rasa ingin tahu\nyang [tinggi/ cukup tinggi] sehingga [mudah/kadang] terdistraksi dengan hal yang lain.\nWalaupun begitu, [NAMA_STUDENT] tidak ragu-ragu bertanya tentang hal-hal\nyang tidak diketahui dan juga menyampaikan pendapat di\ndalam kelas. Tetap semangat ya [NAMA_STUDENT]!",
-          "Gavin sangat antusias setiap di kelas. Dia juga sangat fokus ketika mengerjakan latihan. Ketika ada yang bingung, Gavin selalu bertanya. Keep itu Gavin!"
-        ]
-      },
-      "2": {
-        "literacy": [
-          "[NAMA_STUDENT] menunjukkan pemahaman yang [sangat baik/ baik/ cukup baik] terhadap\nliterasi digital, dasar penggunaan komputer seperti keyboard\ndan mouse.[NAMA_STUDENT] juga cukup memahami coding konsep seperti\nconditional, debugging, dan animasi sederhana. Tetap\nsemangat ya [NAMA_STUDENT]!\n"
-        ],
-        "application": [
-          "[NAMA_STUDENT] bisa menyusun blok coding dengan [sangat baik/ baik/ cukup baik] di Scratch\nJunior, memberi instruksi pada Cue robot dan membuat animasi\nsederhana di scratch dan animasi\n3D di Kodu. Namun, [NAMA_STUDENT] masih membutuhkan perhatian khusus\nagar bisa fokus mengerjakan latihan coding.\nKeep it up [NAMA_STUDENT]!"
-        ],
-        "character": []
-      },
-      "3": {
-        "literacy": [
-          "[NAMA_STUDENT] telah menunjukkan pemahaman yang [sangat baik/ baik/ cukup baik] dalam\nmengenali gambar atau video palsu. [NAMA_STUDENT], Arka masih\nmembutuhkan bimbingan dalam memahami cara yang benar\nuntuk mendownload dan mengupload konten dengan hak cipta.\n[NAMA_STUDENT] juga semakin mahir dalam menggunakan dasar-dasar\nkomputer seperti keyboard dan mouse. Tetap semangat, [NAMA_STUDENT]!"
-        ],
-        "application": [
-          "Arka masih membutuhkan bimbingan dalam menggunakan\r\nplatform Kodu untuk membuat game 3D seperti underwater\r\ngame dan cycle race. Selain itu, Arka juga belum sepenuhnya\r\nmemahami konsep conditional loop. Tapi jika dibimbing teacher,\r\nArka dapat lebih fokus dan menunjukkan kemampuan coding\r\nyang semakin berkembang. Keep it up, Arka! You're doing great."
-        ],
-        "character": []
-      }
-    },
     "VIRTUAL_WORLD_MAKER": {
       "1": {
         "literacy": [
@@ -162,6 +99,76 @@ const EXAM_TEMPLATES = {
           "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
         ]
       }
+    },
+    "3D_ANIMATOR": {
+      "1": {
+        "literacy": [
+          "\n[NAMA_STUDENT]  menunjukkan kemajuan yang [sangat baik/ baik/ cukup baik]. dalam belajar Coding\r\nuntuk pertama kalinya. [NAMA_STUDENT]  mulai memahami konsep dasar\r\nkomputer seperti mouse, keyboard dan layar dan\r\nmenggunakannya secara sederhana untuk navigasi dan input.\r\n[NAMA_STUDENT]  juga memahami literasi digital dengan [sangat baik/ baik/ cukup baik]. seperti\r\npentingnya media balance dan mencegah cyber bullying. Good\r\nJob [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa memahami konsep dasar seperti algoritma dan blok\nkode, dan mampu membuat animasi dasar dengan ScratchJr.\nSelain itu, [NAMA_STUDENT] mulai terbiasa menggunakan aplikasi Wonder\nuntuk mendukung proses belajarnya. Ini menunjukkan\nkemampuannya berkembang dalam memanfaatkan teknologi\ndigital untuk memperluas pengetahuannya. Good Job [NAMA_STUDENT]!\n"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat antusias/ antusias/ cukup antusias] setiap di kelas. [NAMA_STUDENT] mempunyai rasa ingin tahu yang [tinggi/ cukup tinggi] sehingga [mudah/ kadang] terdistraksi dengan hal yang lain. Walaupun begitu, [NAMA_STUDENT] tidak ragu-ragu bertanya tentang hal-hal yang tidak diketahui dan juga menyampaikan pendapat di dalam kelas. Tetap semangat ya [NAMA_STUDENT]!"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "[NAMA_STUDENT] menunjukkan pemahaman yang [sangat baik/ baik/ cukup baik] terhadap\nliterasi digital, dasar penggunaan komputer seperti keyboard\ndan mouse.[NAMA_STUDENT] juga cukup memahami coding konsep seperti\nconditional, debugging, dan animasi sederhana. Tetap\nsemangat ya [NAMA_STUDENT]!\n"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menyusun blok coding dengan [sangat baik/ baik/ cukup baik] di Scratch\nJunior, memberi instruksi pada Cue robot dan membuat animasi\nsederhana di scratch dan animasi\n3D di Kodu. Namun, [NAMA_STUDENT] masih membutuhkan perhatian khusus\nagar bisa fokus mengerjakan latihan coding.\nKeep it up [NAMA_STUDENT]!"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat antusias/ antusias/ cukup antusias] setiap di kelas. [NAMA_STUDENT] mempunyai rasa ingin tahu yang [tinggi/ cukup tinggi] sehingga [mudah/ kadang] terdistraksi dengan hal yang lain. Walaupun begitu, [NAMA_STUDENT] tidak ragu-ragu bertanya tentang hal-hal yang tidak diketahui dan juga menyampaikan pendapat di dalam kelas. Tetap semangat ya [NAMA_STUDENT]!"
+        ]
+      },
+      "3": {
+        "literacy": [
+          "[NAMA_STUDENT] telah menunjukkan pemahaman yang [sangat baik/ baik/ cukup baik] dalam\nmengenali gambar atau video palsu. [NAMA_STUDENT] masih\nmembutuhkan bimbingan dalam memahami cara yang benar\nuntuk mendownload dan mengupload konten dengan hak cipta.\n[NAMA_STUDENT] juga semakin mahir dalam menggunakan dasar-dasar\nkomputer seperti keyboard dan mouse. Tetap semangat, [NAMA_STUDENT]!"
+        ],
+        "application": [
+          "[NAMA_STUDENT] masih membutuhkan bimbingan dalam menggunakan platform Kodu untuk membuat game 3D seperti underwater game dan cycle race. Selain itu, [NAMA_STUDENT] juga belum sepenuhnya memahami konsep conditional loop. Namun jika dibimbing teacher, [NAMA_STUDENT] bisa lebih fokus dan menunjukkan kemampuan coding yang semakin berkembang. Keep it up, [NAMA_STUDENT]! You're doing great."
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat antusias/ antusias/ cukup antusias] setiap di kelas. [NAMA_STUDENT] mempunyai rasa ingin tahu yang [tinggi/ cukup tinggi] sehingga [mudah/ kadang] terdistraksi dengan hal yang lain. Walaupun begitu, [NAMA_STUDENT] tidak ragu-ragu bertanya tentang hal-hal yang tidak diketahui dan juga menyampaikan pendapat di dalam kelas. Tetap semangat ya [NAMA_STUDENT]!"
+        ]
+      }
+    },
+    "WEBSITE_DESIGNER": {
+      "1": {
+        "literacy": [
+          "[NAMA_STUDENT] meningkatkan keterampilan motorik halusnya dengan [sangat baik/ baik/ cukup baik], berlatih mengoperasikan komputer termasuk mengetik, mengklik, dan drag mouse menggunakan berbagai platform coding. [NAMA_STUDENT] menunjukkan pemahaman yang [sangat baik/ baik/ cukup baik] di bidang konsep komputer dan literasi digital serta mampu menguasai materi dengan cepat. Ke depannya, [NAMA_STUDENT] bisa meningkatkan fokus pada detail untuk memperkuat kemampuan analisisnya. Well done [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa mempelajari dan menerapkan konsep coding seperti conditional loop dan function dengan [sangat baik/ baik/ cukup baik] melalui game coding sederhana. [NAMA_STUDENT] juga mengeksplorasi cara menggunakan konsep-konsep tersebut untuk membuat animasi sederhana menggunakan teknologi VR dan AR. [NAMA_STUDENT] sangat antusias belajar, namun perlu terus berlatih menyusun kode yang lebih kompleks agar lebih percaya diri. Good job [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat antusias/ antusias/ cukup antusias] setiap di kelas. [NAMA_STUDENT] mempunyai rasa ingin tahu yang [tinggi/ cukup tinggi] sehingga [mudah/ kadang] terdistraksi dengan hal yang lain. Walaupun begitu, [NAMA_STUDENT] tidak ragu-ragu bertanya tentang hal-hal yang tidak diketahui dan juga menyampaikan pendapat di dalam kelas. Tetap semangat ya [NAMA_STUDENT]!"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "[NAMA_STUDENT] menunjukkan pemahaman yang [sangat baik/ baik/ cukup baik] terhadap\nliterasi digital, dasar penggunaan komputer seperti keyboard\ndan mouse.[NAMA_STUDENT] juga cukup memahami coding konsep seperti\nconditional, debugging, dan animasi sederhana. Tetap\nsemangat ya [NAMA_STUDENT]!\n"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menyusun blok coding dengan [sangat baik/ baik/ cukup baik] di Scratch\nJunior, memberi instruksi pada Cue robot dan membuat animasi\nsederhana di scratch dan animasi\n3D di Kodu. Namun, [NAMA_STUDENT] masih membutuhkan perhatian khusus\nagar bisa fokus mengerjakan latihan coding.\nKeep it up [NAMA_STUDENT]!"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat antusias/ antusias/ cukup antusias] setiap di kelas. [NAMA_STUDENT] mempunyai rasa ingin tahu yang [tinggi/ cukup tinggi] sehingga [mudah/ kadang] terdistraksi dengan hal yang lain. Walaupun begitu, [NAMA_STUDENT] tidak ragu-ragu bertanya tentang hal-hal yang tidak diketahui dan juga menyampaikan pendapat di dalam kelas. Tetap semangat ya [NAMA_STUDENT]!"
+        ]
+      },
+      "3": {
+        "literacy": [
+          "[NAMA_STUDENT] telah menunjukkan pemahaman yang [sangat baik/ baik/ cukup baik] dalam\nmengenali gambar atau video palsu. [NAMA_STUDENT] masih\nmembutuhkan bimbingan dalam memahami cara yang benar\nuntuk mendownload dan mengupload konten dengan hak cipta.\n[NAMA_STUDENT] juga semakin mahir dalam menggunakan dasar-dasar\nkomputer seperti keyboard dan mouse. Tetap semangat, [NAMA_STUDENT]!"
+        ],
+        "application": [
+          "[NAMA_STUDENT] masih membutuhkan bimbingan dalam menggunakan platform Kodu untuk membuat game 3D seperti underwater game dan cycle race. Selain itu, [NAMA_STUDENT] juga belum sepenuhnya memahami konsep conditional loop. Namun jika dibimbing teacher, [NAMA_STUDENT] bisa lebih fokus dan menunjukkan kemampuan coding yang semakin berkembang. Keep it up, [NAMA_STUDENT]! You're doing great."
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat antusias/ antusias/ cukup antusias] setiap di kelas. [NAMA_STUDENT] mempunyai rasa ingin tahu yang [tinggi/ cukup tinggi] sehingga [mudah/ kadang] terdistraksi dengan hal yang lain. Walaupun begitu, [NAMA_STUDENT] tidak ragu-ragu bertanya tentang hal-hal yang tidak diketahui dan juga menyampaikan pendapat di dalam kelas. Tetap semangat ya [NAMA_STUDENT]!"
+        ]
+      }
     }
   },
   "Kids": {
@@ -202,7 +209,7 @@ const EXAM_TEMPLATES = {
           "[STUDENT_NAME] demonstrates a [very good/good/fairly good] understanding of coding concepts such as variables, operators, lists, broadcasting, cloning, functions, and loops. Additionally, [he/she/they] has grasped digital literacy topics including technology trends, IoT, hoaxes, and media balance. The concept exam score of [INSERT_EXAM_SCORE] reflects [his/her/their] understanding of the material as [very good/good/fairly good]. Great job, [STUDENT_NAME]! Keep up the excellent work!"
         ],
         "application": [
-          "Khadijah has shown impressive progress this term. She was able to implement intermediate programming concepts in various exercises and projects such as list, broadcast and clone. Khadijah also understand how to create more complex programs and get introduced to Python. Great job!"
+          "[NAMA_STUDENT] menunjukkan progress yang [sangat mengesankan/ mengesankan/ cukup baik] pada level ini. [NAMA_STUDENT] mampu menerapkan konsep pemrograman tingkat menengah dalam berbagai latihan dan proyek, seperti list, broadcast, dan clone. [NAMA_STUDENT] juga memahami cara membuat program yang lebih kompleks dan mulai dikenalkan dengan Python. Good job [NAMA_STUDENT] !"
         ],
         "character": [
           "[NAMA_STUDENT] masih [sangat aktif/ aktif/ cukup aktif] di kelas dan terus berinteraksi baik dengan teman-temannya di kelas dan juga teachernya. Ia juga tetap [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !",
@@ -227,39 +234,6 @@ const EXAM_TEMPLATES = {
           "[STUDENT_NAME] has shown impressive growth this term. [He/She/They] actively participates in discussions and has taken on leadership roles in group projects. [His/Her/Their] empathy and respect for others have improved significantly, along with focus during lessons. Keep up the great work, [STUDENT_NAME]!",
           "Dom shows good initiative and creativity in his projects. He demonstrates enthusiasm for learning new concepts and has the ability to apply complex coding principles independently, which shows problem-solving skills. However, Dom can sometimes get distracted by others during class. When he stays focused, he maintains a strong work ethic and completes his tasks well. We encourage Dom to keep his attention on his work to make the most of his learning time. Keep up the effort, Dom!"
         ]
-      }
-    },
-    "GAMEDEV": {
-      "1": {
-        "literacy": [
-          " Pada level Game Development 1, [NAMA_STUDENT] mempelajari penggunaan framework construct3 untuk membuat 2D game. [NAMA_STUDENT]  menggunakannya dengan [sangat baik/ baik/ cukup baik]. Konsep layout, object, behavior, variable dan event sheet termasuk event dan sub-event juga dipahami dengan cukup baik. Nilai ujian konsep [NAMA_STUDENT]  adalah [MASUKAN_NILAI UJIAN]. Keep it up ya [NAMA_STUDENT] !",
-          "In Game Development 1, Zayyan has been learning the Construct 3 framework for 2D game creation. Zayyan has utilized it well. The concepts of layouts, objects, behaviors, variables, and event sheets, including events and sub-events, are also understood well enough. Zayyan's concept exam score is 100 out of 100. Keep it up, Zayyan!"
-        ],
-        "application": [
-          "[NAMA_STUDENT]  bisa menambahkan object sprite, background, text, dan behavior seperti Jump-thru, solid, platform, rotate, sine, bullet dan 8Direction. Pada level ini, ada 4 project game. [NAMA_STUDENT]  mengerjakannya dengan [sangat baik/ baik/ cukup baik]. Namun, Saat ujian coding, yaitu membuat sebuah game,  [NAMA_STUDENT]  tidak menyelesaikannya dengan baik. Kedepannya lebih baik lagi dan tingkatkan semangatnya ya [NAMA_STUDENT]!",
-          "Zayyan is able to add sprite objects, backgrounds, text, and behaviors such as Jump-thru, solid, platform, rotate, sine, bullet, and 8Direction. In this level, there were 4 game projects. Zayyan completed them very well. Furthermore, during the coding exam, Zayyan also finish creating the game. Moving forward, keep that enthusiasm high, Zayyan!"
-        ],
-        "character": []
-      },
-      "2": {
-        "literacy": [
-          "\nProgress [NAMA_STUDENT][sangat signifikan/ signifikan/ cukup signifikan] menggunakan framework construct3 dalam membuat game. Konsep layout game, seperti start, game, gameover dan win layout bisa dipahami [NAMA_STUDENT] dengan [cukup baik/ baik/ sangat baik]. Konsep obstacles, enemies, family features, particles, aim and shoot, change costume and impulse juga bisa dipahami dengan baik. [NAMA_STUDENT] mendapatkan nilai ujian [MASUKAN_NILAI UJIAN]. Pertahankan semangatnya ya [NAMA_STUDENT]!",
-          "In Game Development 2, Khadijah continued to develop her understanding of Construct 3 by learning more advanced concepts such as instance variables, random mechanics, player selection, life and score systems, and Game Over logic. Compared to Level 1, she showed a stronger grasp of how these systems connect together in a full game. On her written concept exam, Khadijah scored 80 out of 100, which reflects a good understanding of the material. Well done, Khadijah!"
-        ],
-        "application": [
-          "[NAMA_STUDENT] membuat dua game pada level ini. Game yang dibuat semakin kompleks, menggunakan intermediate konsep. [NAMA_STUDENT] berhasil menyelesaikannya dengan [sangat baik/ baik/ cukup baik]. Namun, saat ujian coding, membuat game juga, [NAMA_STUDENT] [cukup/sedikit kesulitan/ tidak ada kesulitan] untuk menyelesaikannya. James menyelesaikannya dalam [JUMLAH PERTEMUAN] pertemuan. Kedepannya lebih banyak latihan codingnya dan tingkatkan semangatnya ya[NAMA_STUDENT] !\n",
-          "Khadijah built a more complex and complete game this level, applying advanced features like bouncing ball mechanics, floating blocks, layout and button design, life counter, score tracker, family feature, and instance variables — going beyond what she created in Level 1. For her coding exam, she successfully completed the project and met all the required criteria. Notably, when her project file was lost mid-course, she redid the entire game from scratch and completed it well. Keep up the good work, Khadijah!"
-        ],
-        "character": []
-      },
-      "3": {
-        "literacy": [
-          "[NAMA_STUDENT] semakin mahir menggunakan menggunakan framework construct3. [NAMA_STUDENT] bisa membuat layout dengan menggunakan konsep tilemap, konsep behaviour scroll to, anchor, dan jump-thru. Konsep-konsep yang dipelajari pada level ini cukup advance dan dapat dipahami dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] juga bisa men-deploy game yang sudah dibuat ke website. Great Job [NAMA_STUDENT] !\n\r\n"
-        ],
-        "application": [
-          "Pada level ini game yang dbuat hanya 1 tapi game ini lebih kompleks dari yang sebelumnya pernah dibuat.  [NAMA_STUDENT] berhasil menyelesaikannya dengan [sangat baik/ baik/ cukup baik].Untuk project akhir yaitu membuat game sendiri, dimulai dari ide, design, coding sampai presentasi dan demo game, [NAMA_STUDENT] mampu menyelesaikan dengan [sangat baik/ baik/ cukup baik]. Game yang dibuat menarik untuk dimainkan. Berikut link gamenya: [LINK_GAME]\n"
-        ],
-        "character": []
       }
     },
     "WEBDEV": {
@@ -316,17 +290,17 @@ const EXAM_TEMPLATES = {
       },
       "2": {
         "literacy": [
-          "El show good understanding of intermediate Python concepts in practice. He has learned OOP fundamentals, Python modules introduction, and TKinter GUI development. Key topics covered include OOP principles, module basics, TKinter components, message/input boxes, labels, buttons, canvas coordinates, and event handling concepts. While his theoretical exam needs improvement, his practical application shows strong conceptual grasp. Keep it up, El!",
+          "[NAMA_STUDENT] menunjukkan pemahaman yang [sangat baik/ baik/ cukup baik] terhadap konsep Python tingkat menengah. [NAMA_STUDENT] mempelajari dasar-dasar OOP, pengenalan module Python, dan pengembangan GUI dengan TKinter. Topik yang dipelajari meliputi prinsip OOP, dasar module, komponen TKinter, message/input box, label, button, canvas coordinates, dan konsep event handling. Keep it up, [NAMA_STUDENT] !",
           "Araya mempelajari topik-topik Python tingkat menengah di Level 2, mulai dari Object Oriented Programming (OOP), penggunaan modul Python, hingga membuat tampilan aplikasi desktop menggunakan TKinter—termasuk tombol, label, kotak input, canvas, dan interaksi mouse. Nilai ujian teorinya 70 dari 100, yang menunjukkan pemahamannya masih bisa terus diasah. Ke depannya, Araya bisa lebih sering mengulang konsep-konsep yang dipelajari agar semakin kuat pemahamannya. Tetap semangat, Araya!",
           "Araya menunjukkan pemahaman yang baik terhadap konsep Python tingkat menengah, khususnya pada materi Dasar-Dasar OOP, pengenalan Python Modules, dan pengembangan GUI menggunakan TKinter. Meskipun hasil ujian tertulisnya (70/100) masih perlu ditingkatkan, Araya secara praktik mampu memahami prinsip OOP, koordinat Canvas, hingga event handling dengan sangat baik."
         ],
         "application": [
-          "El applies learned concepts with good consistency. The programming exercises were completed successfully, showing steady progress in GUI development. Challenge projects were approached with determination. He also successfully finished the exam. Next focus is on improving code understanding for the next level. You're on track, El!",
+          "[NAMA_STUDENT] bisa menerapkan konsep yang dipelajari dengan [sangat baik/ baik/ cukup baik] dan konsisten. Latihan pemrograman diselesaikan dengan baik, menunjukkan progress yang stabil dalam pengembangan GUI. Project challenge dikerjakan dengan penuh determinasi, dan [NAMA_STUDENT] juga berhasil menyelesaikan ujiannya. You're on track, [NAMA_STUDENT] !",
           "Araya berhasil menyelesaikan semua latihan dan challenge dengan cukup baik. Pada ujian coding project, ia berhasil menyelesaikan proyeknya meski masih perlu beberapa kali bertanya—yang merupakan hal yang wajar dan menunjukkan ia mau berusaha sampai selesai. Ke depannya, Araya bisa berlatih mengerjakan proyek secara lebih mandiri agar semakin percaya diri. Good job, Araya!",
           "Araya mampu menerapkan konsep yang dipelajari ke dalam latihan dan proyek GUI dengan konsisten. Proyek challenge dan ujian coding diselesaikan dengan cukup baik, meskipun sesekali masih membutuhkan arahan atau bertanya untuk memastikan logikanya tepat. Fokus selanjutnya adalah memperkuat pemahaman struktur kode agar lebih mandiri di level berikutnya"
         ],
         "character": [
-          "El is very active in class. He asks relevant questions about material when needed, showing interest in learning new programming concepts. El usually stays focused during lessons, though occasionally needs gentle reminders when topics become challenging, when he gets overly energetic, or on days when he's feeling tired. Keep it up, El!",
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di dalam kelas. [NAMA_STUDENT] mengajukan pertanyaan relevan tentang materi saat diperlukan, menunjukkan minat dalam mempelajari konsep pemrograman baru. [NAMA_STUDENT] biasanya tetap fokus selama pelajaran, meski kadang butuh pengingat halus saat materi menjadi menantang. Keep it up, [NAMA_STUDENT] !",
           "Araya sangat aktif di dalam kelas dan selalu menunjukkan antusiasme yang tinggi dalam mempelajari konsep pemrograman baru. Ia tidak ragu untuk mengajukan pertanyaan yang relevan. Araya umumnya mampu menjaga fokus, meskipun terkadang membutuhkan pengingat dari pengajar saat ia merasa terlalu bersemangat atau ketika materi mulai menjadi lebih menantang."
         ]
       }
@@ -363,64 +337,6 @@ const EXAM_TEMPLATES = {
         ]
       }
     },
-    "ROBLOX_EXPLORER": {
-      "1": {
-        "literacy": [],
-        "application": [],
-        "character": []
-      }
-    },
-    "ROBLOX_DESIGNER": {
-      "1": {
-        "literacy": [],
-        "application": [],
-        "character": []
-      },
-      "2": {
-        "literacy": [],
-        "application": [],
-        "character": []
-      },
-      "3": {
-        "literacy": [],
-        "application": [],
-        "character": []
-      }
-    },
-    "ROBLOX_CODER": {
-      "1": {
-        "literacy": [],
-        "application": [],
-        "character": []
-      },
-      "2": {
-        "literacy": [],
-        "application": [],
-        "character": []
-      },
-      "3": {
-        "literacy": [],
-        "application": [],
-        "character": []
-      }
-    },
-    "ROBLOX_ADVANCE CODER": {
-      "1": {
-        "literacy": [],
-        "application": [],
-        "character": []
-      },
-      "2": {
-        "literacy": [],
-        "application": [],
-        "character": []
-      },
-      "3": {
-        "literacy": [],
-        "application": [],
-        "character": []
-      }
-    },
     "TECH_EXPLORER": {
       "1": {
         "literacy": [
@@ -450,6 +366,181 @@ const EXAM_TEMPLATES = {
         ],
         "application": [
           "[NAMA_STUDENT] bisa menerapkan seluruh konsep yang sudah dipelajari dengan [sangat baik/ baik/ cukup baik] untuk menyelesaikan project game final. [NAMA_STUDENT] mengumpulkan asset game (termasuk dari AI), mengintegrasikan AI Buddy ke dalam VR Edu Delightex, menyelesaikan tahap coding project, hingga mempresentasikan hasil project dengan baik. Keep it up [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      }
+    },
+    "GAMEDEV": {
+      "1": {
+        "literacy": [
+          " Pada level Game Development 1, [NAMA_STUDENT] mempelajari penggunaan framework construct3 untuk membuat 2D game. [NAMA_STUDENT]  menggunakannya dengan [sangat baik/ baik/ cukup baik]. Konsep layout, object, behavior, variable dan event sheet termasuk event dan sub-event juga dipahami dengan cukup baik. Nilai ujian konsep [NAMA_STUDENT]  adalah [MASUKAN_NILAI UJIAN]. Keep it up ya [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT]  bisa menambahkan object sprite, background, text, dan behavior seperti Jump-thru, solid, platform, rotate, sine, bullet dan 8Direction. Pada level ini, ada 4 project game. [NAMA_STUDENT]  mengerjakannya dengan [sangat baik/ baik/ cukup baik]. Namun, Saat ujian coding, yaitu membuat sebuah game,  [NAMA_STUDENT]  tidak menyelesaikannya dengan baik. Kedepannya lebih baik lagi dan tingkatkan semangatnya ya [NAMA_STUDENT]!"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "\nProgress [NAMA_STUDENT] [sangat signifikan/ signifikan/ cukup signifikan] menggunakan framework construct3 dalam membuat game. Konsep layout game, seperti start, game, gameover dan win layout bisa dipahami [NAMA_STUDENT] dengan [cukup baik/ baik/ sangat baik]. Konsep obstacles, enemies, family features, particles, aim and shoot, change costume and impulse juga bisa dipahami dengan baik. [NAMA_STUDENT] mendapatkan nilai ujian [MASUKAN_NILAI UJIAN]. Pertahankan semangatnya ya [NAMA_STUDENT]!"
+        ],
+        "application": [
+          "[NAMA_STUDENT] membuat dua game pada level ini. Game yang dibuat semakin kompleks, menggunakan intermediate konsep. [NAMA_STUDENT] berhasil menyelesaikannya dengan [sangat baik/ baik/ cukup baik]. Namun, saat ujian coding, membuat game juga, [NAMA_STUDENT] [cukup/ sedikit] kesulitan untuk menyelesaikannya. Kedepannya lebih banyak latihan codingnya dan tingkatkan semangatnya ya [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "3": {
+        "literacy": [
+          "[NAMA_STUDENT] semakin mahir menggunakan framework construct3. [NAMA_STUDENT] bisa membuat layout dengan menggunakan konsep tilemap, konsep behaviour scroll to, anchor, dan jump-thru. Konsep-konsep yang dipelajari pada level ini cukup advance dan dapat dipahami dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] juga bisa men-deploy game yang sudah dibuat ke website. Great Job [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] berhasil menyelesaikan game akhir yang lebih kompleks dari yang sebelumnya pernah dibuat dengan [sangat baik/ baik/ cukup baik]. Untuk project akhir yaitu membuat game sendiri, dimulai dari ide, design, coding sampai presentasi dan demo game, [NAMA_STUDENT] mampu menyelesaikan dengan [sangat baik/ baik/ cukup baik]. Game yang dibuat menarik untuk dimainkan."
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      }
+    },
+    "ROBLOX_EXPLORER": {
+      "1": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] perangkat komputer dasar, pengenalan Roblox Studio (menu, shortcut, interface), serta konsep modeling seperti parent & children dan penggunaan terrain editor. [NAMA_STUDENT] juga mempelajari literasi digital seperti pentingnya menghargai copyright/hak cipta karya orang lain. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Well done [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa mengerjakan latihan design dengan [sangat baik/ baik/ cukup baik] di Roblox Studio, mulai dari membuat model rumah menggunakan referensi Google Image, menambahkan efek dan toolbox, merancang latar belakang map dengan terrain editor (smooth, flatten, brush tool), hingga mem-publish project ke Roblox. Good job [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] mengikuti kelas dan menyelesaikan tugas tepat waktu. [NAMA_STUDENT] berpartisipasi aktif selama sesi dan menunjukkan minat yang tinggi dalam belajar Roblox development. [NAMA_STUDENT] mengikuti instruksi dengan baik dan berusaha menyelesaikan project-nya. [NAMA_STUDENT] juga menunjukkan fokus yang baik selama kelas dan mau mencoba teknik-teknik baru saat membangun game-nya. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep coding dasar di Roblox Studio, yaitu scripting, properties, variable dan jenisnya, Instance.new(), fungsi wait(), loop, serta while loop. [NAMA_STUDENT] juga mempelajari literasi digital seperti rings of responsibility, screen time, dan cara mengatasi cyberbullying. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Awesome [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep scripting dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] berhasil membuat game underwater menggunakan solid modeling tool dan memahami gravitasi di Roblox, membuat script untuk part (papan tulisan, suara, atmosphere), serta membuat animasi untuk project Farmland menggunakan while loop untuk menggerakkan object. Nice work [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "3": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep lanjutan di Roblox Studio, yaitu image label, interactive parts, dan penerapan script ke dalam game. [NAMA_STUDENT] juga mempelajari aturan dan etika dalam membuat project. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Great job [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep design dan coding dengan [sangat baik/ baik/ cukup baik] untuk project akhir. [NAMA_STUDENT] membuat trap dengan laser beam effect, mengeksplorasi ide dan draft bangunan, melakukan modelling bangunan dengan kombinasi warna dan detail object, menambahkan interactive parts dan scripts, hingga mempresentasikan hasil project Roblox kepada teman-teman sekelas. Keep it up [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      }
+    },
+    "ROBLOX_DESIGNER": {
+      "1": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep dasar coding di Roblox Studio, yaitu event, conditional statement, dan cara kerja script untuk objek interaktif seperti kunci, pintu, dan lightswitch. [NAMA_STUDENT] juga mengenal tools desain seperti Photopea untuk membuat asset kostum. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Well done [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa mengerjakan latihan design dan coding dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] berhasil membuat map theme park lengkap dengan atmosphere, model interaktif komedi putar, desain baju menggunakan Photopea, storyline dan clue untuk game, modelling kunci dan pintu dengan conditional statement, hingga mem-publish dan memainkan game bersama. Good job [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] penggunaan Blender untuk modeling 3D (basic controls, export/import object ke Roblox Studio), serta konsep screen GUI dan tween service untuk animasi tampilan. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Awesome [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep modeling dan coding dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] berhasil membuat model botol dan aksesori player di Blender, mengexport-nya ke Roblox Studio, mendesain screen GUI dengan tween service, membuat model low poly untuk object utama Finding Game, hingga membuat coding untuk mengambil objek yang ditemukan. Nice work [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "3": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep lanjutan Roblox Studio, yaitu places dan fungsinya, struktur thumbnail dan game icon, serta script teleport dengan event touch. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Great job [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep design dan coding dengan [sangat baik/ baik/ cukup baik] untuk project akhir. [NAMA_STUDENT] menggabungkan beberapa game ke dalam satu lobby, membuat badges, game pass, dan opening GUI, menambahkan tween animation dan kode misi dengan script teleport, hingga mempresentasikan project game yang sudah selesai kepada teman-teman sekelas. Keep it up [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      }
+    },
+    "ROBLOX_CODER": {
+      "1": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] dasar-dasar coding di Roblox Studio, yaitu variable, properti, reusing code, function, dan conditional statement. [NAMA_STUDENT] juga memahami konsep leaderboard dan cara kerja sell platform pada game. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Well done [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa mengerjakan latihan coding dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] berhasil membuat obby game, menerapkan terrain editor untuk membuat adventure game, menambahkan tool effect dan leaderboard, serta membuat harvestable item dan sell platform menggunakan conditional statement. Good job [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep coding lanjutan di Roblox Studio, yaitu event, module script, remote event, click detector, dan cara membuat animasi. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Awesome [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep coding dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] berhasil membuat custom player character yang bisa digerakkan dan menembak, membuat screen gui yang dinamis dengan remote event, menerapkan animasi ke dalam story game, serta menggunakan click detector untuk menjalankan task dalam game. Nice work [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "3": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] proses pengembangan game secara menyeluruh, mulai dari perencanaan, penulisan kode utama, debugging, hingga memahami sistem monetisasi Robux di Roblox. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Great job [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan seluruh konsep yang sudah dipelajari dengan [sangat baik/ baik/ cukup baik] untuk membuat game sendiri. [NAMA_STUDENT] merancang dan membangun model serta lingkungan game, menulis dan menyempurnakan kode utama, memperbaiki bug, menunjukkan progress dan menerima feedback dari teman sekelas, hingga mempresentasikan game yang sudah selesai. Keep it up [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      }
+    },
+    "ROBLOX_ADVANCE CODER": {
+      "1": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep game development battle royale, yaitu multiplayer game loop, table dan for loop in pairs, teleport system, serta timer module. [NAMA_STUDENT] juga memahami alur sistem match, mulai dari player kalah, mengakhiri match, hingga reset state untuk babak berikutnya. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Well done [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep coding dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] berhasil membuat lobby system dengan teleport system, coding sword, health potion, dan gun player, membuat screen gui yang dinamis dengan timer module, serta menerapkan sistem kembali ke lobby dan intermission setelah match selesai. Good job [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep placement system dan cara kerja game Cleaner Boat Simulator, termasuk sistem collecting trash dan proses upgrade boat menggunakan quiz. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Awesome [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan konsep coding dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] berhasil membuat screen GUI untuk memilih dan menyusun bagian boat, coding untuk launch boat dan collecting trash, menampilkan jumlah sampah di screen gui, serta membuat quiz gui untuk sistem upgrade boat. Nice work [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      },
+      "3": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami dengan [sangat baik/ baik/ cukup baik] konsep game Math Obby, yaitu menampilkan soal matematika secara dinamis melalui screen GUI dan memeriksa jawaban player, serta memahami fitur Game Pass di Roblox. Saat ujian konsep, [NAMA_STUDENT] mendapatkan score [MASUKAN_NILAI UJIAN]. Great job [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menerapkan seluruh konsep yang sudah dipelajari dengan [sangat baik/ baik/ cukup baik] untuk membuat game sendiri. [NAMA_STUDENT] merancang lingkungan dan model game, menulis kode utama (logika, variabel, dan fungsi penting), melakukan testing dan debugging, menambahkan fitur Game Pass, hingga mempresentasikan game yang telah selesai kepada teman-teman sekelas. Keep it up [NAMA_STUDENT] !"
         ],
         "character": [
           "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
@@ -524,7 +615,7 @@ const EXAM_TEMPLATES = {
           "Sebastian learned the fundamentals of coding, including algorithms, JavaScript syntax, variables, data types, operators, arrays, conditionals, and switch cases. He also explored important digital literacy topics such as problem-solving, cyberbullying, and recognizing hoaxes. Sebastian demonstrated an excellent understanding of these core concepts, scoring an 88 on the concept test. Keep up the great work, Sebastian!"
         ],
         "application": [
-          "Kent  bisa mengerjakan latihan coding dengan [sangat baik/ baik/ cukup baik].   Kent memahami konsep coding dengan membuat beberapa program menggunakan bahasa javascript yaitu validasi pembuatan sim dan simpel calculator. Good job [NAMA_STUDENT] !\n",
+          "[NAMA_STUDENT] bisa mengerjakan latihan coding dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] memahami konsep coding dengan membuat beberapa program menggunakan bahasa JavaScript yaitu validasi pembuatan SIM dan simple calculator. Good job [NAMA_STUDENT] !",
           "Coding practice Firdaus sudah cukup bagus karena mampu\nmembuat program sesuai instruksi dengan baik dan juga sudah\nterbiasa dalam membuat program, meskipun begitu alangkah\nlebih baik jika Firdaus meningkatkan lagi berlatih kemampuan\ncoding practicenya agar hasilnya lebih maksimal.",
           "Kent's performance on the coding assignments is satisfactory. He created several simple programs in JavaScript, such as a Driver's License Validation Program and a Simple Calculator. On the exam, Kent was tasked with creating a simple student score averaging program. Though he struggled a bit, he still completed the program. Good job, Kent!",
           "Sebastian's performance on the coding assignments was excellent. He created several simple programs in JavaScript, such as a Driver's License Validation Program and a Simple Calculator. On the exam, Sebastian was tasked with creating a simple student score averaging program, which he completed proficiently and accurately. Excellent job, Sebastian!"
@@ -558,138 +649,46 @@ const EXAM_TEMPLATES = {
       }
     },
     "ROBLOX CODER": {},
-    "WEB_DEV": {
-      "1": {
-        "literacy": [
-          "Insan memahami Bahasa HTML dan CSS dengan baik. Beberapa tags yang dipelajari yaitu heading, paragraph, image, hyperlink, list, table, span, div dan section. Untuk CSS properti yaitu color, font-family, font-size, background-color, margin, padding, border, display. Saat exam, Insan mendapatkan nilai 80. Tingkatkan dan Pertahankan semangatnya ya.",
-          "Daru demonstrates a good understanding of HTML and CSS. He has learned tags like headings, paragraphs, images, hyperlinks, lists, tables, <span>, <div>, and <section>. CSS properties covered include color, font-family, font-size, background-color, margin, padding, border, and display. On the recent exam, Daru scored 50. Keep up the great work Daru!",
-          "Dinda understands HTML and CSS well. She has learned essential tags including headings, paragraphs, images, hyperlinks, lists, tables, <span>, <div>, and <section>. CSS properties covered include color, font-family, font-size, background-color, margin, padding, border, and display. Dinda has also gained knowledge in creating responsive websites, which is an important skill in modern web development. In the latest test, Dinda achieved a score of 90. Keep up the great work, Dinda!",
-          "Sebastian understands HTML and CSS well. He has learned important tags including headings, paragraphs, images, links, lists, tables, and sections. CSS properties covered include colors, fonts, backgrounds, spacing, borders, and layouts. Sebastian also learned about responsive websites that work on different screen sizes. In his latest test, Sebastian achieved a score of 100. Excellent work, Sebastian!"
-        ],
-        "application": [
-          "Insan mengerjakan latihan coding dengan baik. Challenge juga dikerjakan dengan baik. Ia bisa menerapkan konsep HTML dan CSS yang sudah dipelajari saat latihan membuat website. Hal ini terlihat saat exam, Insan mendapatkan nilai yang bagus, yaitu 80. Pertahankan semangatnya ya.",
-          "Daru performs well in his coding exercises and completed some challenges, showing a strong ability to apply HTML and CSS concepts in practice. However, his recent exam score of 50 suggests an area for growth in theoretical understanding. We encourage him to balance his excellent practical skills with deeper conceptual review to further improve.",
-          "Dinda performs well in her coding exercises and completed the challenges given to her. She shows a good ability to apply HTML and CSS concepts in practice, from building headers and styling images to creating pricing tables, navigation links, footers, and responsive layouts. Her test result of 90 reflects a solid understanding of both practical and theoretical aspects of web development. Well done, Dinda!",
-          "Sebastian does well in his coding exercises and completed all challenges given to him. He can apply HTML and CSS concepts in practice, from building headers and styling images to creating pricing tables, navigation links, footers, and responsive layouts. His test result of 100 shows he understands both the practical and theoretical parts of web development. Great job, Sebastian!"
-        ],
-        "character": [
-          "[NAMA_STUDENT] [sangat bersemanga/ bersemangat/ cukup bersemangat ] di dalam kelas. [NAMA_STUDENT] juga [sangat aktif/ aktif/aktif] mengajukan pertanyaan saat merasa kebingungan atau menghadapi kesulitan. Selain itu, Ia juga [fokus/cukup fokus] saat mengerjakan latihan coding. Motivasi [NAMA_STUDENT] untuk mempelajari coding juga masih [tinggi/cukup tinggi]. Keep it up [NAMA_STUDENT]!",
-          "Daru engages well in class. Though not overly active in discussions, he does actively ask questions when he encounters confusion or difficulties, showing a willingness to seek clarification. He remains focused on coding exercises and mostly completes the lessons. Daru's motivation to learn coding appears to be at a good level. Keep it up, Daru!",
-          "Dinda engages well in class and shows enthusiasm for learning. She is focused during coding exercises and completes her lessons on time. Sometimes, she even finishes 2 lessons in one meeting, which shows her strong focus and quick learning. Dinda demonstrates a positive attitude towards challenges and is willing to put in the effort to understand new concepts. Her motivation to learn coding is at a good level. Keep it up, Dinda!",
-          "Sebastian focuses well during class and completes his lessons on time. He often finishes 2 lessons in one meeting, showing his ability to learn at a faster pace. Sebastian follows instructions and puts in effort to understand new concepts. To continue improving, Sebastian can practice explaining what he coded in his own words, which will help deepen his understanding further."
-        ]
-      },
-      "2": {
-        "literacy": [
-          "Afra mempelajari pengembangan web tingkat lanjut, termasuk pemanfaatan HTML DOM untuk interaksi dinamis, penambahan media, dan pembuatan formulir interaktif. Topik yang dikuasai mencakup JavaScript, DOM Events, media, HTML Forms (termasuk input, styling, submit), dan slider. Saat ujian, Afra mendapat nilai 70. Tingkatkan terus semangatnya Afra!",
-          "Sebastian covered more advanced web topics in Level 2 — including JavaScript, responding to user actions on a webpage, adding media, building forms, and creating an image slider. He understood the material well and scored 70 out of 80 in the final exam. Nice job, Sebastian!\r\n\r\nTo strengthen his understanding further, it would be helpful for Sebastian to review the concepts he found challenging and practice applying them outside of class.\r\n\r\nHe showed consistent progress throughout Level 2 and is well-prepared to take on the next level. Keep it up!",
-          "Daru learned advanced web development topics, including HTML DOM, JavaScript events, adding media, creating interactive forms, and building an image slider. He showed a good understanding of these concepts and was able to apply them during class activities. To improve further, Daru can continue practicing how different JavaScript concepts work together when building interactive web pages. Overall, he has shown good progress in this level."
-        ],
-        "application": [
-          "Afra mengerjakan latihan coding dengan baik. Challenge juga dikerjakan dengan baik. Ia bisa menerapkan konsep lanjutan yang sudah dipelajari saat latihan membuat Interactive Blog Website. Hal ini terlihat dari penggunaan HTML DOM untuk interaksi dinamis, penambahan media, pembuatan form interaktif, hingga membuat image slider. Good Job Afra!",
-          "Sebastian completed all his coding exercises and challenges well. In his interactive blog website project, he successfully applied what he learned—including multimedia content, a working contact form, and an image slider. Good job, Sebastian!\r\nAs a next step, Sebastian can challenge himself to add his own creative touches to his projects rather than following only the given instructions.\r\nHis ability to complete the project from start to finish reflects a solid work ethic—keep it up!",
-          "Daru completed the coding exercises and challenges well throughout this level. He was able to apply HTML DOM, JavaScript events, forms, media elements, and image sliders while developing his Interactive Blog Website. To continue improving, Daru can focus on writing cleaner and more organized code as his projects become more complex. Keep up the good work, Daru!"
-        ],
-        "character": []
-      },
-      "3": {
-        "literacy": [
-          "Dave memahami konsep pembuatan website yang terdiri dari HTML, CSS, dan Javascript dengan cukup baik. Beberapa tags HTML dan CSS tambahan yang dipelajari yaitu form, input type and attribute, slider, dan submit to email, css transition, animation, dan modal dapat digunakan dengan baik. Namun, konsep responsive website nya perlu banyak latihan lagi.",
-          "Afra sudah menyelesaikan materi CSS tingkat lanjut seperti transitions, animations, dan responsive design. Sejauh ini, Afra sudah memahami cara membuat elemen website lebih hidup dan menyesuaikan tampilan di layar yang berbeda. Kedepannya, Afra bisa lebih memperdalam lagi pemahaman tentang detail media queries agar pengaturan responsifnya semakin rapi. Secara keseluruhan, pemahaman Afra di modul ini sudah cukup baik. Good job, Afra!"
-        ],
-        "application": [
-          "Dave berhasil menyelesaikan website dengan tema Blog. Dave mengaplikasikan konsep HTML forms, animasi CSS, transisi, desain responsif, dan image-slider dan javascript DOM. Untuk desain responsif, Dave perlu lebih banyak latihan coding. Dave juga berhasil menyelesaikan project website dan mendeploy-nya: https://ipea-store.netlify.app/. Good Job Dave!",
-          "Untuk bagian praktik, Afra berhasil menyelesaikan proyek \"Create Your Own Website\" mulai dari pembuatan halaman About sampai selesai. Afra sudah bisa menerapkan elemen interaktif dan desain responsif ke dalam proyeknya sendiri sesuai instruksi. Hal yang perlu ditingkatkan adalah kerapihan susunan kode CSS-nya supaya lebih mudah dibaca. Progres yang bagus dalam menyelesaikan project website ini. Keep it up, Afra!"
-        ],
-        "character": [
-          "Daru is a quiet student who stays focused during class. When he faces difficulties, he is willing to ask questions until he understands the solution. As he becomes more confident, participating more actively in class discussions will help him learn even more. Keep up the positive attitude, Daru!",
-          "Selama di kelas, Afra terlihat bersemangat dan cukup aktif saat sesi belajar. Kalau ada kode yang error atau sulit, Afra juga tidak ragu untuk bertanya sampai ketemu solusinya. Selain itu, Afra bisa tetap fokus saat sedang mengerjakan tugas coding mandiri. Semoga semangat dan ketelitiannya ini terus terjaga untuk materi-materi selanjutnya. Great work, Afra!",
-          "Daru is calm, focused, and responsible during class. Although he is usually quiet, he asks questions whenever he needs clarification and continues working until he understands the material. As he gains more confidence, sharing his ideas more often during class will help him continue to grow. Well done, Daru!"
-        ]
-      }
-    },
-    "APP_DEV": {
-      "1": {
-        "literacy": [
-          "[NAMA_STUDENT] bisa membuat template project react-native dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] juga bisa memahami konsep react-native framework seperti component, layout, style, props, reusable component, hooks dan navigation dan juga menambahkan image, font, dan icon dengan [sangat baik/ baik/ cukup baik]. Nilai ujian Midtest [NAMA_STUDENT]  [NILAI_UJIAN] dan Examnya [NILAI_UJIAN], nilai yang [sangat bagus/ bagus/ cukup bagus]. Good Job [NAMA_STUDENT] !",
-          "Raymond has a foundational understanding of React Native. He can manage basic concepts such as creating a project template and working with components, layout, style, props, and reusable components. However, he still finds more advanced topics like Hooks and Navigation to be challenging and requires further review and practice in these specific areas.",
-          "Raymond bisa membuat template project react-native dengan cukup baik. Konsep component, layout, style, props sudah dipahami, tapi hooks dan navigation masih perlu bantuan. Midtest masih butuh bimbingan karena topik masih baru. Good Job Raymond!",
-          "Richard menunjukkan pemahaman yang baik terhadap konsep React Native seperti Component, Layout, Styling, dan Props. Untuk materi advanced seperti Hooks, Navigation, dan FlatList manipulation perlu pengulangan agar lebih mantap. Nilai Midtest 50 menunjukkan masih ada gap pemahaman yang perlu diperkuat. Keep learning, Richard!"
-        ],
-        "application": [
-          "Saat awal mulai latihan coding menggunakan react-native framework, [NAMA_STUDENT] sedikit kewalahan. Codingnya cukup banyak, error message-nya kurang jelas bahkan kadang tidak ada. Namun, semakin sering latihan, hal tersebut bisa diatasi. Pada saat midtest maupun exam, [NAMA_STUDENT] bisa menyelesaikan ujiannya dengan [baik/ cukup baik]. Latihan codingnya ditambah ya [NAMA_STUDENT].",
-          "During coding exercises, Raymond frequently encounters errors, which is understandable as many of these topics are new to him. It is important to note that he required significant assistance to complete his mid-test. Consistent, focused practice will be key to building his confidence and developing his ability to problem-solve independently.",
-          "Saat awal latihan coding react-native, Raymond kewalahan karena banyak error. Karena topik masih baru, wajar mengalami kesulitan. Midtest masih perlu bantuan guru. Latihan coding ditambah ya Raymond, terutama hooks dan navigation. Keep it up, Raymond!",
-          "Kemampuan coding Richard cukup bagus untuk task straightforward seperti styling dan component structure. Untuk logic kompleks seperti data manipulation dan state management masih perlu latihan lebih banyak. Konsep dari pertemuan sebelumnya kadang perlu di-refresh kembali. Practice makes perfect, Richard!"
-        ],
-        "character": [
-          "[NAMA_STUDENT] [sangat bersemanga/ bersemangat/ cukup bersemangat ] di dalam kelas. [NAMA_STUDENT] juga [sangat aktif/ aktif/aktif] mengajukan pertanyaan saat merasa kebingungan atau menghadapi kesulitan. Selain itu, Ia juga [fokus/cukup fokus] saat mengerjakan latihan coding. Motivasi [NAMA_STUDENT] untuk mempelajari coding juga masih [tinggi/cukup tinggi]. Keep it up [NAMA_STUDENT]!",
-          "Raymond is a very quiet student in class who tends to keep to himself. He requires close attention as he rarely asks for help, even when he is struggling with a concept. Encouraging him to voice his questions and share his difficulties would be highly beneficial for his progress.",
-          "Raymond kurang aktif di kelas dan jarang bertanya meski kesulitan. Perlu perhatian khusus dari guru. Namun Raymond fokus saat coding dan motivasi belajar cukup tinggi. Keep it up Raymond! Jangan ragu bertanya ya!",
-          "Richard punya potensi dan antusias belajar coding. Yang perlu ditingkatkan adalah fokus selama pembelajaran—kadang perhatian terbagi dengan browsing atau mengatur playlist. Pada exam, Richard sempat memilih jalan pintas dengan melihat kunci jawaban. Yuk Richard, percaya pada kemampuan sendiri dan belajar dengan jujur. Konsistensi fokus dan integritas akan bawa skill coding makin tajam!",
-          "Jojo tetap aktif di dalam kelas. Ia juga fokus Ketika mengerjakan latihan coding. Kadang-kadang satu pertemuan bisa menyelesaikan dua lesson. Namun, ketika menghadapi kesulitan, Ia masih konsisten bertanya. Setelah menyelesaikan materi mobile app development, Keinginan jojo untuk belajar bahasa lain muncul. Keep up the great work, Jojo!"
-        ]
-      },
-      "2": {
-        "literacy": [
-          "[NAMA_STUDENT]  semakin memahami konsep react-native framework dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] belajar membuat design layout menggunakan Figma. Untuk Konsep react-native nya yaitu global state with redux, regular expression, navigation, modal, map method, position dan basic database realm(CRUD). Pada saat midtest, [NAMA_STUDENT]  mendapatkan nilai [NILAI_UJIAN] dan untuk nilai examnya [NILAI_UJIAN].",
-          "Jayden telah mempelajari konsep lanjutan seperti manajemen state global dengan Redux, penggunaan Regex, navigasi tab, login system, serta pengelolaan data dengan database firebase. Ia mulai memahami bagaimana menyimpan, mengedit, dan menghapus data secara lokal di aplikasi Android. Jayden menyelesaikan ujian akhir dengan nilai 90. Good effort!"
-        ],
-        "application": [
-          "[NAMA_STUDENT]  mengerjakan latihan coding dan challenge dengan  [sangat baik/ baik/ cukup baik]. Saat midtest hanya ada ujian teori tapi [NAMA_STUDENT]  tetap berhasil menyelesaikan ujian dengan  [sangat baik/ baik/ cukup baik]. Saat final test, [NAMA_STUDENT]  [berhasil/ belum berhasil] menyelesaikan ujiannya sesuai dengan output yang diminta. Berdasarkan hasil ujian tersebut, debugging skill-nya perlu ditingkatkan. Caranya dengan memperbanyak latihan coding.",
-          "Ketika membuat aplikasi notes dan contact list, Jayden mampu mengikuti langkah-langkah coding dengan cukup baik, mulai dari membuat floating button, menyimpan dan mengurutkan catatan, hingga menambahkan fitur pencarian dan hapus data. Meskipun terkadang butuh waktu memahami alur logika sendiri, ia bisa menyelesaikan project dan ujian dengan baik."
-        ],
-        "character": [
-          "Jayden menunjukkan motivasi yang tinggi untuk menguasai coding, terlihat dari fokusnya saat mengerjakan latihan dan kemampuannya menyelesaikan ujian dengan baik. Ia juga aktif bertanya saat mengalami kesulitan. Sikapnya yang gigih dan rasa ingin tahunya akan sangat membantunya untuk menjadi developer yang handal. Keep it up, Jayden!",
-          "Gabriel secara konsisten menunjukkan motivasi belajar yang tinggi dan proaktif dalam mencari pemahaman dengan bertanya. Namun, perhatiannya cenderung menurun saat sesi latihan praktik, yang sedikit memengaruhi hasilnya. Peningkatan fokus saat latihan akan sangat membantu memaksimalkan potensi belajarnya"
-        ]
-      },
-      "3": {
-        "literacy": [
-          "Pada level Android Apps Development 3 ini, [NAMA_STUDENT] belajar beberapa konsep baru, yaitu drawer navigation, image slider, image picker, dropdown menu, link to another application, image zooming, responsive layout, dan splash screen. Penggunaan database mongoDB realm seperti membuat, membaca, menambah dan menghapus (CRUD) database juga semakin [baik/ cukup baik].",
-          "Pada level Android Apps Development 3 ini, Jojo belajar beberapa konsep baru, yaitu drawer navigation, image slider, image picker, dropdown menu, link to another application, image zooming, responsive layout,dan splash screen. Penggunaan database firebase seperti membuat, membaca, menambah dan menghapus (CRUD) database juga semakin baik. Good Job!"
-        ],
-        "application": [
-          "[NAMA_STUDENT] selalu mengerjakan latihan coding dengan sangat baik. Pada level ini, [NAMA_STUDENT] berhasil membuat aplikasi sendiri. Aplikasi yang dibuat diberi nama [JUDUL_APPS]. Aplikasi ini bertujuan untuk [TUJUAN APPS]. Sedikit catatan yaitu tingkatkan debugging skill dengan banyak latihan coding dan banyak membaca coding orang lain. Tetap semangat ya [NAMA_STUDENT].",
-          "Jojo selalu mengerjakan latihan coding dengan sangat baik. Pada level ini, Ia berhasil membuat aplikasi e-commerce. Aplikasi yang dibuat berjudul Daily Fashion. Aplikasi ini bertujuan untuk menjual pakaian dan aksesoris secara online.  Catatan untuk Jojo yaitu perbanyak latihan coding dan membaca coding orang lain. Keep it up, Jo!"
-        ],
-        "character": []
-      }
-    },
     "PYTHON AI (32Meeting)": {
       "1": {
         "literacy": [
-          "Rashad memahami konsep machine learning dan AI dengan sangat baik. Rashad mempelajari cara menggunakan modul dan library python. Rashad juga bisa melakukan image manipulation, model training, model prediction, object identification and tracking. Saat midtest, Rashad mendapatkan nilai 80 dan untuk final exam nilainya 70. Tetap semangat ya Rashad!"
+          "[NAMA_STUDENT] memahami konsep machine learning dan AI dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] mempelajari cara menggunakan modul dan library Python (Numpy, OpenCV) untuk image manipulation, model training, model prediction, serta object identification and tracking. Saat midtest, [NAMA_STUDENT] mendapatkan nilai [MASUKAN_NILAI MIDTEST] dan untuk final exam nilainya [MASUKAN_NILAI FINAL]. Tetap semangat ya [NAMA_STUDENT]!"
         ],
         "application": [
-          "Rashad mengerjakan latihan coding dengan sangat baik. Rashad berhasil membuat beberapa program seperti manipulasi gambar, prediksi jenis bunga, deteksi wajah dan beberapa objek menggunakan gambar atau video dan men-tracking benda yang bergerak. Pada saat ujian midtest dan exam, Rashad berhasil menyelesaikannya dengan sangat baik. Good Job Rashad!"
+          "[NAMA_STUDENT] mengerjakan latihan coding dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] berhasil membuat beberapa program seperti manipulasi gambar, prediksi jenis bunga, deteksi wajah dan beberapa objek menggunakan gambar atau video, serta men-tracking benda yang bergerak. Pada saat ujian midtest dan exam, [NAMA_STUDENT] berhasil menyelesaikannya dengan [sangat baik/ baik/ cukup baik]. Good Job [NAMA_STUDENT]!"
         ],
         "character": [
-          "Rashad cukup bersemangat di dalam kelas. Ia juga cukup aktif mengajukan pertanyaan saat merasa kebingungan atau menghadapi kesulitan. Selain itu, Ia juga sangat fokus saat mengerjakan latihan coding. Motivasinya untuk mempelajari coding juga masih tinggi. Keep it up Rashad!"
+          "[NAMA_STUDENT] [sangat bersemangat/ bersemangat/ cukup bersemangat] di dalam kelas. Ia juga [sangat aktif/ aktif/ cukup aktif] mengajukan pertanyaan saat merasa kebingungan atau menghadapi kesulitan. Selain itu, ia juga [sangat fokus/ fokus/ cukup fokus] saat mengerjakan latihan coding. Motivasinya untuk mempelajari coding juga masih tinggi. Keep it up [NAMA_STUDENT]!"
         ]
       },
       "2": {
-        "literacy": [],
-        "application": [],
-        "character": []
+        "literacy": [
+          "[NAMA_STUDENT] memahami konsep object tracking dan cara kerjanya dengan [sangat baik/ baik/ cukup baik], termasuk perbedaan object detection dan tracking, Euclidean Distance Tracker, image thresholding, dan contour detection. [NAMA_STUDENT] juga mempelajari penggunaan Mediapipe Library untuk landmark detection, Holistic Tracking, serta anatomi Face Mesh dan Facial Area. Saat ujian, [NAMA_STUDENT] mendapatkan nilai [MASUKAN_NILAI UJIAN]. Keep it up [NAMA_STUDENT]!"
+        ],
+        "application": [
+          "[NAMA_STUDENT] mengerjakan latihan coding dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] berhasil membuat project Virtual Painter menggunakan hand landmark detection, project Pig Face Filter dan Face Filter Dragon menggunakan Face Mesh Landmark model dari Mediapipe, serta melakukan video masking untuk mendeteksi kondisi wajah (seperti mulut terbuka) dan menempelkan efek filter ke dalam frame video. Great job [NAMA_STUDENT]!"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat bersemangat/ bersemangat/ cukup bersemangat] di dalam kelas. Ia juga [sangat aktif/ aktif/ cukup aktif] mengajukan pertanyaan saat merasa kebingungan atau menghadapi kesulitan. Selain itu, ia juga [sangat fokus/ fokus/ cukup fokus] saat mengerjakan latihan coding. Motivasinya untuk mempelajari coding juga masih tinggi. Keep it up [NAMA_STUDENT]!"
+        ]
       }
     },
     "PYTHON_FOR_DATA_SCIENCE(16)": {
       "1": {
         "literacy": [
-          "Reynold demonstrates strong Python knowledge. He transitioned well from JavaScript, understanding syntax and using libraries. He learned fundamental Python programming concepts, including variables, lists, loops, conditionals, functions, and Object-Oriented Programming (OOP).  He got 90 points for the writing test. Good Job Reynold!",
+          "[NAMA_STUDENT] bisa memahami Python dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] berhasil bertransisi dengan baik dari JavaScript, memahami syntax dan penggunaan library. [NAMA_STUDENT] mempelajari konsep dasar pemrograman Python, termasuk variable, list, loop, conditional, function, dan Object-Oriented Programming (OOP). Saat ujian tertulis, [NAMA_STUDENT] mendapatkan nilai [MASUKAN_NILAI UJIAN]. Good job [NAMA_STUDENT] !",
           "Joveano memahami Bahasa pemrograman Python dengan sangat baik. Transisi dari JavaScript ke Python berjalan lancar, Materi dasar Python yang dipelajari mencakup variable, array, looping, conditional statement, function, serta konsep Object-Oriented Programming (OOP). Hasil ujian tertulis mencapai skor 90. Good Job, Jo!",
           "Gabriel telah mempelajari materi dasar Python yang mencakup variable, data structure, dictionary, looping, conditional statement, function, serta konsep Object-Oriented Programming (OOP). Gabriel masih perlu memperdalam pemahaman terhadap konsep-konsep fundamental ini. Dengan review dan latihan yang lebih konsisten, pemahaman Gabriel akan terus meningkat! Tetep semangat Gabriel!",
           "Abed learned Python programming basics including variables, data structures, dictionaries, looping, conditional statements, functions, and Object-Oriented Programming (OOP). His written exam score was 80/100. Well done, Abed! He should continue to review and practice these concepts regularly to build a stronger understanding"
         ],
         "application": [
-          "Reynold's coding skills are excellent. He completes all assignments successfully, and his coding and debugging abilities have improved significantly. He applied Python skills to create projects such as Password Maker, Jumbled Word Game, Chat-Bot, and Game War, mastering both basic and advanced programming techniques.",
+          "[NAMA_STUDENT] bisa mengerjakan latihan coding dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] menyelesaikan semua tugas dengan baik, dan kemampuan coding serta debugging-nya meningkat signifikan. [NAMA_STUDENT] menerapkan skill Python untuk membuat project seperti Password Maker, Jumbled Word Game, Chat-Bot, dan Game War, menguasai teknik pemrograman dasar maupun lanjutan.",
           "Joveano bisa menyelesaikan semua Latihan coding dengan lancar. Kemampuan coding serta debugging-nya mengalami peningkatan yang signifikan. Beberapa program yang dibuat menggunakan Python seperti Password Maker, Jumbled Word Game, Chat-Bot, dan Game War, membuktikan penguasaan teknik coding dari level basic hingga advanced. Keep it up, Jo!",
           "Gabriel berusaha menyelesaikan latihan coding seperti Password Maker, Jumbled Word Game, Chat-Bot, dan Game War. Dalam prosesnya, Gabriel masih memerlukan bimbingan dari teacher untuk menyelesaikan beberapa bagian. Dengan latihan yang lebih rutin, kemampuan coding Gabriel akan terus berkembang. Keep trying, Gabriel!",
           "Abed worked on coding projects like Password Maker, Jumbled Word Game, Chat-Bot, and Game War. For his coding exam, Abed created a program to check if someone can ride the Roller Coaster. The program worked, but the text output had some formatting problems with missing spaces between words. Abed needs to pay more attention to small details in his code. He should also try to solve problems by himself first using previous lesson materials before asking the teacher"
         ],
         "character": [
-          "Reynold is an engaged student who actively participates in class. He asks questions when needed and arrives on time, demonstrating strong commitment. During coding exercises, Reynold maintains focus and dedicates himself to the practice. His enthusiasm for learning Python and AI remains high, indicating a positive attitude towards the subject matter. Keep it up Reynold!",
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] berpartisipasi di kelas. [NAMA_STUDENT] bertanya saat diperlukan dan selalu datang tepat waktu, menunjukkan komitmen yang baik. Saat latihan coding, [NAMA_STUDENT] tetap fokus dan berdedikasi pada latihannya. Antusiasme [NAMA_STUDENT] dalam belajar Python dan AI tetap tinggi. Keep it up [NAMA_STUDENT] !",
           "Jojo cukup aktif di dalam kelas. Ia selalu mengajukan pertanyaan jika mengalami kesulitan. Jojo juga selalu focus ketika mengerjakan Latihan coding. Minat belajarnya pada bidang Python dan AI cukup tinggi, memperlihatkan sikap yang positif. Pertahankan semangat belajarnya, Jo!",
           "Gabriel menunjukkan antusiasme dalam belajar Python dan AI. Minat belajarnya terlihat positif. untuk improvement: Gabriel perlu lebih aktif membaca dan mengecek materi sebelum meminta bantuan. Luangkan waktu untuk mencoba menyelesaikan masalah secara mandiri dengan merujuk materi sebelumnya. Pendekatan belajar mandiri ini akan membangun fondasi yang kuat. Terus semangat, Gabriel!",
           "Abed shows good interest in Python and AI. This positive attitude helps his learning. To improve further, Abed should read materials independently and try solving problems on his own before asking questions. This will help him build stronger problem-solving skills. Keep up the good work, Abed!"
@@ -697,17 +696,17 @@ const EXAM_TEMPLATES = {
       },
       "2": {
         "literacy": [
-          "Richard understands data science fundamentals like sorting algorithms, NumPy, and Pandas when concepts are explained step-by-step. He can follow guided examples well and grasps the basic ideas behind data frames and probability. However, he still needs more practice to fully internalize these concepts for independent use. Keep it up Richard!",
+          "[NAMA_STUDENT] bisa memahami dasar-dasar data science dengan [sangat baik/ baik/ cukup baik], seperti sorting algorithm, NumPy, dan Pandas, terutama saat konsepnya dijelaskan secara bertahap. [NAMA_STUDENT] bisa mengikuti contoh yang dipandu dengan baik dan memahami ide dasar di balik data frame dan probabilitas. Namun, [NAMA_STUDENT] masih perlu lebih banyak latihan untuk menguasai konsep ini secara mandiri. Keep it up [NAMA_STUDENT] !",
           "JoJo menunjukkan peningkatan signifikan dalam memahami materi lanjutan seperti algoritma sorting & searching, manipulasi data menggunakan NumPy dan Pandas, serta eksplorasi data dan konsep probabilitas. Ia mampu memahami alur analisis data dan logika statistik dengan sangat baik. Nilai akhir 95 mencerminkan pemahaman yang kuat. Good work, Jo!",
           "Jayden menunjukkan kemajuan yang sangat baik dalam menguasai topik lanjutan seperti algoritma pengurutan dan pencarian, pengolahan data dengan NumPy serta Pandas, dan juga pemahaman tentang eksplorasi data serta dasar-dasar probabilitas. Ia berhasil memahami proses analisis data dan logika statistik secara mendalam. Skor akhir 94 menandakan penguasaan materi yang solid. Great job, Jayden!"
         ],
         "application": [
-          "Richard can successfully complete coding tasks when given clear instructions and examples to follow. He works well with structured guidance for data analysis projects using Pandas and NumPy. He would benefit from more practice applying these skills independently and developing his own problem-solving strategies rather than relying on external help.",
+          "[NAMA_STUDENT] bisa menyelesaikan tugas coding dengan [sangat baik/ baik/ cukup baik] ketika diberikan instruksi dan contoh yang jelas. [NAMA_STUDENT] bekerja dengan baik dengan bimbingan terstruktur untuk project analisis data menggunakan Pandas dan NumPy. [NAMA_STUDENT] akan semakin berkembang dengan lebih banyak latihan menerapkan skill ini secara mandiri.",
           "Jojo berhasil menerapkan analisis data, seperti menyaring, mengurutkan, dan membaca pola dari data dengan bantuan library Pythondengan baik. Ia menyelesaikan Latihan dan ujian coding dengan sangat baik. Kemampuan mandirinya makin berkembang, meski tetap perlu latihan untuk eksplorasi tanpa contoh. Keep growing, Jo!",
           "Jayden mampu mengaplikasikan teknik analisis data dengan lancar, termasuk memfilter, mengurutkan, serta mengidentifikasi pola dalam data menggunakan library Python secara efektif. Ia menyelesaikan semua latihan dan ujian coding dengan hasil yang memuaskan. Kemandiriannya terus meningkat, walaupun masih disarankan untuk lebih sering berlatih eksplorasi tanpa mengandalkan contoh langsung. Tetap berkembang ya, Jayden!"
         ],
         "character": [
-          "Richard remains curious and willing to learn, but tends to depend on guidance when facing challenges. Building confidence to work through problems independently will help him grow. With more practice and encouragement to think through solutions on his own, he can develop stronger analytical thinking skills.",
+          "[NAMA_STUDENT] [sangat aktif/ cukup aktif/ perlu didorong] rasa ingin tahunya dan mau belajar, namun masih cenderung bergantung pada bimbingan saat menghadapi tantangan. Membangun rasa percaya diri untuk menyelesaikan masalah secara mandiri akan membantu [NAMA_STUDENT] berkembang lebih jauh.",
           "Richard is a thoughtful student who learns best when he has a clear set of steps to follow. While he can get confused by open-ended challenges, his exam score of 70/100 shows he has grasped much of the core material. To truly build a strong foundation, it will be important for him to trust his own abilities and work through problems from start to finish on his own, even when it's difficult. This will develop his skills as an independent problem-solver.",
           "Jojo tetap aktif, fokus, dan semangat belajar. Ia lebih percaya diri saat menghadapi materi baru dan terbiasa bertanya saat butuh bantuan. Komitmen dan semangat belajarnya sangat baik. Sikapnya konsisten sejak level 1 dan jadi modal kuat untuk terus berkembang. Terus semangat ya, Jo!",
           "Jayden selalu aktif, konsentrasi tinggi, dan memiliki antusiasme belajar yang luar biasa. Ia semakin percaya diri dalam menghadapi materi baru serta sudah terbiasa mengajukan pertanyaan ketika memerlukan klarifikasi. Sikap positif ini konsisten sejak level 1 dan menjadi bekal yang sangat baik untuk selanjutnya. Semangat terus, Jayden!"
@@ -717,19 +716,19 @@ const EXAM_TEMPLATES = {
     "PYTHON_FOR_ML(16)": {
       "1": {
         "literacy": [
-          "Reynold is learning AI and machine learning step by step. He understands basic ideas about how computers can learn and make decisions. He learned about teaching computers to recognize flowers, understand text, and spot fake news. For his concept exam, he scored 50 out of 100, showing room for growth and improvement. Keep it up Reynold!",
+          "[NAMA_STUDENT] bisa mempelajari AI dan machine learning secara bertahap dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] memahami ide dasar tentang bagaimana komputer bisa belajar dan mengambil keputusan, termasuk cara mengajarkan komputer mengenali bunga, memahami teks, dan mendeteksi berita palsu. Saat ujian konsep, [NAMA_STUDENT] mendapatkan nilai [MASUKAN_NILAI UJIAN]. Keep it up [NAMA_STUDENT] !",
           "Kenny menunjukkan pemahaman sangat baik terhadap materi Machine Learning, mulai dari klasifikasi data, NLP, hingga analisis sentimen. Ia mampu menjelaskan hubungan antara teori dan praktik dengan jelas, serta cepat memahami konsep Python yang digunakan dalam berbagai model AI sederhana. Saat ujian konsep, Kenny mendapatkan nilai 80/100. Keep it up, Ken!",
           "Jayden has completed all eight lessons covering topics such as classification, natural language processing, and fake news detection. He scored 86 out of 100 on the written exam, showing a good understanding of the material. He would benefit from spending more time on how and why different algorithms are chosen, as this will help him work more independently. He is moving in a good direction and asking questions when unsure will continue to support his learning.",
           "Jayden has done a great job learning about AI and machine learning, including how computers classify data and understand human language. He understands the lessons well, scoring 86 out of 100 on his written concept exam. To keep improving, he should continue to practice understanding more difficult coding logic. We are very proud of Jayden's hard work and clear understanding of these new topics!"
         ],
         "application": [
-          "Reynold shows determination in his coding work. During his practice exam, he felt confused about some problems but didn't give up. He worked through the challenges and successfully completed all his projects. His persistence and problem-solving attitude helped him finish everything, showing great resilience and commitment to learning.",
+          "[NAMA_STUDENT] menunjukkan kegigihan dalam mengerjakan coding dengan [sangat baik/ baik/ cukup baik]. Saat latihan ujian, [NAMA_STUDENT] sempat kebingungan pada beberapa soal namun tidak menyerah. [NAMA_STUDENT] berhasil menyelesaikan semua tantangan dan project-nya, menunjukkan daya tahan dan komitmen yang baik dalam belajar.",
           "Kenny menyelesaikan seluruh latihan dan project coding dengan sangat baik. Ia mampu mengimplementasikan logika pemrograman dan algoritma Machine Learning secara mandiri. Ia juga teliti dalam debugging dan memiliki inisiatif tinggi dalam mengembangkan proyeknya lebih lanjut dari instruksi dasar yang diberikan. Good job, Ken!",
           "Jayden successfully finished all coding projects across the eight lessons, meeting the requirements for each task. Developing the habit of writing more organised code and explaining his thinking will be useful as the work becomes more complex. His consistency through the practical sessions is noted and worth building on.",
           "Jayden shows great focus and effort when writing his programs during class. He successfully completed all his practical coding projects, showing that he can apply what he learns to build real working AI models. To grow further, he can practice finding and fixing coding errors on his own before asking for help. Jayden's practical skills are developing nicely, and he should keep up the great effort!"
         ],
         "character": [
-          "Reynold participates well in AI lessons. While he sometimes struggles with complex concepts, he asks thoughtful questions when he needs help, showing good learning habits. He stays focused during coding practice and works hard to finish his projects. Reynold's interest in artificial intelligence remains strong despite challenges. Keep pushing forward, Reynold!",
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] berpartisipasi dalam pelajaran AI. Meski terkadang kesulitan dengan konsep yang kompleks, [NAMA_STUDENT] mengajukan pertanyaan yang baik saat butuh bantuan. [NAMA_STUDENT] tetap fokus selama latihan coding dan berusaha keras menyelesaikan project-nya. Minat [NAMA_STUDENT] terhadap artificial intelligence tetap kuat. Keep pushing forward, [NAMA_STUDENT] !",
           "Kenny sangat antusias dan aktif selama pembelajaran. Ia selalu hadir tepat waktu, menunjukkan rasa ingin tahu tinggi, serta tidak ragu bertanya ketika menemui kesulitan. Sikapnya yang disiplin, fokus, dan bertanggung jawab dalam menyelesaikan tugas menunjukkan minat belajar yang tinggi. Keep up the great work, Ken!",
           "Jayden participates well in class and shows a cooperative and attentive attitude throughout the course. At times he moves through tasks quickly, and taking a moment to review his work before finishing would help him avoid small errors. He brings a steady and positive presence to the class, which contributes well to the learning environment.",
           "Jayden has very good learning habits and always maintains a positive attitude during our sessions. He listens carefully to instructions, stays focused on his tasks, and participates well in every lesson. To continue his growth, he can try to challenge himself more with advanced questions during class discussions. We love having Jayden in class, and his consistent hard work is highly commendable. Good job, Jayden!"
@@ -737,21 +736,21 @@ const EXAM_TEMPLATES = {
       },
       "2": {
         "literacy": [
-          "Reynold has a good grasp of the theory but should consistently review the advanced concepts from this level. Because the material is quite complex, frequent repetition will be key to building a more solid foundation. His effort is great, and this practice will help him achieve mastery.",
+          "[NAMA_STUDENT] bisa memahami teori dengan [sangat baik/ baik/ cukup baik], namun perlu konsisten mengulas kembali konsep-konsep lanjutan di level ini. Karena materinya cukup kompleks, pengulangan yang sering akan menjadi kunci untuk membangun fondasi yang lebih kuat. Usaha [NAMA_STUDENT] sangat baik, dan latihan ini akan membantunya mencapai penguasaan penuh.",
           "Kenny menunjukkan pemahaman yang sangat baik tentang konsep-konsep ML tingkat lanjut termasuk time series forecasting, neural networks, supervised, unsupervised dan reinforcement learning. Skor ujiannya  90. Penjelasannya tentang cara kerja recommendation systems dan anomaly detection baik dan menunjukkan pemikiran analitis yang kuat. Good Job, Ken!",
           "Richard menunjukkan pemahaman dasar yang cukup baik tentang konsep ML tingkat lanjut seperti time series forecasting, neural networks, supervised, unsupervised dan reinforcement learning. Dia mampu menjelaskan konsep-konsep utama dengan bantuan referensi seperti GeminiAI. Skor ujiannya 70. Keep it up, Richard!",
           "Jojo menunjukkan progres yang sangat stabil. Jika di Level 1 ia menguasai dasar klasifikasi dan NLP, di Level 2 ia meningkatkan skill Machine Learning dengan fokus pada topik lanjutan seperti time series forecasting, sales prediction, neural networks, unsupervised learning, dan recommender systems. Ia mampu menjelaskan alasan di balik pemilihan algoritma tertentu untuk problem yang diberikan. Keep it up, Jo!",
           "Jayden developed practical skills in Machine Learning, focusing on advanced topics such as time series forecasting, sales prediction, neural networks, unsupervised learning, and recommender systems. He has a good grasp of the practical side, but should consistently review the theory behind these advanced concepts. Because the material is quite complex, frequent repetition of the core ideas will help him build a more solid conceptual foundation. His effort is great, and continued practice will help him achieve full mastery."
         ],
         "application": [
-          "Reynold excels in all the practice exercises, showing he can apply the concepts well. While he felt a bit uncertain during the exam, this is a natural step in the learning process. Practicing with more diverse case studies will build his confidence and further sharpen his skills. Keep up the great practice!",
+          "[NAMA_STUDENT] unggul dalam semua latihan dengan [sangat baik/ baik/ cukup baik], menunjukkan kemampuan menerapkan konsep dengan baik. Meski sempat kurang percaya diri saat ujian, ini adalah langkah wajar dalam proses belajar. Berlatih dengan lebih banyak studi kasus akan membangun kepercayaan diri dan mengasah kemampuannya lebih lanjut. Keep up the great practice!",
           "Kenny menerapkan teknik Machine Learning lanjutan dalam proyek-proyek seperti Population Prediction, Sales Prediction, Customer Segmentation, dan Course Recommendation, dengan fokus pada forecasting, neural networks, dan recommender systems. Kenny berhasil menyelesaikan semua latihan coding dengan sangat baik  dan kode yang ditulisnya juga rapi ",
           "Richard berhasil menyelesaikan semua tugas coding dan mencapai hasil yang fungsional. Dia menunjukkan kemampuan untuk menemukan solusi dan menyelesaikan project dengan baik. Sebagai langkah pengembangan selanjutnya, Richard dapat fokus pada memahami setiap baris kode yang ditulis dengan lebih detail - bertahap dari konsep dasar. Good Job, Richard!",
           "Penerapan kode Jojo semakin rapi dan efisien. Ia menerapkan teknik Machine Learning lanjutan dalam proyek-proyek seperti Population Prediction, Sales Prediction, Customer Segmentation, dan Course Recommendation, dengan fokus pada forecasting, neural networks, dan recommender systems. Kemampuan debugging-nya juga semakin baik. Good job, Jo!",
           "Jayden applied Machine Learning to real projects like Sales Prediction, Customer Segmentation, and Course Recommendation. He's strong in hands-on practice and can build working models well. His theory is still catching up to his practical skills, so trying more varied exercises will help him build even more confidence."
         ],
         "character": [
-          "Reynold maintains a wonderfully proactive and enthusiastic attitude. He consistently asks thoughtful questions that show a true desire to learn. His persistence and focus, especially when facing project challenges, are commendable. His passion for AI is a clear driver of his success. Outstanding work!",
+          "[NAMA_STUDENT] mempertahankan sikap [sangat proaktif/ proaktif/ cukup proaktif] dan antusias. [NAMA_STUDENT] konsisten mengajukan pertanyaan yang menunjukkan keinginan belajar yang tulus. Kegigihan dan fokusnya, terutama saat menghadapi tantangan project, patut diapresiasi. Semangatnya terhadap AI menjadi pendorong utama keberhasilannya. Outstanding work!",
           "Kenny menunjukkan antusiasme tinggi dan konsistensi dalam pembelajaran. Dia aktif bertanya pertanyaan yang challenging dan mendalam tentang a neural network dan optimisasi model. Dia mengambil inisiatif untuk mengeksplorasi materi tambahan di luar kurikulum, menunjukkan passion yang kuat terhadap AI dan machine learning. Keep it up, Ken!",
           "Richard menunjukkan komitmen yang konsisten dalam mengikuti kelas dan menyelesaikan tugas-tugas yang diberikan. Dia hadir aktif dalam pembelajaran dan berusaha untuk memahami materi. Untuk kedepanya, Richard dapat mencoba menjelaskan konsep dengan bahasa sendiri. Hal ini akan membantu memperdalam pemahaman dan membangun kemampuan berpikir kritis.",
           "Jojo tetap mempertahankan disiplin dan fokusnya. Meskipun cenderung tenang di kelas, ia sangat proaktif dalam mengerjakan tantangan coding. Kemampuannya untuk tetap tenang saat menemui error yang lebih kompleks di Level 2 ini menunjukkan sikap belajar yang semakin mandiri dan terorganisir. Keep up the great work, Jo!",
@@ -762,19 +761,19 @@ const EXAM_TEMPLATES = {
     "PYTHON_FOR_CV(16)": {
       "1": {
         "literacy": [
-          "Richard demonstrates a good understanding of fundamental computer vision concepts including OpenCV image manipulation, CNN architectures, transfer learning, and object detection algorithms. He grasped key concepts like MobileNetSSD, Haar Cascades, and tracking techniques effectively. His writing exam score of 100 shows excellent comprehension. Keep up the excellent work, Richard!",
+          "[NAMA_STUDENT] bisa memahami konsep dasar computer vision dengan [sangat baik/ baik/ cukup baik], termasuk image manipulation dengan OpenCV, arsitektur CNN, transfer learning, dan algoritma object detection. [NAMA_STUDENT] memahami konsep kunci seperti MobileNetSSD, Haar Cascades, dan teknik tracking dengan baik. Saat ujian tertulis, [NAMA_STUDENT] mendapatkan nilai [MASUKAN_NILAI UJIAN]. Keep up the excellent work, [NAMA_STUDENT] !",
           "Reynold has successfully worked through the first half of the curriculum, showing a clear understanding of how computers process visual data. He completed lessons on OpenCV image manipulation, Tensorflow, and CNN architectures. He also grasped the differences between Object Detection (using MobileNetSSD) and Object Tracking (using Euclidean Distance). His writing exam score of 80/100 confirms he has a good handle on these technical theories",
           "Reynold understands how computers process data through OpenCV, Tensorflow, and CNN. He successfully learned the difference between Object Detection and Tracking using the Euclidean Distance Tracker. His 80/100 on the writing exam shows he knows the theory well. Good job grasping these complex topics!",
           "Jojo understands how computers process and recognize visual data through OpenCV, TensorFlow, and CNN. He successfully learned how to classify images, detect faces, and distinguish between Object Detection and Object Tracking using the Euclidean Distance Tracker. His 90/100 on the theory exam shows a strong grasp of these complex topics. To keep growing, Jojo can explore how these concepts are used in real-world applications. Well done, Jojo!"
         ],
         "application": [
-          "Richard successfully completed all coding assignments and achieved functional results across all projects. He completed his coding exam with no bugs, demonstrating excellent attention to detail and strong debugging skills. As a next step, Richard can focus on understanding each line of code in greater detail, building from basic concepts gradually. Great job, Richard!",
+          "[NAMA_STUDENT] bisa menyelesaikan semua tugas coding dengan [sangat baik/ baik/ cukup baik] dan mencapai hasil yang fungsional di semua project. [NAMA_STUDENT] menyelesaikan ujian coding-nya tanpa bug, menunjukkan ketelitian dan kemampuan debugging yang kuat. Sebagai langkah selanjutnya, [NAMA_STUDENT] bisa fokus memahami setiap baris kode secara lebih detail. Great job [NAMA_STUDENT] !",
           "Reynold has been diligent in completing his practical work, including projects on Horse and Human Classification and Face Detection. He successfully finished his middle exam, demonstrating that he can apply these tools to build working programs. To continue improving, he should focus on the specific logic within his scripts to ensure he understands exactly how each line of code contributes to the final result",
           "Reynold finished all projects, including Face Detection and Image Classification. He completed his middle exam smoothly, showing he can build working programs. He should now focus on the \"why\" behind each line of code to deepen his skills. Keep up the great work on your projects!",
           "Jojo completed all his coding exercises and projects, including Horse and Human Classification, Face Detection, and MobileNetSSD Object Detection. He finished his coding project exam successfully, showing he can build working programs on his own. Going forward, Jojo can challenge himself by exploring the \"why\" behind each line of code to deepen his understanding even further. Keep up the great work!"
         ],
         "character": [
-          "Richard shows commitment to attending classes and completing assignments. While he can be easily distracted and sometimes opens unrelated websites, there's notable improvement in his responsiveness. When reminded to close distractions and focus on the lesson, he now listens and redirects his attention, which is progress from before. Continuing to build self-discipline will help Richard further.",
+          "[NAMA_STUDENT] menunjukkan komitmen [yang baik/ cukup baik/ yang perlu ditingkatkan] dalam menghadiri kelas dan menyelesaikan tugas. Meski kadang mudah teralihkan, ada peningkatan yang cukup terlihat dalam responsivitasnya. Saat diingatkan untuk fokus pada pelajaran, [NAMA_STUDENT] kini mendengarkan dan mengalihkan perhatiannya kembali. Terus membangun kedisiplinan diri akan membantu [NAMA_STUDENT] berkembang lebih jauh.",
           "Reynold is consistent about attending class and finishing his modules. However, he is often tempted to play games or browse other sites during the lesson. While he is respectful and gets back to work when asked, he needs to work on staying focused on the material independently. Developing better self-discipline during class time will help him get the most out of the upcoming advanced lessons",
           "Reynold is consistent about attending class and finishing his modules, but he is often distracted by games during class. While he listens when reminded to focus, he needs to practice staying on task independently. Improving his self-discipline will help him learn even more. Keep working on your focus, Reynold!",
           "Jojo is a focused and hardworking student who consistently stays on task and puts in genuine effort every session. He approaches challenging material with patience and sees tasks through to completion. To continue developing, it would be great to see Jojo ask more questions and share his thinking in class—his curiosity will take him far. His dedication throughout Level 1 has been great to see!"
@@ -782,14 +781,14 @@ const EXAM_TEMPLATES = {
       },
       "2": {
         "literacy": [
-          "Jojo mempelajari konsep AI Computer Vision tingkat lanjut, seperti Automatic Number Plate Recognition (ANPR), Optical Character Recognition (OCR), Hand Landmarks Detection, Face Mesh, serta deteksi area wajah, mata, dan mulut menggunakan MediaPipe. Jojo menunjukkan pemahaman yang sangat baik terhadap cara AI mengenali objek, teks, dan bagian tubuh melalui gambar atau video. Untuk terus meningkatkan kemampuannya, Jojo dapat lebih mendalami bagaimana setiap model AI bekerja dan memahami alasan pemilihan metode yang digunakan pada setiap studi kasus. Secara keseluruhan, Jojo telah menunjukkan perkembangan yang sangat baik pada level ini. Good job, Jojo!"
+          "[NAMA_STUDENT] mempelajari konsep AI Computer Vision tingkat lanjut dengan [sangat baik/ baik/ cukup baik], seperti Automatic Number Plate Recognition (ANPR), Optical Character Recognition (OCR), Hand Landmarks Detection, Face Mesh, serta deteksi area wajah, mata, dan mulut menggunakan MediaPipe. [NAMA_STUDENT] menunjukkan pemahaman yang sangat baik terhadap cara AI mengenali objek, teks, dan bagian tubuh melalui gambar atau video. Good job, [NAMA_STUDENT] !"
         ],
         "application": [
-          "Jojo berhasil mengembangkan berbagai aplikasi yang memanfaatkan teknik computer vision dan machine learning, seperti OCR License Plate Number menggunakan EasyOCR, OCR Handwriting Recognition, Virtual Painter, Face Filter (Pig Nose), dan Face Filter (Dragon). Melalui proyek-proyek tersebut, Jojo mampu menerapkan konsep yang telah dipelajari ke dalam aplikasi yang dapat berjalan dengan baik.\r\n\r\nKe depannya, Jojo dapat mencoba mengeksplorasi lebih banyak variasi pada setiap proyek, misalnya dengan memodifikasi fitur atau menambahkan fungsi baru. Hal ini akan membantu memperluas pemahamannya dalam mengembangkan aplikasi berbasis AI.\r\n\r\nSecara keseluruhan, Jojo menunjukkan kemampuan yang baik dalam menerapkan konsep AI Computer Vision ke dalam berbagai proyek. Keep it up, Jojo!",
+          "[NAMA_STUDENT] berhasil mengembangkan berbagai aplikasi yang memanfaatkan teknik computer vision dan machine learning dengan [sangat baik/ baik/ cukup baik], seperti OCR License Plate Number menggunakan EasyOCR, OCR Handwriting Recognition, Virtual Painter, Face Filter (Pig Nose), dan Face Filter (Dragon). Ke depannya, [NAMA_STUDENT] dapat mengeksplorasi lebih banyak variasi pada setiap proyek. Keep it up, [NAMA_STUDENT] !",
           "Jojo berhasil mengembangkan berbagai aplikasi yang memanfaatkan teknik computer vision dan machine learning, seperti OCR License Plate Number menggunakan EasyOCR, OCR Handwriting Recognition, Virtual Painter, Face Filter (Pig Nose), dan Face Filter (Dragon). Agar pemahamannya semakin berkembang, Jojo dapat mencoba memodifikasi fitur atau menambahkan fungsi baru pada setiap proyek. Secara keseluruhan, Jojo menunjukkan kemampuan yang baik dalam menerapkan konsep AI Computer Vision ke dalam berbagai proyek. Keep it up, Jojo!"
         ],
         "character": [
-          "Jojo menunjukkan konsistensi yang baik selama mengikuti kelas dan mengerjakan setiap latihan yang diberikan. Ia mampu mengikuti materi dengan baik dan menyelesaikan tugas sesuai arahan. Ke depannya, Jojo dapat mulai mencoba challenge yang lebih menantang untuk semakin mengembangkan kemampuan coding dan problem solving yang dimilikinya. Keep it up, Jojo!",
+          "[NAMA_STUDENT] menunjukkan konsistensi yang [sangat baik/ baik/ cukup baik] selama mengikuti kelas dan mengerjakan setiap latihan yang diberikan. [NAMA_STUDENT] mampu mengikuti materi dengan baik dan menyelesaikan tugas sesuai arahan. Ke depannya, [NAMA_STUDENT] dapat mulai mencoba challenge yang lebih menantang. Keep it up, [NAMA_STUDENT] !",
           "Jojo menunjukkan komitmen yang baik selama mengikuti pembelajaran dan selalu berusaha menyelesaikan setiap tugas yang diberikan. Ia mengikuti instruksi dengan baik dan tetap fokus saat mengerjakan latihan coding. Ke depannya, Jojo dapat mencoba mengambil tantangan yang lebih beragam agar semakin terbiasa menyelesaikan soal dengan tingkat kesulitan yang lebih tinggi. Keep it up, Jojo!"
         ]
       }
@@ -808,17 +807,17 @@ const EXAM_TEMPLATES = {
       },
       "2": {
         "literacy": [
-          "El show good understanding of intermediate Python concepts in practice. He has learned OOP fundamentals, Python modules introduction, and TKinter GUI development. Key topics covered include OOP principles, module basics, TKinter components, message/input boxes, labels, buttons, canvas coordinates, and event handling concepts. While his theoretical exam needs improvement, his practical application shows strong conceptual grasp. Keep it up, El!",
+          "[NAMA_STUDENT] menunjukkan pemahaman yang [sangat baik/ baik/ cukup baik] terhadap konsep Python tingkat menengah. [NAMA_STUDENT] mempelajari dasar-dasar OOP, pengenalan module Python, dan pengembangan GUI dengan TKinter. Topik yang dipelajari meliputi prinsip OOP, dasar module, komponen TKinter, message/input box, label, button, canvas coordinates, dan konsep event handling. Keep it up, [NAMA_STUDENT] !",
           "Araya mempelajari topik-topik Python tingkat menengah di Level 2, mulai dari Object Oriented Programming (OOP), penggunaan modul Python, hingga membuat tampilan aplikasi desktop menggunakan TKinter—termasuk tombol, label, kotak input, canvas, dan interaksi mouse. Nilai ujian teorinya 70 dari 100, yang menunjukkan pemahamannya masih bisa terus diasah. Ke depannya, Araya bisa lebih sering mengulang konsep-konsep yang dipelajari agar semakin kuat pemahamannya. Tetap semangat, Araya!",
           "Araya menunjukkan pemahaman yang baik terhadap konsep Python tingkat menengah, khususnya pada materi Dasar-Dasar OOP, pengenalan Python Modules, dan pengembangan GUI menggunakan TKinter. Meskipun hasil ujian tertulisnya (70/100) masih perlu ditingkatkan, Araya secara praktik mampu memahami prinsip OOP, koordinat Canvas, hingga event handling dengan sangat baik."
         ],
         "application": [
-          "El applies learned concepts with good consistency. The programming exercises were completed successfully, showing steady progress in GUI development. Challenge projects were approached with determination. He also successfully finished the exam. Next focus is on improving code understanding for the next level. You're on track, El!",
+          "[NAMA_STUDENT] bisa menerapkan konsep yang dipelajari dengan [sangat baik/ baik/ cukup baik] dan konsisten. Latihan pemrograman diselesaikan dengan baik, menunjukkan progress yang stabil dalam pengembangan GUI. Project challenge dikerjakan dengan penuh determinasi, dan [NAMA_STUDENT] juga berhasil menyelesaikan ujiannya. You're on track, [NAMA_STUDENT] !",
           "Araya berhasil menyelesaikan semua latihan dan challenge dengan cukup baik. Pada ujian coding project, ia berhasil menyelesaikan proyeknya meski masih perlu beberapa kali bertanya—yang merupakan hal yang wajar dan menunjukkan ia mau berusaha sampai selesai. Ke depannya, Araya bisa berlatih mengerjakan proyek secara lebih mandiri agar semakin percaya diri. Good job, Araya!",
           "Araya mampu menerapkan konsep yang dipelajari ke dalam latihan dan proyek GUI dengan konsisten. Proyek challenge dan ujian coding diselesaikan dengan cukup baik, meskipun sesekali masih membutuhkan arahan atau bertanya untuk memastikan logikanya tepat. Fokus selanjutnya adalah memperkuat pemahaman struktur kode agar lebih mandiri di level berikutnya"
         ],
         "character": [
-          "El is very active in class. He asks relevant questions about material when needed, showing interest in learning new programming concepts. El usually stays focused during lessons, though occasionally needs gentle reminders when topics become challenging, when he gets overly energetic, or on days when he's feeling tired. Keep it up, El!",
+          "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di dalam kelas. [NAMA_STUDENT] mengajukan pertanyaan relevan tentang materi saat diperlukan, menunjukkan minat dalam mempelajari konsep pemrograman baru. [NAMA_STUDENT] biasanya tetap fokus selama pelajaran, meski kadang butuh pengingat halus saat materi menjadi menantang. Keep it up, [NAMA_STUDENT] !",
           "Araya sangat aktif di dalam kelas dan selalu menunjukkan antusiasme yang tinggi dalam mempelajari konsep pemrograman baru. Ia tidak ragu untuk mengajukan pertanyaan yang relevan. Araya umumnya mampu menjaga fokus, meskipun terkadang membutuhkan pengingat dari pengajar saat ia merasa terlalu bersemangat atau ketika materi mulai menjadi lebih menantang."
         ]
       }
@@ -868,6 +867,76 @@ const EXAM_TEMPLATES = {
         ],
         "character": [
           "[NAMA_STUDENT] [sangat aktif/ aktif/ cukup aktif] di kelas dan berinteraksi baik dengan teacher dan teman-temannya di kelas. Ia juga  [sangat aktif/ aktif/ cukup aktif] bertanya tentang materi yang kurang dipahami. [NAMA_STUDENT] juga fokus/cukup fokus ketika belajar walaupun kadang-kadang suasana kelas kurang kondusif. Keep it up [NAMA_STUDENT] !"
+        ]
+      }
+    },
+    "WEB_DEV": {
+      "1": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami Bahasa HTML dan CSS dengan [sangat baik/ baik/ cukup baik]. Beberapa tags yang dipelajari yaitu heading, paragraph, image, hyperlink, list, table, span, div, dan section. Untuk properti CSS yaitu color, font-family, font-size, background-color, margin, padding, border, dan display. Saat exam, [NAMA_STUDENT] mendapatkan nilai [MASUKAN_NILAI UJIAN]. Tingkatkan dan pertahankan semangatnya ya [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa mengerjakan latihan coding dengan [sangat baik/ baik/ cukup baik]. Challenge juga dikerjakan dengan baik. [NAMA_STUDENT] bisa menerapkan konsep HTML dan CSS yang sudah dipelajari saat latihan membuat website. Hal ini terlihat saat exam, [NAMA_STUDENT] mendapatkan nilai yang bagus, yaitu [MASUKAN_NILAI UJIAN]. Pertahankan semangatnya ya [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat bersemangat/ bersemangat/ cukup bersemangat] di dalam kelas. [NAMA_STUDENT] juga [sangat aktif/ aktif/ cukup aktif] mengajukan pertanyaan saat merasa kebingungan atau menghadapi kesulitan. Selain itu, ia juga [fokus/ cukup fokus] saat mengerjakan latihan coding. Motivasi [NAMA_STUDENT] untuk mempelajari coding juga masih [tinggi/ cukup tinggi]. Keep it up [NAMA_STUDENT]!"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa mempelajari pengembangan web tingkat lanjut dengan [sangat baik/ baik/ cukup baik], termasuk pemanfaatan HTML DOM untuk interaksi dinamis, penambahan media, dan pembuatan formulir interaktif. Topik yang dikuasai mencakup JavaScript, DOM Events, media, HTML Forms (termasuk input, styling, submit), dan slider. Saat ujian, [NAMA_STUDENT] mendapatkan nilai [MASUKAN_NILAI UJIAN]. Tingkatkan terus semangatnya [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa mengerjakan latihan coding dengan [sangat baik/ baik/ cukup baik]. Challenge juga dikerjakan dengan baik. [NAMA_STUDENT] bisa menerapkan konsep lanjutan yang sudah dipelajari saat latihan membuat Interactive Blog Website. Hal ini terlihat dari penggunaan HTML DOM untuk interaksi dinamis, penambahan media, pembuatan form interaktif, hingga membuat image slider. Good job [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat bersemangat/ bersemangat/ cukup bersemangat] di dalam kelas. [NAMA_STUDENT] juga [sangat aktif/ aktif/ cukup aktif] mengajukan pertanyaan saat merasa kebingungan atau menghadapi kesulitan. Selain itu, ia juga [fokus/ cukup fokus] saat mengerjakan latihan coding. Motivasi [NAMA_STUDENT] untuk mempelajari coding juga masih [tinggi/ cukup tinggi]. Keep it up [NAMA_STUDENT]!"
+        ]
+      },
+      "3": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa memahami konsep pembuatan website yang terdiri dari HTML, CSS, dan JavaScript dengan [sangat baik/ baik/ cukup baik]. Beberapa tags HTML dan CSS tambahan yang dipelajari yaitu form, input type and attribute, slider, dan submit to email, serta css transition, animation, dan modal. Namun, konsep responsive website masih perlu banyak latihan lagi. Saat ujian, [NAMA_STUDENT] mendapatkan nilai [MASUKAN_NILAI UJIAN]. Keep it up [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] bisa menyelesaikan website dengan tema Blog dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] mengaplikasikan konsep HTML forms, animasi CSS, transisi, desain responsif, image-slider, dan JavaScript DOM. Untuk desain responsif, [NAMA_STUDENT] perlu lebih banyak latihan coding. [NAMA_STUDENT] juga berhasil menyelesaikan dan mendeploy project website-nya. Good job [NAMA_STUDENT] !"
+        ],
+        "character": [
+          "[NAMA_STUDENT] [tenang/ cukup tenang/ perlu bimbingan lebih] dan tetap fokus selama kelas. Ketika menghadapi kesulitan, [NAMA_STUDENT] mau bertanya sampai memahami solusinya. Seiring bertambahnya rasa percaya diri, [NAMA_STUDENT] bisa lebih aktif berpartisipasi dalam diskusi kelas agar belajar semakin maksimal. Keep up the positive attitude, [NAMA_STUDENT] !"
+        ]
+      }
+    },
+    "APP_DEV": {
+      "1": {
+        "literacy": [
+          "[NAMA_STUDENT] bisa membuat template project react-native dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] juga bisa memahami konsep react-native framework seperti component, layout, style, props, reusable component, hooks dan navigation dan juga menambahkan image, font, dan icon dengan [sangat baik/ baik/ cukup baik]. Nilai ujian Midtest [NAMA_STUDENT] [MASUKAN_NILAI MIDTEST] dan Examnya [MASUKAN_NILAI EXAM]. Good Job [NAMA_STUDENT] !"
+        ],
+        "application": [
+          "[NAMA_STUDENT] mengerjakan latihan coding menggunakan react-native framework dengan [sangat baik/ baik/ cukup baik]. Pada saat midtest maupun exam, [NAMA_STUDENT] bisa menyelesaikan ujiannya dengan [baik/ cukup baik]. Latihan codingnya ditambah ya [NAMA_STUDENT]."
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat bersemangat/ bersemangat/ cukup bersemangat] di dalam kelas. [NAMA_STUDENT] juga [sangat aktif/ aktif/ cukup aktif] mengajukan pertanyaan saat merasa kebingungan atau menghadapi kesulitan. Selain itu, ia juga [fokus/ cukup fokus] saat mengerjakan latihan coding. Motivasi [NAMA_STUDENT] untuk mempelajari coding juga masih [tinggi/ cukup tinggi]. Keep it up [NAMA_STUDENT]!"
+        ]
+      },
+      "2": {
+        "literacy": [
+          "[NAMA_STUDENT]  semakin memahami konsep react-native framework dengan [sangat baik/ baik/ cukup baik]. [NAMA_STUDENT] belajar membuat design layout menggunakan Figma. Untuk Konsep react-native nya yaitu global state with redux, regular expression, navigation, modal, map method, position dan basic database realm(CRUD). Pada saat midtest, [NAMA_STUDENT]  mendapatkan nilai [MASUKAN_NILAI MIDTEST] dan untuk nilai examnya [MASUKAN_NILAI EXAM]."
+        ],
+        "application": [
+          "[NAMA_STUDENT]  mengerjakan latihan coding dan challenge dengan  [sangat baik/ baik/ cukup baik]. Saat midtest hanya ada ujian teori tapi [NAMA_STUDENT]  tetap berhasil menyelesaikan ujian dengan  [sangat baik/ baik/ cukup baik]. Saat final test, [NAMA_STUDENT] menyelesaikan ujiannya sesuai dengan output yang diminta. Berdasarkan hasil ujian tersebut, debugging skill-nya perlu ditingkatkan. Caranya dengan memperbanyak latihan coding."
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat bersemangat/ bersemangat/ cukup bersemangat] di dalam kelas. [NAMA_STUDENT] juga [sangat aktif/ aktif/ cukup aktif] mengajukan pertanyaan saat merasa kebingungan atau menghadapi kesulitan. Selain itu, ia juga [fokus/ cukup fokus] saat mengerjakan latihan coding. Motivasi [NAMA_STUDENT] untuk mempelajari coding juga masih [tinggi/ cukup tinggi]. Keep it up [NAMA_STUDENT]!"
+        ]
+      },
+      "3": {
+        "literacy": [
+          "Pada level Android Apps Development 3 ini, [NAMA_STUDENT] belajar beberapa konsep baru, yaitu drawer navigation, image slider, image picker, dropdown menu, link to another application, image zooming, responsive layout, dan splash screen. Penggunaan database mongoDB realm seperti membuat, membaca, menambah dan menghapus (CRUD) database juga semakin [baik/ cukup baik]."
+        ],
+        "application": [
+          "[NAMA_STUDENT] selalu mengerjakan latihan coding dengan [sangat baik/ baik/ cukup baik]. Pada level ini, [NAMA_STUDENT] berhasil membuat aplikasi sendiri. Aplikasi yang dibuat diberi nama [JUDUL_APPS]. Aplikasi ini bertujuan untuk [TUJUAN APPS]. Sedikit catatan yaitu tingkatkan debugging skill dengan banyak latihan coding dan banyak membaca coding orang lain. Tetap semangat ya [NAMA_STUDENT]."
+        ],
+        "character": [
+          "[NAMA_STUDENT] [sangat bersemangat/ bersemangat/ cukup bersemangat] di dalam kelas. [NAMA_STUDENT] juga [sangat aktif/ aktif/ cukup aktif] mengajukan pertanyaan saat merasa kebingungan atau menghadapi kesulitan. Selain itu, ia juga [fokus/ cukup fokus] saat mengerjakan latihan coding. Motivasi [NAMA_STUDENT] untuk mempelajari coding juga masih [tinggi/ cukup tinggi]. Keep it up [NAMA_STUDENT]!"
         ]
       }
     }
