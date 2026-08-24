@@ -93,6 +93,13 @@ const LANG_UI = {
   }
 };
 
+/**
+ * Ganti bahasa KONTEN LAPORAN (kartu preview yang dikirim ke orang tua) —
+ * ID atau EN. PENTING: ini cuma toggle elemen yang punya id spesifik di
+ * atas (bagian dari report card), BUKAN chrome admin di sekitarnya (label
+ * form, judul card sidebar) — itu sengaja tetap Indonesia permanen,
+ * konsisten dengan tab lain. Lihat rencana-10-10-non-security.md bagian 6.
+ */
 function setLang(lang){
   autoLang = lang;
   document.getElementById('lang-btn-id').classList.toggle('active', lang==='id');
@@ -131,6 +138,7 @@ function setLang(lang){
   renderAutoInputs();
 }
 
+/** Isi ulang dropdown Course untuk 1 kartu murid, dari COURSE_MAP[s.criteria]. Tidak perlu data lazy-load (COURSE_MAP selalu ada). */
 function populateCourseDropdown(idx) {
   const courseSelect = document.getElementById(`auto-course-${idx}`);
   if (!courseSelect) return;
@@ -146,6 +154,7 @@ function populateCourseDropdown(idx) {
   }
 }
 
+/** Isi ulang dropdown Lesson (+ Lesson2 kalau status double/one_and_half) dari COURSE_DATA[s.course] — lihat guard race-condition di dalam untuk kasus data belum lazy-loaded. */
 function populateLessonDropdown(idx) {
   const lessonSelect = document.getElementById(`auto-lesson-${idx}`);
   const lesson2Select = document.getElementById(`auto-lesson2-${idx}`);
@@ -235,6 +244,12 @@ function onLesson2Change(idx, selectEl) {
   autoUpdateTable();
 }
 
+/**
+ * Susun teks progress harian 1 murid dari template (TEMPLATES/TEMPLATES_EN)
+ * sesuai course+lesson+status ('done'/'in_progress'/'one_and_half'/'double'),
+ * lalu simpan ke state + textarea + submit ke Google Sheets di background.
+ * Validasi field wajib (nama/course/lesson) dulu sebelum generate.
+ */
 function generateProgress(idx) {
   syncStudentFromDOM(idx);
   const s = autoStudents[idx];
@@ -282,6 +297,7 @@ function generateProgress(idx) {
   submitDailyReportToSheet(idx);
 }
 
+/** Baca nilai form (nama/criteria/course/dst) dari DOM balik ke `autoStudents[idx]` — dipanggil sebelum generate/save supaya state selalu sinkron dengan input terakhir guru. */
 function syncStudentFromDOM(idx) {
   if (!autoStudents[idx]) return;
   const nameEl = document.getElementById(`auto-name-${idx}`);
@@ -307,6 +323,7 @@ function setStudentLang(idx, lang) {
   renderAutoInputs();
 }
 
+/** Render ulang SEMUA kartu form murid dari `autoStudents[]` (dipanggil setelah add/remove/muat-jadwal/ganti-bahasa) — full re-render, bukan diff. */
 function renderAutoInputs(){
   const L = LANG_UI[autoLang];
   const c = document.getElementById('auto-students-container');
@@ -394,6 +411,7 @@ async function handleRequestReminder(idx) {
   }
 }
 
+/** Tandai laporan 1 murid "selesai" di sheet Pending Reports (dipanggil dari tombol "✅ Report Telah Selesai"), supaya tidak muncul lagi di reminder guru. */
 async function handleMarkReportDone(idx) {
   const s = autoStudents[idx];
   const kelas = document.getElementById('auto-kelas').value;
@@ -410,6 +428,7 @@ async function handleMarkReportDone(idx) {
   }
 }
 
+/** Tandai 1 murid tidak hadir hari ini — hapus dari daftar aktif (tabel/WA/PDF) & catat ke sheet supaya tidak ikut ke-reminder. */
 async function handleMarkAbsent(idx) {
   const s = autoStudents[idx];
   const teacher = typeof getCurrentTeacher === 'function' ? getCurrentTeacher() : null;
@@ -439,6 +458,7 @@ async function handleMarkAbsent(idx) {
 // ============================================================
 let _jadwalData = null; // cache hasil fetch terakhir: { success, kelas: {...} }
 
+/** Ambil jadwal kelas guru untuk hari terpilih dari sheet Jadwal, isi dropdown Kelas (`#jadwal-kelas-select`). Hasil di-cache di `_jadwalData` untuk dipakai `onJadwalKelasChange`. */
 async function loadMuridFromJadwal() {
   const teacher = typeof getCurrentTeacher === 'function' ? getCurrentTeacher() : null;
   const hari = document.getElementById('jadwal-hari-select').value;
@@ -464,6 +484,7 @@ async function loadMuridFromJadwal() {
     return;
   }
 
+  kelasSelect.disabled = false;
   kelasSelect.innerHTML = '<option value="">-- Pilih Kelas --</option>' +
     kelasNames.map(k => `<option value="${escHtml(k)}">${escHtml(k)} (${res.kelas[k].length} murid)</option>`).join('');
 
@@ -476,6 +497,7 @@ async function loadMuridFromJadwal() {
   }
 }
 
+/** Isi form murid dari kelas terpilih di `_jadwalData` (dipanggil onchange dropdown Kelas, atau otomatis kalau cuma 1 kelas). Replace seluruh `autoStudents[]` dengan daftar murid kelas itu. */
 function onJadwalKelasChange() {
   const kelasName = document.getElementById('jadwal-kelas-select').value;
   if (!kelasName || !_jadwalData) return;
@@ -543,6 +565,7 @@ async function submitDailyReportToSheet(idx) {
   }
 }
 
+/** Tambah 1 kartu murid kosong ke `autoStudents[]`, sync dulu semua kartu existing dari DOM supaya tidak ada data yang ke-timpa, lalu scroll ke kartu baru. */
 function addAutoStudent(){
   autoStudents.forEach((_, idx) => syncStudentFromDOM(idx));
   autoStudents.push({nama:'',progress:'',criteria:'',course:'',lesson:'',lesson2:'',status:'done',lang:autoLang});
@@ -551,6 +574,7 @@ function addAutoStudent(){
   if(cards.length) cards[cards.length-1].scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
+/** Hapus 1 kartu murid dari form (minimal harus sisa 1 murid). */
 function removeAutoStudent(i){
   const L = LANG_UI[autoLang];
   if(autoStudents.length<=1){toast(L.errMinStudent,'error');return;}
@@ -588,10 +612,25 @@ function autoUpdateTable(){
     `;
     tbody.appendChild(div);
   });
+
+  // Empty state — sebelumnya kalau autoStudents kosong (belum load jadwal /
+  // belum tambah murid manual), preview ini cuma kotak putih kosong tanpa
+  // petunjuk apapun. Sekarang kasih pesan + arahan langkah berikutnya.
+  if (!tbody.children.length) {
+    const emptyMsg = autoLang === 'id'
+      ? { title: 'Belum ada murid ditambahkan', hint: 'Muat jadwal dari sistem di panel kiri, atau klik "+ Add Student" untuk isi manual.' }
+      : { title: 'No students added yet', hint: 'Load your schedule from the panel on the left, or click "+ Add Student" to add one manually.' };
+    const div = document.createElement('div');
+    div.className = 'rpt-empty-state';
+    div.innerHTML = `<div class="rpt-empty-state-title">${escHtml(emptyMsg.title)}</div><div class="rpt-empty-state-hint">${escHtml(emptyMsg.hint)}</div>`;
+    tbody.appendChild(div);
+  }
+
   autoUpdateWA();
   fitPreviewScale();
 }
 
+/** Update header preview (nama kelas & tanggal) — dipanggil saat input Class Name/Date berubah. */
 function autoUpdatePreview(){
   const kelas = document.getElementById('auto-kelas').value || '—';
   const tgl = document.getElementById('auto-tanggal').value;
@@ -600,6 +639,7 @@ function autoUpdatePreview(){
   autoUpdateWA();
 }
 
+/** Susun teks pesan WhatsApp lengkap (salam + progress tiap murid + penutup) dari `autoStudents[]`, sesuai bahasa aktif. */
 function buildAutoWAMessage(){
   const L = LANG_UI[autoLang];
   const tgl = document.getElementById('auto-tanggal').value;
@@ -616,23 +656,30 @@ function autoUpdateWA(){
 }
 
 
+/** Screenshot preview report jadi PNG (html2canvas) & auto-download. Dipanggil juga oleh openAutoWhatsApp sebelum buka WA. */
 async function downloadAutoPNG(){
-  const btn=document.getElementById('abtn-png'); btn.disabled=true; btn.textContent='Processing...';
-  toast('Creating PNG...');
+  const btn=document.getElementById('abtn-png'); btn.disabled=true; btn.textContent='Memproses...';
+  toast('Membuat PNG...');
   try{
     const canvas = await capturePNG('auto-report-preview');
     const link = document.createElement('a');
     const L = LANG_UI[autoLang];
     const kelas = document.getElementById('auto-kelas').value.replace(/\s+/g,'_')||'Report';
     link.download=`${L.fileName(kelas)}.png`; link.href=canvas.toDataURL('image/png'); link.click();
-    toast('PNG downloaded!','success');
+    toast('PNG berhasil diunduh!','success');
   }catch(err){toast('Error: '+err.message,'error');}
-  finally{btn.disabled=false;btn.textContent='Download PNG';}
+  finally{btn.disabled=false;btn.textContent='Unduh PNG';}
 }
 
+/**
+ * Kirim report ke WhatsApp: auto-download PNG report dulu (supaya guru
+ * tinggal attach dari galeri), lalu buka WhatsApp Web/App dengan teks
+ * pesan sudah terisi. Guru masih perlu attach gambarnya manual — WhatsApp
+ * API tidak mengizinkan attach file otomatis dari browser.
+ */
 async function openAutoWhatsApp(){
   const L = LANG_UI[autoLang];
-  const btn=document.getElementById('abtn-wa'); btn.disabled=true; btn.textContent='Preparing...';
+  const btn=document.getElementById('abtn-wa'); btn.disabled=true; btn.textContent='Menyiapkan...';
   try{
     const canvas = await capturePNG('auto-report-preview');
     const link = document.createElement('a');
@@ -640,7 +687,7 @@ async function openAutoWhatsApp(){
     link.download=`${L.fileName(kelas)}.png`; link.href=canvas.toDataURL('image/png'); link.click();
     await new Promise(r=>setTimeout(r,800));
     window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(buildAutoWAMessage()),'_blank');
-    toast('Done!','success');
+    toast('Selesai!','success');
   }catch(err){toast('Error: '+err.message,'error');}
   finally{btn.disabled=false;btn.textContent=L.waBtn;}
 }
@@ -666,7 +713,7 @@ async function downloadAutoPDF(){
   const tanggal = formatDate(document.getElementById('auto-tanggal').value);
   await downloadReportPDF({
     btnId: 'abtn-pdf',
-    btnDefaultText: 'Export PDF',
+    btnDefaultText: 'Ekspor PDF',
     kelas, tanggal,
     photos: autoPhotoData,
     students: autoStudents,

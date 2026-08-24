@@ -5,6 +5,13 @@
 
 let isAutoFit = { auto: true };
 
+/**
+ * Skala ulang kartu preview report ("Live Preview") supaya pas di area
+ * scroll-nya (fit-to-screen) — dipanggil tiap kali kontennya berubah
+ * (tambah murid, ganti foto, dll) dan saat window di-resize. Kalau
+ * `isAutoFit.auto` false (guru klik toggle zoom manual), fungsi ini
+ * skip auto-scaling dan biarkan ukuran natural/scroll manual.
+ */
 function fitPreviewScale() {
   const tab = 'auto';
   const previewId = 'auto-report-preview';
@@ -39,6 +46,7 @@ function fitPreviewScale() {
   }
 }
 
+/** Toggle antara mode "Fit to Screen" (auto-scale) dan ukuran asli (scroll manual) untuk preview report di tab tertentu. */
 function toggleZoomMode(tab) {
   isAutoFit[tab] = !isAutoFit[tab];
   fitPreviewScale();
@@ -46,6 +54,7 @@ function toggleZoomMode(tab) {
 
 window.addEventListener('resize', fitPreviewScale);
 
+/** Pindah tab aktif (Daily Auto Report / Exam Report / Kelola Murid) — toggle class .active di tab-bar & tab-content. */
 function switchTab(tab) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -63,6 +72,7 @@ const BULAN_EN = ["January","February","March","April","May","June","July","Augu
 const HARI_ID = ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
 const BULAN_ID = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
 
+/** Format tanggal panjang dengan nama hari & bulan (mis. "Senin, 24 Agustus 2026"), dipakai di teks WhatsApp. `val` format "YYYY-MM-DD". */
 function formatDateLong(val, lang = 'en') {
   if(!val) return '—';
   const [y,m,d] = val.split('-').map(Number);
@@ -72,11 +82,17 @@ function formatDateLong(val, lang = 'en') {
   }
   return `${HARI_EN[dt.getDay()]}, ${d} ${BULAN_EN[m-1]} ${y}`;
 }
+/** Format tanggal pendek DD-MM-YYYY (dipakai di header kartu report), dari input `<input type="date">` (format "YYYY-MM-DD"). */
 function formatDate(s) {
   if(!s) return '—';
   const [y,m,d] = s.split('-');
   return `${d}-${m}-${y}`;
 }
+/**
+ * Escape 5 karakter HTML-sensitif untuk cegah XSS. Dipakai di SELURUH
+ * codebase untuk semua render data user (nama murid, teks progress, dll)
+ * ke dalam innerHTML.
+ */
 function escHtml(s) {
   if (!s) return '';
   // Escape semua 5 karakter HTML-sensitif, termasuk kutip tunggal ('),
@@ -87,6 +103,7 @@ function escHtml(s) {
   // JavaScript arbitrer (stored XSS).
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
+/** Format teks progress murid untuk ditampilkan: escape HTML, ubah *tebal* jadi <strong>, \n jadi <br>. Return placeholder "—" kalau kosong. */
 function formatProgressHTML(text) {
   if (!text) return '<em style="color:#94a3b8">—</em>';
   let formatted = escHtml(text);
@@ -94,6 +111,7 @@ function formatProgressHTML(text) {
   formatted = formatted.replace(/\n/g, '<br>');
   return formatted;
 }
+/** Tampilkan notifikasi toast singkat di pojok layar. `type`: '', 'success', atau 'error' (menentukan warna). */
 function toast(msg, type='') {
   const el = document.getElementById('toast');
   el.textContent = msg;

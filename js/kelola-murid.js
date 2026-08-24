@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+/** Muat semua kelas & murid guru (dikelompokkan per hari) dari sheet Jadwal+Student, simpan ke `muridData`, lalu render. */
 async function loadKelolaMurid() {
   const teacher = typeof getCurrentTeacher === 'function' ? getCurrentTeacher() : null;
   const loadingEl = document.getElementById('murid-loading');
@@ -39,6 +40,7 @@ async function loadKelolaMurid() {
   renderKelolaMurid();
 }
 
+/** Render tab Kelola Murid dari `muridData` — 1 section per hari (Senin-Sabtu), tiap section berisi kartu kelas + daftar murid. Full re-render, dipanggil ulang tiap ada perubahan (tambah/hapus). */
 function renderKelolaMurid() {
   const container = document.getElementById('murid-container');
   const hariList = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];

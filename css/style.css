@@ -1,3 +1,12 @@
+/* ============================================================
+   WCAG AA kontras note (rencana-10-10-non-security.md bagian 6.3):
+   --g400 dan --g500 TIDAK boleh dipakai sebagai warna latar untuk teks
+   putih/terang — kontrasnya di bawah 3:1 terhadap putih (gagal AA bahkan
+   untuk large-text). Untuk background dengan teks putih di atasnya,
+   minimal pakai --g700 (5.02:1, lolos AA normal-text) ke atas. --g400/
+   --g500 aman dipakai untuk elemen non-teks (dot, blob dekoratif, border,
+   ring fokus) atau sebagai teks DI ATAS background terang (bukan gelap).
+   ============================================================ */
 :root{
   --g50:#f0fdf4;--g100:#dcfce7;--g200:#bbf7d0;--g300:#86efac;--g400:#4ade80;
   --g500:#22c55e;--g600:#16a34a;--g700:#15803d;--g900:#14532d;
@@ -69,14 +78,14 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
 .student-card:hover::before{transform:scaleX(1);}
 @keyframes slideInLeft{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
 .student-card-header{display:flex;align-items:center;gap:12px;}
-.student-num{width:32px;height:32px;background:linear-gradient(135deg,var(--g500),var(--g700));color:white;border-radius:10px;display:grid;place-items:center;font-size:12px;font-weight:800;flex-shrink:0;box-shadow:0 2px 8px rgba(34,197,94,.2);}
+.student-num{width:32px;height:32px;background:linear-gradient(135deg,var(--g700),var(--g900));color:white;border-radius:10px;display:grid;place-items:center;font-size:12px;font-weight:800;flex-shrink:0;box-shadow:0 2px 8px rgba(34,197,94,.2);}
 .student-card-header input{flex:1;font-weight:700;border:none;background:transparent;color:var(--slate);padding:0;font-size:14px;}
 .student-card-header input:focus{box-shadow:none;border:none;}
 .btn-del{width:36px;height:36px;background:#fee2e2;color:#dc2626;border:none;border-radius:10px;cursor:pointer;display:grid;place-items:center;font-size:16px;flex-shrink:0;transition:all .3s;font-weight:600;}
 .btn-del:hover{background:#fca5a5;transform:scale(1.05) rotate(10deg);}
 .student-lang-toggle{display:flex;background:var(--border);border-radius:8px;padding:2px;gap:2px;flex-shrink:0;}
 .student-lang-btn{padding:4px 8px;border:none;border-radius:6px;font-size:11px;font-weight:800;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s ease;}
-.student-lang-btn.active{background:linear-gradient(135deg,var(--g500),var(--g600));color:white;box-shadow:0 2px 6px rgba(34,197,94,.25);}
+.student-lang-btn.active{background:linear-gradient(135deg,var(--g700),var(--g900));color:white;box-shadow:0 2px 6px rgba(34,197,94,.25);}
 .student-lang-btn:not(.active):hover{color:var(--g700);background:rgba(255,255,255,.5);}
 .student-card textarea{min-height:90px;resize:vertical;font-size:13px;line-height:1.6;border:1px solid var(--g200);background:var(--white);}
 
@@ -84,14 +93,14 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
 .auto-gen-row{display:flex;flex-direction:column;gap:8px;}
 .auto-gen-selectors{display:flex;gap:8px;}
 .auto-gen-selectors select{font-size:12px;padding:8px 10px;padding-right:30px;}
-.btn-generate{width:100%;padding:10px;background:linear-gradient(135deg,var(--g500),var(--g600));color:white;border:none;border-radius:var(--radius-sm);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-generate{width:100%;padding:10px;background:linear-gradient(135deg,var(--g700),var(--g900));color:white;border:none;border-radius:var(--radius-sm);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px;}
 .btn-generate:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(34,197,94,.3);}
 .btn-generate:active{transform:translateY(0);}
 
 /* Language Toggle */
 .lang-toggle{display:flex;gap:8px;}
 .lang-btn{flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:var(--radius-sm);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;background:var(--bg);color:var(--muted);transition:all .25s cubic-bezier(.4,0,.2,1);}
-.lang-btn.active{background:linear-gradient(135deg,var(--g500),var(--g600));color:white;border-color:transparent;box-shadow:0 4px 12px rgba(34,197,94,.25);transform:translateY(-1px);}
+.lang-btn.active{background:linear-gradient(135deg,var(--g700),var(--g900));color:white;border-color:transparent;box-shadow:0 4px 12px rgba(34,197,94,.25);transform:translateY(-1px);}
 .lang-btn:not(.active):hover{border-color:var(--g400);color:var(--g700);background:var(--g50);}
 
 /* Buttons */
@@ -341,6 +350,47 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
 }
 .rpt-student-card:nth-child(even) {
   background: #f8fafc;
+}
+
+.rpt-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+  color: #64748b;
+}
+.rpt-empty-state-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 6px;
+}
+.rpt-empty-state-hint {
+  font-size: 13px;
+  color: #94a3b8;
+  max-width: 360px;
+}
+
+/* ============================================================
+   LOADING SPINNER — util kecil dipakai di beberapa tempat (dropdown
+   sedang memuat, health check jalan, dll). Sebelumnya beberapa tempat
+   cuma teks polos "Memuat..."/"Memeriksa..." tanpa indikator visual apapun
+   (termasuk .hc-loading di health-check.js) — rencana-10-10-non-security.md
+   bagian 6.1 mengasumsikan pola ini "sudah ada contohnya di beberapa
+   tempat", tapi setelah dicek ternyata belum ada sama sekali. Ini versi
+   pertamanya, dipakai konsisten di beberapa titik loading yang sama.
+   ============================================================ */
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-inline {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--muted); font-size: 13px;
+}
+.loading-inline::before {
+  content: ''; width: 14px; height: 14px; flex-shrink: 0;
+  border: 2px solid var(--g200); border-top-color: var(--g600);
+  border-radius: 50%; animation: spin 0.7s linear infinite;
 }
 
 .card-status-col {

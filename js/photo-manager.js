@@ -5,6 +5,7 @@
 
 let autoPhotoData = [];
 
+/** Baca file foto yang dipilih guru (multi-select), convert ke data URL, push ke `autoPhotoData[]`. Async per-file (FileReader), render grid setelah semua selesai. */
 function handlePhotoAdd(e, isAuto) {
   const files = Array.from(e.target.files || []);
   if (!files.length) return;
@@ -24,12 +25,14 @@ function handlePhotoAdd(e, isAuto) {
   });
 }
 
+/** Hapus 1 foto dari `autoPhotoData[]` berdasar index, render ulang grid. */
 function removePhotoAt(isAuto, index) {
   autoPhotoData.splice(index, 1);
   renderPhotoGrid();
-  toast('Photo removed', 'success');
+  toast('Foto dihapus', 'success');
 }
 
+/** Render ulang grid thumbnail foto di 2 tempat (form input & preview report) dari `autoPhotoData[]`, sembunyikan section kalau kosong. */
 function renderPhotoGrid() {
   const arr = autoPhotoData;
   const gridIds = ['auto-photo-grid-input', 'auto-photo-grid'];

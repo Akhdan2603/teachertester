@@ -5,16 +5,17 @@
 
 const HC_STATUS_ICON = { ok: '✅', warning: '⚠️', error: '❌' };
 
+/** Buka modal Health Check, panggil endpoint `healthCheck` di backend (validasi Script Properties, akses spreadsheet, mapping course↔tab, dll), render hasilnya jadi ringkasan + daftar per-item. */
 async function runHealthCheckUI() {
   const modal = document.getElementById('health-check-modal');
   const body = document.getElementById('hc-modal-body');
   modal.style.display = 'flex';
-  body.innerHTML = '<div class="hc-loading">Memeriksa setup sistem...</div>';
+  body.innerHTML = '<div class="hc-loading"><span class="loading-inline">Memeriksa setup sistem...</span></div>';
 
   const res = await apiHealthCheck();
 
   if (!res.success) {
-    body.innerHTML = `<div class="hc-loading">Gagal menjalankan health check: ${escHtml(res.error || 'unknown error')}</div>`;
+    body.innerHTML = `<div class="hc-loading">Gagal menjalankan health check: ${escHtml(res.error || 'penyebab tidak diketahui')}</div>`;
     return;
   }
 

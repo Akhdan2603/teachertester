@@ -94,12 +94,13 @@ const _examTabBtnObserver = document.addEventListener('DOMContentLoaded', () => 
   }
 });
 
+/** Muat daftar murid yang masih pending exam (belum di-generate laporan ujiannya) untuk guru yang login, isi dropdown "Siswa yang perlu di-exam". */
 async function loadPendingExams() {
   const teacher = typeof getCurrentTeacher === 'function' ? getCurrentTeacher() : null;
   const select = document.getElementById('exam-pending-select');
   if (!teacher) { select.innerHTML = '<option value="">Sesi login tidak ditemukan</option>'; return; }
 
-  select.innerHTML = '<option value="">Memuat...</option>';
+  select.innerHTML = '<option value="">Memuat daftar siswa...</option>';
   const res = await apiGet('getPendingExams', { teacher });
 
   if (!res.success) {
@@ -120,6 +121,7 @@ async function loadPendingExams() {
     ).join('');
 }
 
+/** Pre-fill form (nama, kelas, lesson) dari 1 entri di `examPendingList` terpilih, lalu trigger `autoFillCriteriaAndCourse` untuk isi Criteria/Course-nya juga. */
 function onPendingExamSelect() {
   const idx = document.getElementById('exam-pending-select').value;
   if (idx === '') return;
@@ -194,6 +196,7 @@ async function onExamCriteriaChange() {
   onExamCourseChange();
 }
 
+/** Cek apakah course terpilih punya mapping ke tab spreadsheet exam template (COURSE_TAB_MAP) — tampilkan warning kalau belum ada, supaya guru tahu harus isi manual. */
 function onExamCourseChange() {
   const criteria = document.getElementById('exam-criteria').value;
   const course = document.getElementById('exam-course').value;
@@ -229,6 +232,7 @@ function buildObjectivesForAI(course, checkpoint) {
     }));
 }
 
+/** Generate teks exam (literacy/application/character) pakai Gemini AI, berdasar objective lesson 1..checkpoint dari data lokal (bukan spreadsheet) — alternatif dari "Ambil Template dari Sistem" untuk course yang belum punya mapping tab. */
 async function fetchAIExamTemplates() {
   const criteria = document.getElementById('exam-criteria').value;
   const course = document.getElementById('exam-course').value;
@@ -256,7 +260,7 @@ async function fetchAIExamTemplates() {
   const res = await apiGetAIExamText(course, lesson, namaPanggilan, grades, objectives);
 
   if (!res.success) {
-    toast(`AI gagal: ${res.error || 'tidak diketahui'}. Coba lagi, atau pakai tombol "Ambil Template dari Sistem" sebagai alternatif manual.`, 'error');
+    toast(`Generate AI gagal: ${res.error || 'penyebab tidak diketahui'}. Coba lagi, atau pakai tombol "Ambil Template dari Sistem" sebagai alternatif manual.`, 'error');
     return; // TIDAK auto-fallback ke spreadsheet — biar guru yang putuskan sendiri
   }
 
@@ -318,6 +322,7 @@ async function fetchExamTemplates() {
   }
 }
 
+/** Tombol "Varian Lain" — geser ke variant text berikutnya (round-robin) untuk 1 kategori, dari array yang sudah diambil `fetchExamTemplates`/`fetchAIExamTemplates`. */
 function cycleVariant(category) {
   const variants = examVariants[category];
   if (!variants || variants.length <= 1) {
@@ -329,6 +334,7 @@ function cycleVariant(category) {
   updateExamPreview();
 }
 
+/** Susun teks pesan WhatsApp untuk exam report (3 kategori penilaian) dari isi textarea saat ini. */
 function buildExamWAMessage() {
   const student = document.getElementById('exam-student').value || '—';
   const course = document.getElementById('exam-course').value || document.getElementById('exam-kelas').value || '—';
@@ -368,6 +374,7 @@ function openExamWhatsApp() {
   window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(buildExamWAMessage()), '_blank');
 }
 
+/** Unduh Exam Report sebagai PDF — pakai builder PDF yang sama dengan Daily Report (tanpa foto, 1 "murid" berisi gabungan 3 kategori penilaian). */
 async function downloadExamPDF() {
   const student = document.getElementById('exam-student').value || '—';
   const kelas = document.getElementById('exam-kelas').value || '—';
@@ -385,7 +392,7 @@ async function downloadExamPDF() {
   // melibatkan foto — section foto otomatis disembunyikan total di PDF.
   await downloadReportPDF({
     btnId: 'ebtn-pdf',
-    btnDefaultText: '📄 Download PDF',
+    btnDefaultText: '📄 Ekspor PDF',
     kelas, tanggal,
     photos: [],
     students: [{ nama: student, progress: combinedText }],
@@ -401,6 +408,7 @@ async function downloadExamPDF() {
   });
 }
 
+/** Simpan hasil exam (3 kategori digabung 1 teks) ke Google Sheets & tandai status exam murid "Sudah Dibuat", lalu refresh daftar pending. */
 async function submitExamToSheet() {
   const teacher = typeof getCurrentTeacher === 'function' ? getCurrentTeacher() : null;
   const kelas = document.getElementById('exam-kelas').value;

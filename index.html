@@ -51,16 +51,16 @@
               <option value="Jumat">Jumat</option>
               <option value="Sabtu">Sabtu</option>
             </select>
-            <select id="jadwal-kelas-select" onchange="onJadwalKelasChange()"><option value="">-- Pilih Hari Dulu --</option></select>
+            <select id="jadwal-kelas-select" onchange="onJadwalKelasChange()" disabled><option value="">-- Pilih Kelas (klik ⚡ di bawah) --</option></select>
           </div>
           <button type="button" class="btn-load-jadwal" onclick="loadMuridFromJadwal()">⚡ Muat Murid Otomatis</button>
         </div>
         <div class="card">
-          <div class="card-title">Class Information</div>
+          <div class="card-title">Informasi Kelas</div>
           <div class="form-row">
-            <div class="form-group"><label>Class Name</label><input type="text" id="auto-kelas" value="BGR-CE-01"
+            <div class="form-group"><label>Nama Kelas</label><input type="text" id="auto-kelas" value="BGR-CE-01"
                 oninput="autoUpdatePreview()"></div>
-            <div class="form-group"><label>Date</label><input type="date" id="auto-tanggal"
+            <div class="form-group"><label>Tanggal</label><input type="date" id="auto-tanggal"
                 onchange="autoUpdatePreview()"></div>
           </div>
         </div>
@@ -74,10 +74,10 @@
         </div>
 
         <div class="card">
-          <div class="card-title">Documentation Photos</div>
+          <div class="card-title">Foto Dokumentasi</div>
           <div class="rpt-photos-grid" id="auto-photo-grid-input"></div>
           <label class="photo-add-dashed">
-            + Add Photo
+            + Tambah Foto
             <input type="file" accept="image/*" multiple style="display:none" onchange="handlePhotoAdd(event, true)">
           </label>
         </div>
@@ -89,14 +89,13 @@
         </div>
 
         <div class="card">
-          <div class="card-title">Export & Share</div>
+          <div class="card-title">Ekspor & Bagikan</div>
           <div class="download-group">
             <div class="download-row">
-              <button class="btn-dl btn-dl-png" id="abtn-png" onclick="downloadAutoPNG()">Download PNG</button>
-              <button class="btn-dl btn-dl-pdf" id="abtn-pdf" onclick="downloadAutoPDF()">Export PDF</button>
+              <button class="btn-dl btn-dl-png" id="abtn-png" onclick="downloadAutoPNG()">Unduh PNG</button>
+              <button class="btn-dl btn-dl-pdf" id="abtn-pdf" onclick="downloadAutoPDF()">Ekspor PDF</button>
             </div>
-            <button class="btn-dl btn-dl-wa" id="abtn-wa" onclick="openAutoWhatsApp()" style="width:100%"
-              id="auto-wa-btn">Send to WhatsApp</button>
+            <button class="btn-dl btn-dl-wa" id="abtn-wa" onclick="openAutoWhatsApp()" style="width:100%">Send to WhatsApp</button>
           </div>
           <div class="wa-preview">
             <div class="wa-preview-header">
@@ -268,8 +267,8 @@
           </div>
           <div class="download-group" style="margin-top:16px;">
             <div class="download-row">
-              <button class="btn-dl btn-dl-pdf" id="ebtn-pdf" onclick="downloadExamPDF()">📄 Export PDF</button>
-              <button class="btn-dl btn-dl-wa" id="ebtn-wa" onclick="openExamWhatsApp()">📤 Send to WhatsApp</button>
+              <button class="btn-dl btn-dl-pdf" id="ebtn-pdf" onclick="downloadExamPDF()">📄 Ekspor PDF</button>
+              <button class="btn-dl btn-dl-wa" id="ebtn-wa" onclick="openExamWhatsApp()">📤 Kirim ke WhatsApp</button>
             </div>
             <button class="btn-dl" id="ebtn-save" onclick="submitExamToSheet()" style="width:100%;background:var(--g700);">💾 Simpan ke Sistem (Tandai Selesai)</button>
           </div>

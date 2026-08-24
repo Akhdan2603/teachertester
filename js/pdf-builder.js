@@ -9,6 +9,7 @@
 // ============================================================
 let _pdfLibsPromise = null;
 
+/** Muat 1 file JS eksternal via <script> tag, resolve saat berhasil load. Dipakai untuk lazy-load html2canvas & jsPDF. */
 function loadScript_(src) {
   return new Promise((resolve, reject) => {
     const s = document.createElement('script');
@@ -19,6 +20,7 @@ function loadScript_(src) {
   });
 }
 
+/** Pastikan html2canvas & jsPDF sudah termuat (lazy, sekali saja — di-cache di `_pdfLibsPromise`). Panggil ini sebelum capturePNG/buildAndSavePDF. */
 function ensurePdfLibsLoaded_() {
   if (!_pdfLibsPromise) {
     _pdfLibsPromise = Promise.all([
@@ -33,6 +35,11 @@ function ensurePdfLibsLoaded_() {
   return _pdfLibsPromise;
 }
 
+/**
+ * Render 1 elemen (kartu preview report) jadi PNG canvas via html2canvas,
+ * dipaksa full-width 1000px tanpa scroll/transform supaya hasil capture-nya
+ * lengkap (bukan cuma bagian yang kelihatan di layar).
+ */
 async function capturePNG(elementId) {
   await ensurePdfLibsLoaded_();
   const el = document.getElementById(elementId);
@@ -67,6 +74,7 @@ async function capturePNG(elementId) {
 // ============================================================
 // AUTO TAB
 
+/** Ambil dimensi asli 1 gambar (dari data URL/src) — dipakai buildAndSavePDF supaya foto di-fit proporsional (bukan gepeng) di grid PDF. */
 function getImageDims_(src) {
   return new Promise(resolve => {
     const img = new Image();
@@ -76,6 +84,15 @@ function getImageDims_(src) {
   });
 }
 
+/**
+ * Susun & simpan PDF report (dipakai Daily Auto Report & Exam Report) —
+ * gambar manual pakai jsPDF primitives (bukan screenshot html2canvas),
+ * supaya teksnya tetap selectable/searchable di PDF hasil akhir, bukan
+ * gambar raster. Layout: header hijau, grid foto dokumentasi (kalau ada),
+ * lalu tabel murid (status/nama/lesson/progress) yang auto page-break
+ * kalau kepanjangan. `labels` berisi teks yang sudah di-translate sesuai
+ * bahasa aktif (title, labelKelas, labelTanggal, colName, colProgress, fileName).
+ */
 async function buildAndSavePDF({kelas, tanggal, photos, students, labels}) {
   await ensurePdfLibsLoaded_();
   const {jsPDF}=window.jspdf;
@@ -184,16 +201,22 @@ async function buildAndSavePDF({kelas, tanggal, photos, students, labels}) {
 // downloadPDF, downloadAutoPDF, downloadExamPDF yang isinya 90% sama).
 // Cukup kirim btnId + data + labels, sisanya sama untuk semua tab.
 // ============================================================
+/**
+ * Pembungkus generik untuk tombol "Ekspor PDF" — handle disable/re-enable
+ * tombol + toast progress/hasil, supaya Auto tab & Exam tab tidak duplikat
+ * kode try/catch (dulu ada downloadPDF, downloadAutoPDF, downloadExamPDF
+ * yang isinya 90% sama). Cukup kirim btnId + data + labels.
+ */
 async function downloadReportPDF({ btnId, btnDefaultText, kelas, tanggal, photos, students, labels }) {
   const btn = document.getElementById(btnId);
-  if (btn) { btn.disabled = true; btn.textContent = 'Processing...'; }
-  toast('Creating PDF...');
+  if (btn) { btn.disabled = true; btn.textContent = 'Memproses...'; }
+  toast('Membuat PDF...');
   try {
     await buildAndSavePDF({ kelas, tanggal, photos, students, labels });
-    toast('PDF downloaded!', 'success');
+    toast('PDF berhasil diunduh!', 'success');
   } catch (err) {
-    toast('PDF Error: ' + err.message, 'error');
+    toast('Error PDF: ' + err.message, 'error');
   } finally {
-    if (btn) { btn.disabled = false; btn.textContent = btnDefaultText || 'Export PDF'; }
+    if (btn) { btn.disabled = false; btn.textContent = btnDefaultText || '📄 Ekspor PDF'; }
   }
 }
