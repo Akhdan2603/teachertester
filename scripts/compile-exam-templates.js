@@ -121,13 +121,35 @@ function isKnownLabel_(text) {
 }
 
 function looksLikeBlockTitle_(columnAValues, rowIndex) {
-  // Sama seperti versi .gs: HANYA cek baris persis di bawahnya.
   if (rowIndex + 1 >= columnAValues.length) return false;
+  const raw = String(columnAValues[rowIndex][0] || '').trim();
   const nextVal = normalizeWhitespace_(String(columnAValues[rowIndex + 1][0] || '')).toLowerCase();
+  let nextIsAlias = false;
   for (const key in SECTION_ALIASES) {
-    if (SECTION_ALIASES[key].indexOf(nextVal) !== -1) return true;
+    if (SECTION_ALIASES[key].indexOf(nextVal) !== -1) { nextIsAlias = true; break; }
   }
-  return false;
+  if (!nextIsAlias) return false;
+
+  // FIX (ditemukan lewat test — lihat tests/compile-exam-templates.test.js
+  // "regression guard"): cuma cek "baris berikutnya cocok alias" TIDAK CUKUP.
+  // Baris konten narasi (mis. teks literacy/application/character) yang
+  // KEBETULAN langsung diikuti header section berikutnya (tanpa baris kosong
+  // pemisah) akan salah kedeteksi sebagai "block title baru" — persis bug
+  // yang bikin blok 1 ROBLOX_EXPLORER dulu tidak pernah kebaca (lihat
+  // CHANGELOG.md). Sebelumnya diakali dengan SELALU kasih baris kosong
+  // pemisah di data — tapi itu cuma workaround di data, bukan fix di
+  // parser-nya.
+  //
+  // Heuristik yang dipakai: SEMUA judul blok asli di seluruh dataset (dicek
+  // manual ke-60 judul yang ada saat ini — 3D_ANIMATOR, TECH_EXPLORER,
+  // ROBLOX_*, dst) selalu diakhiri nomor blok ("3D ANIMATOR 1", "WEB DEV 4",
+  // dst), dan selalu pendek (bukan kalimat). Teks narasi TIDAK PERNAH
+  // berakhir dengan pola "spasi + angka" seperti ini — jadi ini sinyal yang
+  // jauh lebih spesifik & reliable dibanding sekadar cek baris berikutnya.
+  const looksLikeTitle = /\s\d+$/.test(raw) && raw.length <= 60 && !/[.!?]\s+[A-Z]/.test(raw);
+  if (!looksLikeTitle) return false;
+
+  return true;
 }
 
 // Versi Node: terima seluruh kolom A sheet sebagai array [[v],[v],...]
@@ -367,4 +389,21 @@ const EXAM_TEMPLATES = `;
   }
 }
 
-main();
+// Hanya jalankan main() kalau file ini dieksekusi langsung (`node
+// scripts/compile-exam-templates.js`), BUKAN kalau di-require() sebagai
+// module (misal dari test Jest — lihat tests/compile-exam-templates.test.js).
+// Tanpa guard ini, require() akan langsung baca+tulis file excel/*.xlsx
+// sungguhan tiap kali test dijalankan, yang jelas bukan yang diinginkan.
+if (require.main === module) {
+  main();
+}
+
+// Export fungsi-fungsi murni (tidak baca/tulis file) untuk di-unit-test.
+module.exports = {
+  normalizeWhitespace_,
+  isKnownLabel_,
+  looksLikeBlockTitle_,
+  findAllCourseBlocks_,
+  extractVariantsForCategory_,
+  compileSheet,
+};

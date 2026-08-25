@@ -9,3 +9,4 @@ node_modules/
 
 # Berisi GAS_URL asli — jangan ikut ter-commit. Copy dari config.example.js
 js/config.js
+package-lock.json

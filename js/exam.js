@@ -33,10 +33,29 @@ function fillExamTemplateText_(rawText, studentName, grade) {
     return options[qualityIndex] || options[options.length - 1];
   });
 
+  // PENGECUALIAN (ditemukan lewat unit test — lihat
+  // tests/frontend-pure-functions.test.js): placeholder manual bergaya
+  // "[MASUKAN_NILAI ...]" SENGAJA dipertahankan utuh dengan kurungnya —
+  // banyak teks exam template (lihat CHANGELOG.md) pakai konvensi ini
+  // supaya guru bisa LIHAT dengan jelas ada bagian yang masih perlu diisi
+  // manual (skor ujian, dll). Kalau brackets ini ikut kebuang polos oleh
+  // safety-net di bawah, teksnya jadi "MASUKAN_NILAI UJIAN" tanpa kurung —
+  // menyatu dengan kalimat, guru gampang kelewatan tanpa sadar itu harusnya
+  // diganti. Lindungi dulu placeholder ini dengan marker sementara sebelum
+  // safety-net jalan, baru kembalikan lagi setelahnya.
+  const protectedPlaceholders = [];
+  text = text.replace(/\[MASUKAN_NILAI[^\[\]]*\]/gi, (match) => {
+    protectedPlaceholders.push(match);
+    return `\u0000${protectedPlaceholders.length - 1}\u0000`;
+  });
+
   // Safety-net: kalau masih ada sisa "[" atau "]" (kurung tidak seimbang di
-  // teks sumber spreadsheet), buang saja supaya minimal tidak tampil mentah
-  // ke orang tua murid. Perbaikan sesungguhnya tetap harus di spreadsheet.
+  // teks sumber spreadsheet — kasus bracket-typo lama), buang saja supaya
+  // minimal tidak tampil mentah ke orang tua murid. Perbaikan sesungguhnya
+  // tetap harus di spreadsheet.
   text = text.replace(/[\[\]]/g, '');
+
+  text = text.replace(/\u0000(\d+)\u0000/g, (_, idx) => protectedPlaceholders[Number(idx)]);
 
   return text.trim();
 }

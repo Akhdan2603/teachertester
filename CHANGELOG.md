@@ -44,7 +44,39 @@ keputusan, lihat `rencana-10-10-non-security.md`.
 - Tambah util `.loading-inline` (spinner) — sebelumnya tidak ada pola skeleton/spinner sama sekali di codebase.
 - Audit & perbaiki inkonsistensi pesan error (1 titik pakai fallback bahasa Inggris, sisanya sudah konsisten).
 
-### Documentation (bagian 7 rencana)
+### Testing — Setup Jest untuk Fungsi Murni (Batch 4)
+- `npm test` (Jest) — 57 test, 3 suite: `tests/frontend-pure-functions.test.js`
+  (`escHtml`, `formatDate`, `formatDateLong`, `formatProgressHTML` dari
+  `app.js`; `getCourseTabName` dari `course-tab-map.js`; `fillExamTemplateText_`
+  dari `exam.js`), `tests/gas-pure-functions.test.js` (`findColumnIndex_`,
+  `isTrue_`, `computePendingCheckpoint_` dari `Code.gs`), dan
+  `tests/compile-exam-templates.test.js` (`normalizeWhitespace_`,
+  `isKnownLabel_`, `extractVariantsForCategory_`, `compileSheet`).
+- `tests/helpers/loadScriptGlobals.js`: helper vm-sandbox untuk load file
+  browser-global (`.js`) dan Apps Script (`.gs`) tanpa perlu tambah
+  `module.exports` ke file aslinya (supaya tetap jalan normal di
+  browser/Apps Script tanpa bundler).
+- `.github/workflows/ci.yml`: tambah job `unit-tests` (jalankan `npm test`),
+  terpisah dari job `exam-template-mapping-check` yang sudah ada.
+- **2 bug nyata ketemu langsung dari proses nulis test** (bukan cuma
+  nambah cakupan test, tapi benar-benar menemukan hal yang salah):
+  1. **Bug parser (regression guard)**: heuristik deteksi "block title baru"
+     di `compile-exam-templates.js` masih rentan false-positive kalau baris
+     konten tidak diikuti baris kosong sebelum header section berikutnya —
+     sebelumnya cuma "diakali" dengan selalu kasih baris kosong pemisah di
+     data (lihat entri ROBLOX_EXPLORER di atas), bukan benar-benar di-fix di
+     parser-nya. Sekarang diperkuat dengan heuristik baru: judul blok asli
+     SELALU diakhiri nomor blok (dicek ke 60 judul blok yang ada di seluruh
+     dataset saat ini, semuanya cocok pola ini), sedangkan teks narasi tidak
+     pernah begitu.
+  2. **Bug fungsional**: placeholder manual `[MASUKAN_NILAI UJIAN]` (dipakai
+     di puluhan teks exam template yang ditulis sepanjang sesi ini) ternyata
+     selama ini KEBUANG kurungnya oleh safety-net bracket-cleanup di
+     `fillExamTemplateText_` — hasil akhirnya "MASUKAN_NILAI UJIAN" tanpa
+     kurung, menyatu dengan kalimat, gampang kelewatan guru. Diperbaiki
+     dengan melindungi placeholder ini secara eksplisit sebelum safety-net
+     jalan.
+
 - `CHANGELOG.md` dipisah dari `TODO.md` (file ini).
 - JSDoc ditambahkan untuk fungsi-fungsi non-trivial yang sebelumnya tanpa komentar sama sekali, di `app.js`, `pdf-builder.js`, `auto-tab.js`, `exam.js`, `kelola-murid.js`, `health-check.js`, `photo-manager.js`.
 - SOP baru di `PANDUAN.md`: "Update Teks Exam Template" (3.6) dan checklist "Tambah Course Baru" (3.4) diperbarui untuk arsitektur baru (data per-criteria + exam template hybrid).

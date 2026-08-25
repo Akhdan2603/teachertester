@@ -34,14 +34,6 @@ keputusan, lihat `rencana-10-10-non-security.md`.
       error itu yang mempercepat diagnosa. Bilang "sudah rilis" kalau mau
       ini dikerjakan.
 
-## 🔜 Batch 4 (Fondasi Jangka Panjang, Terpisah)
-
-- [ ] **#4**: Setup Jest untuk fungsi murni (`escHtml`, `findColumnIndex_`,
-      `computePendingCheckpoint_`, `fillExamTemplateText_`, dll.) + GitHub
-      Actions workflow dasar untuk test suite (terpisah dari
-      `.github/workflows/ci.yml` yang sudah ada, yang isinya cuma gate
-      compile-exam-templates).
-
 ## 🆕 Setup Manual (Perlu Akses Google Workspace, Bukan Kode)
 
 - [ ] `GEMINI_API_KEY` di Script Properties (fitur AI Generate).
@@ -60,3 +52,10 @@ keputusan, lihat `rencana-10-10-non-security.md`.
       nama hardcoded — sengaja tidak disentuh karena itu memang contoh
       referensi manual untuk guru pilih & edit sendiri, bukan bug. Kalau mau
       digeneralisasi juga, itu keputusan terpisah.
+- [ ] `xlsx` (devDependency, dipakai `scripts/compile-exam-templates.js`)
+      punya 1 known vulnerability (prototype pollution + ReDoS) tanpa fix di
+      npm registry publik — SheetJS merilis fix lewat registry mereka
+      sendiri (`https://cdn.sheetjs.com`), bukan npm. Risiko rendah untuk
+      proyek ini (cuma dipakai lokal, baca file `.xlsx` internal yang
+      trusted, tidak ikut ke-deploy ke aplikasi live), tapi kalau mau
+      benar-benar bersih, perlu ganti sumber install `xlsx`.

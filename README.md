@@ -84,3 +84,18 @@ tanpa bundler. Untuk deploy: push ke GitHub, hosting (Vercel/GitHub Pages)
 auto-redeploy. Backend (`google-apps-script/*.gs`) harus di-copy manual ke
 Apps Script editor dan di-deploy ulang tiap ada perubahan (lihat PANDUAN.md
 Bagian 4 untuk detail).
+
+### Testing
+
+```
+npm install
+npm test
+```
+
+Jest untuk fungsi murni (logic tanpa DOM/Google Sheets API) di frontend
+(`js/app.js`, `js/exam.js`, `js/course-tab-map.js`), backend
+(`google-apps-script/Code.gs`), dan `scripts/compile-exam-templates.js`.
+Lihat `tests/` — helper `tests/helpers/loadScriptGlobals.js` memuat file
+`.js`/`.gs` biasa (bukan module) ke sandbox `vm` supaya bisa di-test tanpa
+perlu tambah `module.exports` ke source aslinya.
+
