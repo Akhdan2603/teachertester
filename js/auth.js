@@ -51,13 +51,17 @@ async function initAuthGate() {
 function renderLoginOverlay_() {
   const overlay = document.createElement('div');
   overlay.id = 'auth-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-labelledby', 'auth-overlay-title');
   overlay.innerHTML = `
     <div class="auth-box">
-      <h2>Meeting Report Generator</h2>
-      <p>Masukkan PIN Anda untuk masuk.</p>
-      <input type="password" id="auth-pin-input" placeholder="PIN 4 digit" maxlength="4" inputmode="numeric" autofocus>
+      <h2 id="auth-overlay-title">Meeting Report Generator</h2>
+      <p id="auth-pin-desc">Masukkan PIN Anda untuk masuk.</p>
+      <label for="auth-pin-input" class="sr-only">PIN 4 digit</label>
+      <input type="password" id="auth-pin-input" placeholder="PIN 4 digit" maxlength="4" inputmode="numeric" autofocus aria-describedby="auth-pin-desc">
       <button id="auth-login-btn" onclick="handleLoginClick()">Masuk</button>
-      <div id="auth-error" class="auth-error"></div>
+      <div id="auth-error" class="auth-error" role="alert"></div>
       <button type="button" id="btn-health-check" onclick="runHealthCheckUI()" title="Cek kesiapan setup sistem" style="margin-top:14px;">🩺 Health Check</button>
     </div>
   `;

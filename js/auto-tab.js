@@ -6,6 +6,22 @@
 let autoStudents = [];
 let autoLang = 'en'; // Default English
 
+/**
+ * Versi debounce dari autoUpdateTable() — dipakai khusus untuk event
+ * `oninput` (mengetik nama/progress), supaya rebuild DOM penuh + forced
+ * reflow (fitPreviewScale() baca offsetHeight) tidak terjadi di SETIAP
+ * karakter yang diketik (audit QA/QC BUG-2). Rebuild sungguhan baru
+ * jalan 200ms setelah guru berhenti mengetik. Semua trigger lain (ganti
+ * criteria/course/status, tambah/hapus murid, load jadwal, dst) tetap
+ * memanggil autoUpdateTable() langsung (instan), karena bukan hot-path
+ * per-keystroke.
+ */
+let _autoUpdateTableDebounceTimer = null;
+function autoUpdateTableDebounced() {
+  clearTimeout(_autoUpdateTableDebounceTimer);
+  _autoUpdateTableDebounceTimer = setTimeout(autoUpdateTable, 200);
+}
+
 const LANG_UI = {
   id: {
     cardTitle: 'Data Siswa & Generate Laporan',
@@ -339,12 +355,12 @@ function renderAutoInputs(){
     div.innerHTML = `
       <div class="student-card-header">
         <div class="student-num">${i+1}</div>
-        <input type="text" id="auto-name-${i}" placeholder="${L.studentPlaceholder}" value="${escHtml(s.nama)}" oninput="autoStudents[${i}].nama=this.value;autoUpdateTable()">
+        <input type="text" id="auto-name-${i}" placeholder="${L.studentPlaceholder}" value="${escHtml(s.nama)}" oninput="autoStudents[${i}].nama=this.value;autoUpdateTableDebounced()">
         <div class="student-lang-toggle" title="Student Report Language">
           <button type="button" class="student-lang-btn ${sLang==='id'?'active':''}" onclick="setStudentLang(${i},'id')">ID</button>
           <button type="button" class="student-lang-btn ${sLang==='en'?'active':''}" onclick="setStudentLang(${i},'en')">EN</button>
         </div>
-        <button class="btn-del" onclick="removeAutoStudent(${i})" title="Remove">×</button>
+        <button class="btn-del" onclick="removeAutoStudent(${i})" title="Remove" aria-label="Remove student ${i + 1}">×</button>
       </div>
       <div class="auto-gen-row">
         <div class="auto-gen-selectors" style="flex-wrap:wrap;">
@@ -374,7 +390,7 @@ function renderAutoInputs(){
         </div>
         <button class="btn-generate" onclick="generateProgress(${i})" style="margin-top:4px;">${L.generateBtn}</button>
       </div>
-      <textarea id="auto-progress-${i}" placeholder="${L.progressPlaceholder}" oninput="autoStudents[${i}].progress=this.value;autoUpdateTable()" style="min-height:100px">${escHtml(s.progress)}</textarea>
+      <textarea id="auto-progress-${i}" placeholder="${L.progressPlaceholder}" oninput="autoStudents[${i}].progress=this.value;autoUpdateTableDebounced()" style="min-height:100px">${escHtml(s.progress)}</textarea>
       <div class="checkpoint-actions">
         <button type="button" class="btn-checkpoint btn-remind" onclick="handleRequestReminder(${i})">⏰ Ingatkan Report</button>
         <button type="button" class="btn-checkpoint btn-done" onclick="handleMarkReportDone(${i})">✅ Report Telah Selesai</button>

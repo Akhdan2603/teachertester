@@ -33,11 +33,15 @@ jobs:
         # Kalau ada perbedaan, berarti seseorang lupa jalankan compile
         # script setelah edit excel/*.xlsx (atau lupa commit hasilnya).
         # Lihat PANDUAN.md bagian 3.6 untuk SOP yang benar.
+        # Sejak audit QA/QC BUG-1 (performance split), output compile
+        # bukan cuma 1 file lagi — ada shell (exam-templates-data.js) +
+        # 3 file per criteria (exam-templates.junior/kids/teens.js).
         run: |
-          if ! git diff --quiet -- js/exam-templates-data.js; then
-            echo "::error::js/exam-templates-data.js tidak sinkron dengan spreadsheet excel/*.xlsx."
+          FILES="js/exam-templates-data.js js/exam-templates.junior.js js/exam-templates.kids.js js/exam-templates.teens.js"
+          if ! git diff --quiet -- $FILES; then
+            echo "::error::Hasil compile exam templates tidak sinkron dengan spreadsheet excel/*.xlsx."
             echo "::error::Jalankan 'node scripts/compile-exam-templates.js' secara lokal, lalu commit hasilnya."
-            git diff -- js/exam-templates-data.js | head -100
+            git diff -- $FILES | head -100
             exit 1
           fi
 

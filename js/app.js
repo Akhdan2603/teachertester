@@ -111,13 +111,26 @@ function formatProgressHTML(text) {
   formatted = formatted.replace(/\n/g, '<br>');
   return formatted;
 }
-/** Tampilkan notifikasi toast singkat di pojok layar. `type`: '', 'success', atau 'error' (menentukan warna). */
+/**
+ * Tampilkan notifikasi toast singkat di pojok layar. `type`: '', 'success',
+ * atau 'error' (menentukan warna).
+ *
+ * Durasi tampil MENYESUAIKAN panjang pesan (audit QA/QC — risiko toast
+ * fixed 3 detik untuk semua pesan): pesan pendek tetap ~3 detik, pesan
+ * panjang (mis. error detail) diberi waktu ekstra supaya sempat terbaca
+ * penuh sebelum auto-dismiss, dibatasi maksimum 8 detik supaya tidak
+ * mengganggu kalau guru sudah selesai membaca.
+ */
 function toast(msg, type='') {
   const el = document.getElementById('toast');
   el.textContent = msg;
   el.className = 'show ' + type;
   clearTimeout(el._t);
-  el._t = setTimeout(() => el.className = '', 3000);
+  const MIN_DURATION_MS = 3000;
+  const MAX_DURATION_MS = 8000;
+  const MS_PER_CHAR = 50; // ~20 karakter/detik, kecepatan baca santai
+  const duration = Math.min(MAX_DURATION_MS, Math.max(MIN_DURATION_MS, String(msg).length * MS_PER_CHAR));
+  el._t = setTimeout(() => el.className = '', duration);
 }
 
 
