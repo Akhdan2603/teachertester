@@ -67,7 +67,7 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
 .photo-input-group input[type="file"]{flex:1;min-width:0;}
 .btn-del-photo{width:38px;height:38px;background:#fee2e2;color:#dc2626;border:1.5px solid #fca5a5;border-radius:var(--radius-sm);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0;transition:all .2s ease;}
 .btn-del-photo:hover{background:#ef4444;color:white;border-color:#dc2626;transform:scale(1.05);}
-.btn-photo-overlay-del{position:absolute;top:8px;right:8px;width:28px;height:28px;background:rgba(220,38,38,0.85);color:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:bold;box-shadow:0 2px 6px rgba(0,0,0,0.25);transition:all .2s ease;z-index:10;}
+.btn-photo-overlay-del{position:absolute;top:6px;right:6px;width:36px;height:36px;background:rgba(220,38,38,0.85);color:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:bold;box-shadow:0 2px 6px rgba(0,0,0,0.25);transition:all .2s ease;z-index:10;}
 .btn-photo-overlay-del:hover{background:#dc2626;transform:scale(1.1);}
 
 /* Student Cards in Sidebar */
@@ -144,7 +144,11 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
 .preview-scale-wrapper{width:100%;overflow:hidden;position:relative;transition:height .15s ease-out;}
 
 /* Redesigned Timedoor Executive Class Report Card Canvas (1000px Fixed Landscape) */
-#report-preview, #auto-report-preview {
+/* #report-preview dihapus dari selector ini (audit QA/QC BUG-5) — tidak
+   ada elemen dengan ID itu di manapun di index.html/js (Exam Report tab
+   memakai <textarea>, bukan kartu preview visual). #auto-report-preview
+   (Daily Auto Report) tetap dipakai dan tidak berubah. */
+#auto-report-preview {
   width: 1000px;
   min-width: 1000px;
   background: var(--white);
@@ -553,7 +557,33 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  /* DO NOT modify .rpt-header, .rpt-photos, or #report-preview width inside media queries so export canvas is never distorted on mobile! */
+  /* DO NOT modify .rpt-header, .rpt-photos, or #auto-report-preview width inside media queries so export canvas is never distorted on mobile! */
+}
+/* Breakpoint tambahan untuk HP entry-level layar sangat sempit (audit
+   QA/QC — sebelumnya cuma ada 1200px & 768px, belum pernah diverifikasi
+   di viewport 360-390px yang umum di HP entry-level). Bukan mengubah
+   #auto-report-preview (tetap 1000px fixed untuk export canvas — lihat
+   catatan DO NOT modify di atas), hanya menyesuaikan layout FORM di
+   sekitarnya (sidebar input) supaya tidak overflow/terpotong di layar
+   sempit. */
+@media (max-width: 480px) {
+  .app-layout {
+    padding: 0 12px 24px;
+    gap: 16px;
+  }
+  .card {
+    padding: 14px;
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .auto-gen-selectors {
+    flex-wrap: wrap;
+  }
+  .topnav h1 {
+    font-size: 14px;
+  }
 }
 /* ============================================================
    AUTH GATE — login PIN overlay
@@ -718,12 +748,12 @@ body:not(.auth-ok) .topnav, body:not(.auth-ok) .tab-bar, body:not(.auth-ok) .app
   background: #f8fafc;
   display: block;
 }
-.btn-photo-overlay-del {
-  position: absolute; top: 6px; right: 6px; width: 22px; height: 22px;
-  border-radius: 50%; border: none; background: rgba(15, 23, 42, 0.65); color: #fff;
-  font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-}
-.btn-photo-overlay-del:hover { background: rgba(220, 38, 38, 0.9); }
+/* .btn-photo-overlay-del didefinisikan sekali saja di bagian "Form" di
+   atas (audit QA/QC BUG-4) — dulu didefinisikan ULANG di sini dengan
+   ukuran 22x22px yang menang lewat cascade (muncul lebih akhir di
+   file), membuat touch target tombol hapus foto ini (aksi destruktif)
+   di bawah standar minimum mobile. JANGAN tambahkan definisi baru untuk
+   selector ini di sini — edit definisi utamanya saja. */
 
 /* Tombol "+ Add Photo" — dashed border, sesuai contoh desain */
 .photo-add-dashed {
@@ -801,3 +831,12 @@ body:not(.auth-ok) .topnav, body:not(.auth-ok) .tab-bar, body:not(.auth-ok) .app
 .hc-row-icon { font-size: 13px; margin-top: 1px; }
 .hc-row-name { font-weight: 700; font-size: 12.5px; color: var(--slate2); }
 .hc-row-message { font-size: 11.5px; color: var(--muted); margin-top: 1px; }
+
+/* Utility: sembunyikan visual tapi tetap terbaca screen reader (audit
+   QA/QC — gap aksesibilitas, 0 aria-* sebelumnya). Dipakai untuk label
+   input yang secara visual sudah cukup jelas dari placeholder/context,
+   tapi tetap butuh <label> terprogram untuk screen reader. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}

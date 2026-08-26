@@ -8,6 +8,13 @@
   <title>Meeting Report Generator — Timedoor Academy</title>
   <meta name="description"
     content="Generate meeting reports and daily student progress reports for Timedoor Academy classes. Export to PNG, PDF, or share via WhatsApp.">
+  <!-- preconnect (audit QA/QC priority-fix list): buka koneksi TCP/TLS ke
+       Google Fonts LEBIH AWAL, paralel dengan parsing HTML, supaya
+       request font CSS di bawah tidak menunggu DNS+TLS handshake baru
+       mulai — mempercepat First Contentful Paint terutama di koneksi
+       mobile dengan RTT tinggi. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -312,17 +319,17 @@
     <button type="button" id="btn-health-check" onclick="runHealthCheckUI()" title="Cek kesiapan setup sistem">🩺 Health Check</button>
   </footer>
 
-  <div id="health-check-modal" class="hc-modal-overlay" style="display:none;">
+  <div id="health-check-modal" class="hc-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="hc-modal-title">
     <div class="hc-modal-box">
       <div class="hc-modal-header">
-        <span>🩺 System Health Check</span>
-        <button type="button" onclick="closeHealthCheckModal()">✕</button>
+        <span id="hc-modal-title">🩺 System Health Check</span>
+        <button type="button" onclick="closeHealthCheckModal()" aria-label="Close health check">✕</button>
       </div>
-      <div id="hc-modal-body" class="hc-modal-body">Memeriksa...</div>
+      <div id="hc-modal-body" class="hc-modal-body" aria-live="polite">Memeriksa...</div>
     </div>
   </div>
 
-  <div id="toast">Processing...</div>
+  <div id="toast" role="status" aria-live="polite" aria-atomic="true">Processing...</div>
 
   <!-- Static data: course list (COURSE_MAP) — kecil, selalu dimuat.
        COURSE_DATA (lesson objectives per course) sekarang shell kosong di
@@ -332,16 +339,20 @@
   <!-- TEMPLATES/TEMPLATES_EN — shell kosong, isi dimuat dinamis juga
        (js/templates.junior.js / .kids.js / .teens.js via lazy-loader.js). -->
   <script src="js/templates.js" defer></script>
-  <!-- Loader on-demand untuk data.<criteria>.js & templates.<criteria>.js.
-       Harus dimuat SEBELUM auto-tab.js dan exam.js karena keduanya
-       memanggil loadCriteriaData(). -->
+  <!-- EXAM_TEMPLATES shell kosong — kecil, selalu dimuat. Isinya
+       (exam-templates.junior.js / .kids.js / .teens.js) dimuat DINAMIS
+       oleh js/lazy-loader.js begitu guru pilih criteria (audit QA/QC
+       BUG-1 — dulu 132KB dimuat unconditional di sini, lihat
+       CHANGELOG.md). Di-generate oleh scripts/compile-exam-templates.js,
+       JANGAN edit manual. Harus dimuat SEBELUM js/lazy-loader.js supaya
+       EXAM_TEMPLATES sudah ada sebagai objek kosong untuk di-populate. -->
+  <script src="js/exam-templates-data.js" defer></script>
+  <!-- Loader on-demand untuk data.<criteria>.js, templates.<criteria>.js,
+       & exam-templates.<criteria>.js. Harus dimuat SEBELUM auto-tab.js
+       dan exam.js karena keduanya memanggil loadCriteriaData(). -->
   <script src="js/lazy-loader.js" defer></script>
   <!-- Mapping nama course dropdown -> nama tab spreadsheet exam (lihat isi file untuk TODO) -->
   <script src="js/course-tab-map.js" defer></script>
-  <!-- Data exam template hasil compile spreadsheet (Rencana B — Hybrid).
-       Di-generate oleh scripts/compile-exam-templates.js, JANGAN edit manual.
-       Harus dimuat SEBELUM js/exam.js karena exam.js baca EXAM_TEMPLATES. -->
-  <script src="js/exam-templates-data.js" defer></script>
   <!-- Backend connection: Google Apps Script wrapper + PIN login gate -->
   <!-- Config lokal (URL Web App) — TIDAK ikut ter-commit, lihat .gitignore -->
   <script src="js/config.js" defer></script>

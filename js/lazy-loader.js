@@ -1,6 +1,7 @@
 // ============================================================
-// LAZY LOADER — muat data.<criteria>.js & templates.<criteria>.js
-// secara dinamis, hanya saat guru pertama kali pilih criteria itu.
+// LAZY LOADER — muat data.<criteria>.js, templates.<criteria>.js, &
+// exam-templates.<criteria>.js secara dinamis, hanya saat guru pertama
+// kali pilih criteria itu.
 // ============================================================
 // Bagian dari performance split (rencana-10-10-non-security.md bagian 5.1).
 // Sebelumnya js/data.js (108K) dan js/templates.js (124K) SELALU dimuat
@@ -11,9 +12,16 @@
 // dimuat lewat fungsi loadCriteriaData() di bawah, dipanggil dari
 // onCriteriaChange (auto-tab.js) dan onExamCriteriaChange (exam.js).
 //
+// js/exam-templates-data.js (132K) ikut dibereskan dengan pola yang sama
+// (audit QA/QC BUG-1) — sebelumnya file itu TIDAK ikut lazy-load walau
+// strukturnya sendiri sudah per-criteria; sekarang cuma shell kosong
+// (EXAM_TEMPLATES={}) dan isinya dimuat di sini juga, lewat
+// exam-templates.<criteria>.js yang di-generate scripts/compile-exam-templates.js.
+//
 // Depends on: harus dimuat SEBELUM auto-tab.js dan exam.js di index.html
-// (tapi SESUDAH js/data.js dan js/templates.js, supaya COURSE_DATA/
-// TEMPLATES/TEMPLATES_EN sudah ada sebagai objek kosong untuk di-populate).
+// (tapi SESUDAH js/data.js, js/templates.js, dan js/exam-templates-data.js,
+// supaya COURSE_DATA/TEMPLATES/TEMPLATES_EN/EXAM_TEMPLATES sudah ada
+// sebagai objek kosong untuk di-populate).
 
 const CRITERIA_FILE_SUFFIX = { Junior: 'junior', Kids: 'kids', Teens: 'teens' };
 
@@ -37,10 +45,11 @@ function _loadScriptOnce(src) {
 }
 
 /**
- * Pastikan data.<criteria>.js dan templates.<criteria>.js sudah dimuat.
- * Aman dipanggil berkali-kali untuk criteria yang sama (di-cache) — selalu
- * `await` hasil panggilan ini sebelum membaca COURSE_DATA[course] atau
- * TEMPLATES[course] untuk criteria yang bersangkutan.
+ * Pastikan data.<criteria>.js, templates.<criteria>.js, dan
+ * exam-templates.<criteria>.js sudah dimuat. Aman dipanggil berkali-kali
+ * untuk criteria yang sama (di-cache) — selalu `await` hasil panggilan
+ * ini sebelum membaca COURSE_DATA[course], TEMPLATES[course], atau
+ * EXAM_TEMPLATES[criteria] untuk criteria yang bersangkutan.
  *
  * @param {string} criteria - "Junior" | "Kids" | "Teens"
  * @returns {Promise<boolean>} true kalau berhasil (atau criteria kosong/tidak dikenal, no-op), false kalau gagal dimuat
@@ -53,6 +62,7 @@ async function loadCriteriaData(criteria) {
     _criteriaLoadCache[criteria] = Promise.all([
       _loadScriptOnce(`js/data.${suffix}.js`),
       _loadScriptOnce(`js/templates.${suffix}.js`),
+      _loadScriptOnce(`js/exam-templates.${suffix}.js`),
     ]);
   }
 

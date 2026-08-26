@@ -92,8 +92,8 @@ function showAddStudentForm(btnEl, hari, kelas) {
     <div class="murid-inline-form" id="murid-inline-form-temp">
       <input type="text" placeholder="Nama Lengkap" id="temp-lengkap">
       <input type="text" placeholder="Nama Panggilan" id="temp-panggilan">
-      <button type="button" class="btn-dl" onclick="submitAddStudent(this)">✔</button>
-      <button type="button" class="btn-cancel-inline" onclick="cancelAddStudentForm(this)">✕</button>
+      <button type="button" class="btn-dl" onclick="submitAddStudent(this)" aria-label="Save student">✔</button>
+      <button type="button" class="btn-cancel-inline" onclick="cancelAddStudentForm(this)" aria-label="Cancel add student">✕</button>
     </div>`;
   btnEl.insertAdjacentHTML('afterend', formHtml);
   btnEl.style.display = 'none';

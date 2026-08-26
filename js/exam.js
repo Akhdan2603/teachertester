@@ -1,7 +1,8 @@
 // ============================================================
 // EXAM REPORT TAB
-// Depends on: data.js (COURSE_MAP), course-tab-map.js, exam-templates-data.js
-// (EXAM_TEMPLATES — hasil compile spreadsheet, lihat scripts/compile-exam-templates.js),
+// Depends on: data.js (COURSE_MAP), course-tab-map.js, lazy-loader.js
+// (EXAM_TEMPLATES per criteria — hasil compile spreadsheet, dimuat
+// dinamis via loadCriteriaData(), lihat scripts/compile-exam-templates.js),
 // auth.js, app.js (buildAndSavePDF, toast, escHtml, formatDate)
 // ============================================================
 
@@ -69,11 +70,11 @@ function fillExamTemplateText_(rawText, studentName, grade) {
  */
 function lookupExamTemplateLocal_(criteria, courseTab, lessonNumber, studentName, grades) {
   if (typeof EXAM_TEMPLATES === 'undefined') {
-    return { success: false, error: 'js/exam-templates-data.js belum dimuat — cek urutan <script> di index.html.' };
+    return { success: false, error: 'js/exam-templates-data.js (shell) belum dimuat — cek urutan <script> di index.html.' };
   }
   const criteriaData = EXAM_TEMPLATES[criteria];
   if (!criteriaData) {
-    return { success: false, error: `Tidak ada data exam template untuk criteria "${criteria}".` };
+    return { success: false, error: `Data exam template untuk criteria "${criteria}" belum dimuat atau tidak tersedia — pastikan criteria dipilih lewat dropdown (memicu loadCriteriaData()) sebelum menekan "Ambil Template dari Sistem".` };
   }
   const courseData = criteriaData[courseTab];
   if (!courseData) {

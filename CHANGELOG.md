@@ -6,6 +6,54 @@ keputusan, lihat `rencana-10-10-non-security.md`.
 
 ---
 
+## [Unreleased] — Perbaikan Hasil Audit QA/QC (Performance/UX/Efficiency)
+
+Menindaklanjuti audit QA/QC eksternal (scope: Performance/efisiensi &
+UX-UI, Security dikecualikan atas permintaan). Semua temuan BUG-1 s/d
+BUG-5 + risiko aksesibilitas di bawah sudah diperbaiki.
+
+- **BUG-1 (HIGH)** — `js/exam-templates-data.js` (132KB) dulu dimuat
+  unconditional di setiap page load, tidak ikut pola lazy-load per
+  criteria walau strukturnya sendiri sudah per-criteria. Sekarang jadi
+  shell kosong (~1.3KB) + 3 file baru (`exam-templates.junior.js` 17KB,
+  `.kids.js` 48KB, `.teens.js` 71KB) dimuat dinamis oleh
+  `js/lazy-loader.js` lewat `loadCriteriaData()`, sama seperti pola
+  `data.<criteria>.js`/`templates.<criteria>.js`. `scripts/compile-exam-templates.js`
+  & `.github/workflows/ci.yml` (CI diff-gate) disesuaikan untuk generate
+  & memvalidasi keempat file ini.
+- **BUG-2 (MEDIUM)** — Preview murid (Auto tab) di-rebuild penuh
+  (`innerHTML` teardown, semua kartu) + forced reflow (`offsetHeight`)
+  di SETIAP keystroke saat mengetik nama/progress. Ditambah
+  `autoUpdateTableDebounced()` (200ms) khusus untuk `oninput` nama &
+  progress; trigger lain (ganti dropdown, tambah/hapus murid, dll) tetap
+  instan.
+- **BUG-3 (MEDIUM)** — Upload foto murid disimpan full-resolution tanpa
+  compress (bisa 3-12MB/foto dari kamera HP modern). Sekarang di-resize
+  (max 1600px sisi terpanjang) & di-compress (JPEG q0.82) lewat
+  `<canvas>` di `js/photo-manager.js` sebelum disimpan ke
+  `autoPhotoData[]`, native tanpa library eksternal.
+- **BUG-4 (LOW)** — `.btn-photo-overlay-del` didefinisikan 2x di
+  `css/style.css` dengan ukuran berbeda (28px vs 22px); definisi kedua
+  menang lewat cascade, membuat tombol hapus foto (aksi destruktif) di
+  bawah standar touch target mobile. Definisi dead code dihapus, ukuran
+  dinaikkan ke 36x36px.
+- **BUG-5 (LOW)** — Selector CSS `#report-preview` adalah dead code
+  (tidak ada elemen dengan ID itu — Exam Report tab pakai `<textarea>`,
+  bukan preview visual). Dihapus dari selector list, komentar "DO NOT
+  modify" diperbarui supaya tidak menyebut ID yang tidak ada.
+- **Aksesibilitas (risiko, sebelumnya 0 atribut `aria-*` di codebase)** —
+  Ditambahkan: `role="status" aria-live="polite"` di toast (+ durasi
+  tampil sekarang menyesuaikan panjang pesan, sebelumnya fixed 3 detik
+  untuk semua pesan); `aria-label` di semua tombol icon-only (hapus
+  murid, hapus foto, cancel/save inline form); `role="dialog"
+  aria-modal="true"` + label terprogram di overlay login PIN & modal
+  Health Check.
+- **Mobile** — Tambah breakpoint `@media (max-width: 480px)` untuk HP
+  entry-level (sebelumnya cuma ada 1200px & 768px) — menyesuaikan
+  padding/layout form sidebar, TIDAK mengubah `#auto-report-preview`
+  (tetap 1000px fixed, export canvas tidak boleh terdistorsi). Tambah
+  `<link rel="preconnect">` untuk Google Fonts.
+
 ## [Unreleased] — Migrasi Exam Template & Perbaikan Menyeluruh
 
 ### Fase 1 — Quick Wins (Functionality)

@@ -86,7 +86,15 @@ const path = require('path');
 const XLSX = require('xlsx');
 
 const REPO_ROOT = path.resolve(__dirname, '..');
-const OUTPUT_PATH = path.join(REPO_ROOT, 'js', 'exam-templates-data.js');
+
+// Shell kosong (const EXAM_TEMPLATES = {}) — SELALU dimuat di <head>,
+// kecil. Isi sesungguhnya per criteria ada di 3 file
+// exam-templates.<suffix>.js di bawah, dimuat DINAMIS oleh
+// js/lazy-loader.js begitu guru pertama kali memilih criteria itu
+// (audit QA/QC BUG-1 — lihat CHANGELOG.md "Performance split exam
+// templates"). Sebelumnya seluruh 132KB dimuat unconditional di setiap
+// page load walau strukturnya sendiri sudah per-criteria.
+const OUTPUT_SHELL_PATH = path.join(REPO_ROOT, 'js', 'exam-templates-data.js');
 
 // criteria -> file spreadsheet exam template (mengikuti JUNIOR_SHEET_ID /
 // KIDS_SHEET_ID / TEENS_SHEET_ID di Script Properties GAS, tapi versi lokal)
@@ -95,6 +103,16 @@ const SOURCE_FILES = {
   Kids: 'excel/KIDS report templates.xlsx',
   Teens: 'excel/Salinan dari TEENS report templates.xlsx',
 };
+
+// criteria -> suffix file output per-criteria (HARUS sama persis dengan
+// CRITERIA_FILE_SUFFIX di js/lazy-loader.js, supaya nama file yang
+// di-generate di sini match dengan nama file yang di-fetch di runtime).
+const CRITERIA_FILE_SUFFIX = { Junior: 'junior', Kids: 'kids', Teens: 'teens' };
+
+function outputPathForCriteria_(criteria) {
+  const suffix = CRITERIA_FILE_SUFFIX[criteria];
+  return path.join(REPO_ROOT, 'js', `exam-templates.${suffix}.js`);
+}
 
 // ------------------------------------------------------------
 // PORT PERSIS SAMA dari google-apps-script/ExamTemplates.gs
@@ -337,42 +355,74 @@ function main() {
     console.log('');
   });
 
-  const header = `// ============================================================
-// EXAM_TEMPLATES — HASIL COMPILE, JANGAN EDIT MANUAL
+  // Shell kosong — dimuat SELALU (kecil), sebelum lazy-loader menyuntik
+  // file per-criteria yang melakukan Object.assign(EXAM_TEMPLATES, {...}).
+  const shellHeader = `// ============================================================
+// EXAM_TEMPLATES — shell kosong, HASIL COMPILE, JANGAN EDIT MANUAL
 // ============================================================
-// File ini di-generate otomatis oleh scripts/compile-exam-templates.js
-// dari 3 spreadsheet di folder excel/ (JUNIORS/KIDS/TEENS report
-// templates). Ini bagian dari "Opsi B — Hybrid" (lihat
-// rencana-10-10-non-security.md bagian 2): spreadsheet tetap jadi
-// tempat admin/guru edit teks, tapi parsing-nya sudah selesai di sini —
-// runtime (js/exam.js) tinggal lookup objek ini, tanpa network call ke
-// Google Apps Script / Google Sheets sama sekali.
+// File ini di-generate otomatis oleh scripts/compile-exam-templates.js.
+// Isinya SENGAJA kosong ({}) dan SELALU dimuat di <head> (kecil) supaya
+// semua kode lain (js/exam.js) yang mengakses EXAM_TEMPLATES sebagai
+// variabel global tetap bekerja tanpa perlu diubah. Isi sesungguhnya per
+// criteria ada di js/exam-templates.junior.js / .kids.js / .teens.js,
+// dimuat SECARA DINAMIS oleh js/lazy-loader.js begitu guru pertama kali
+// memilih criteria itu di dropdown (audit QA/QC BUG-1, lihat
+// CHANGELOG.md — "Performance split: exam-templates-data.js"). File ini
+// dulunya (132KB) memuat SEMUA criteria unconditional di setiap page
+// load, sekarang hanya shell.
 //
 // CARA UPDATE: edit teksnya di spreadsheet excel/ yang bersangkutan,
 // lalu jalankan \`node scripts/compile-exam-templates.js\` dan commit
-// hasilnya. Lihat PANDUAN.md bagian "Update Teks Exam Template" untuk
-// SOP lengkap. JANGAN edit angka/teks di bawah ini langsung — akan
-// tertimpa saat compile berikutnya.
-//
-// (Sengaja TANPA timestamp "Generated: ..." di sini — kalau ada, file ini
-// akan selalu ke-diff di setiap compile run walau isinya sama persis,
-// bikin CI gate "hasil compile vs yang di-commit" (lihat .github/workflows/ci.yml)
-// jadi false-positive gagal terus. Commit history/git blame sudah cukup
-// buat tahu kapan file ini terakhir di-generate.)
-//
-// Struktur: EXAM_TEMPLATES[criteria][courseTab][blockNumber][category] = string[]
-// (array variasi teks MENTAH — placeholder [NAMA_STUDENT] dan
-// [opsi_A/opsi_B/opsi_C] belum diisi; itu dikerjakan runtime oleh
-// fillExamTemplateText_() di js/exam.js berdasarkan nama murid & grade
-// yang dipilih guru saat itu).
+// hasilnya (shell ini + ketiga file exam-templates.<criteria>.js). Lihat
+// PANDUAN.md bagian "Update Teks Exam Template" untuk SOP lengkap.
+// JANGAN edit manual — akan tertimpa saat compile berikutnya.
 // ============================================================
 
-const EXAM_TEMPLATES = `;
+const EXAM_TEMPLATES = {};
+`;
+  fs.writeFileSync(OUTPUT_SHELL_PATH, shellHeader, 'utf8');
+  console.log(`Selesai. Ditulis shell ke ${path.relative(REPO_ROOT, OUTPUT_SHELL_PATH)}`);
 
-  const content = header + JSON.stringify(EXAM_TEMPLATES, null, 2) + ';\n';
-  fs.writeFileSync(OUTPUT_PATH, content, 'utf8');
+  // 1 file per criteria — dimuat dinamis oleh js/lazy-loader.js, sama
+  // seperti pola data.<criteria>.js / templates.<criteria>.js.
+  Object.keys(SOURCE_FILES).forEach(criteria => {
+    if (!EXAM_TEMPLATES[criteria]) return; // spreadsheet-nya tidak ditemukan, di-skip di atas juga
+    const outPath = outputPathForCriteria_(criteria);
+    const perCriteriaHeader = `// ============================================================
+// EXAM_TEMPLATES slice — criteria: ${criteria}
+// ============================================================
+// Bagian dari performance split (audit QA/QC BUG-1, lihat CHANGELOG.md):
+// exam-templates-data.js dulunya 1 file monolitik (132KB) berisi
+// EXAM_TEMPLATES untuk SEMUA criteria, selalu dimuat penuh di <head>
+// walau guru cuma pakai 1 criteria per sesi kerja. File ini HANYA
+// berisi exam template untuk criteria '${criteria}', dan dimuat secara
+// DINAMIS oleh js/lazy-loader.js begitu guru pertama kali memilih
+// criteria '${criteria}' di dropdown (Auto tab atau Exam tab) — bukan
+// dimuat di <head> sejak awal.
+//
+// Di-generate otomatis oleh scripts/compile-exam-templates.js dari
+// ${SOURCE_FILES[criteria]}. JANGAN edit manual — akan tertimpa saat
+// compile berikutnya. Lihat PANDUAN.md bagian "Update Teks Exam
+// Template" untuk SOP update.
+//
+// JANGAN declare ulang 'const EXAM_TEMPLATES' di sini — js/exam-templates-data.js
+// (file inti, selalu dimuat) sudah mendeklarasikannya sebagai objek
+// kosong '{}'. File ini cuma menambahkan property lewat Object.assign,
+// supaya js/exam.js yang mengakses EXAM_TEMPLATES sebagai variabel
+// global tetap bekerja tanpa perlu diubah sama sekali.
+//
+// Struktur: EXAM_TEMPLATES.${criteria}[courseTab][blockNumber][category] = string[]
+// (array varian teks MENTAH — placeholder [NAMA_STUDENT] dan
+// [opsi_A/opsi_B/opsi_C] belum diisi; itu dikerjakan runtime oleh
+// fillExamTemplateText_() di js/exam.js).
+// ============================================================
 
-  console.log(`Selesai. Ditulis ke ${path.relative(REPO_ROOT, OUTPUT_PATH)}`);
+Object.assign(EXAM_TEMPLATES, ${JSON.stringify({ [criteria]: EXAM_TEMPLATES[criteria] }, null, 2)});
+`;
+    fs.writeFileSync(outPath, perCriteriaHeader, 'utf8');
+    console.log(`Selesai. Ditulis ke ${path.relative(REPO_ROOT, outPath)}`);
+  });
+
   console.log(`Total warning: ${totalWarnings} (review manual sebelum commit kalau ada — lihat log di atas)`);
 
   // Coverage-check mapping course↔tab (rencana bagian 1.2 & 4.2 — versi Node
