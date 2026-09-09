@@ -103,10 +103,10 @@ async function handleLoginClick() {
 function injectTeacherBadge_(teacherName) {
   const nav = document.querySelector('.topnav');
   if (!nav || document.getElementById('teacher-badge')) return;
-  const initial = (teacherName || '?').trim().charAt(0).toUpperCase();
   const badge = document.createElement('div');
   badge.id = 'teacher-badge';
-  badge.innerHTML = `<span class="teacher-avatar">${escHtmlAuth_(initial)}</span><span class="teacher-name">${escHtmlAuth_(teacherName)}</span><button type="button" onclick="logoutTeacher()">Ganti Guru</button>`;
+  badge.style.cssText = 'margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;color:#555;';
+  badge.innerHTML = `<span>👤 ${escHtmlAuth_(teacherName)}</span><button onclick="logoutTeacher()" style="font-size:12px;padding:4px 8px;cursor:pointer;">Ganti Guru</button>`;
   nav.appendChild(badge);
 }
 

@@ -402,6 +402,15 @@ function renderAutoInputs(){
     populateLessonDropdown(i);
   });
   autoUpdateTable();
+  updateAutoStudentCountBadge_();
+}
+
+/** Update badge kecil "N Student(s)" di sebelah judul card "Student Data & Generate Report" (murni kosmetik, tidak mempengaruhi data). */
+function updateAutoStudentCountBadge_() {
+  const badge = document.getElementById('auto-student-count-badge');
+  if (!badge) return;
+  const n = autoStudents.length;
+  badge.textContent = n + (n === 1 ? ' Student' : ' Students');
 }
 
 // ============================================================
@@ -607,19 +616,21 @@ function autoUpdateTable(){
     // Status dot color
     const isDone = s.status === 'done' || s.status === 'double';
     const dotClass = isDone ? 'dot-done' : 'dot-progress';
-    
+    const statusLabel = isDone
+      ? (autoLang === 'id' ? 'Selesai' : 'Completed')
+      : (autoLang === 'id' ? 'Berjalan' : 'In Progress');
+
     const lessonTag = getLessonTag(s);
     
     const div = document.createElement('div');
     div.className = 'rpt-student-card';
     div.innerHTML = `
       <div class="card-status-col">
-        <div class="timeline-node"><span class="timeline-dot ${dotClass}"></span></div>
+        <div class="timeline-node ${dotClass}">${isDone ? '✓' : '●'}</div>
+        <span class="status-label ${dotClass}">${statusLabel}</span>
       </div>
       <div class="card-name-col">
         <span class="student-name-text">${escHtml(s.nama) || '<em style="color:#94a3b8">—</em>'}</span>
-      </div>
-      <div class="card-lesson-col">
         ${lessonTag ? `<span class="lesson-pill">${escHtml(lessonTag)}</span>` : ''}
       </div>
       <div class="card-progress-col">
