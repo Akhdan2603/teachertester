@@ -613,17 +613,19 @@ function autoUpdateTable(){
     const div = document.createElement('div');
     div.className = 'rpt-student-card';
     div.innerHTML = `
-      <div class="card-status-col">
-        <div class="timeline-node"><span class="timeline-dot ${dotClass}"></span></div>
+      <div class="rpt-card-status">
+        <div class="rpt-status-avatar ${isDone ? 'is-done' : 'is-progress'}">${isDone ? '✓' : '●'}</div>
+        <span class="rpt-status-label ${isDone ? 'is-done' : 'is-progress'}">${isDone ? (autoLang === 'id' ? 'Selesai' : 'Completed') : (autoLang === 'id' ? 'Berjalan' : 'In Progress')}</span>
       </div>
-      <div class="card-name-col">
-        <span class="student-name-text">${escHtml(s.nama) || '<em style="color:#94a3b8">—</em>'}</span>
-      </div>
-      <div class="card-lesson-col">
-        ${lessonTag ? `<span class="lesson-pill">${escHtml(lessonTag)}</span>` : ''}
-      </div>
-      <div class="card-progress-col">
-        ${formatProgressHTML(s.progress)}
+      <div class="rpt-card-body">
+        <div class="rpt-card-body-top">
+          <div class="rpt-card-name-wrap">
+            <span class="student-name-text">${escHtml(s.nama) || '<em style="color:#94a3b8">—</em>'}</span>
+            ${s.course ? `<span class="rpt-card-course">(${escHtml(s.course)})</span>` : ''}
+          </div>
+          ${lessonTag ? `<span class="lesson-pill">${escHtml(lessonTag)}</span>` : ''}
+        </div>
+        <div class="card-progress-col">${formatProgressHTML(s.progress)}</div>
       </div>
     `;
     tbody.appendChild(div);

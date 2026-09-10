@@ -151,6 +151,28 @@ function getLessonTag(s) {
 }
 
 // ============================================================
+// DAY-SELECTOR PILLS ("Muat Jadwal dari Sistem") — UI murni.
+// Pill di-klik → set value #jadwal-hari-select (hidden) supaya
+// loadMuridFromJadwal() di auto-tab.js tetap baca elemen yang sama
+// persis seperti sebelumnya, tidak ada logic yang berubah di sini.
+// ============================================================
+function pickHariPill(btnEl, hariValue) {
+  const sel = document.getElementById('jadwal-hari-select');
+  if (sel) sel.value = hariValue;
+  document.querySelectorAll('.hari-pill').forEach(b => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+}
+
+/** Auto-sync: highlight pill hari ini saat halaman dibuka (Auto-sync badge di kartu jadwal). Sabtu tetap didukung karena app ini beroperasi Senin-Sabtu; kalau hari ini Minggu, tidak ada pill yang di-highlight (tidak ada kelas). */
+function autoHighlightTodayHariPill() {
+  const HARI_ID = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const todayName = HARI_ID[new Date().getDay()];
+  const pill = document.querySelector(`.hari-pill[data-hari="${todayName}"]`);
+  if (pill) pickHariPill(pill, todayName);
+}
+autoHighlightTodayHariPill();
+
+// ============================================================
 // INIT (bagian yang tidak bergantung fungsi tab-specific)
 // ============================================================
 const _t = new Date();

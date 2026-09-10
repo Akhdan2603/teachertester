@@ -101,7 +101,7 @@ async function handleLoginClick() {
 }
 
 function injectTeacherBadge_(teacherName) {
-  const nav = document.querySelector('.topnav');
+  const nav = document.querySelector('.topnav-right') || document.querySelector('.topnav');
   if (!nav || document.getElementById('teacher-badge')) return;
   const initial = (teacherName || '?').trim().charAt(0).toUpperCase();
   const badge = document.createElement('div');
