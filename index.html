@@ -349,6 +349,22 @@
     <button type="button" id="btn-health-check" class="footer-hc-pill" onclick="runHealthCheckUI()" title="Cek kesiapan setup sistem"><span class="footer-hc-dot"></span>Health Check • All Systems Operational</button>
   </footer>
 
+  <!-- Bottom nav — HANYA tampil di layar mobile (lihat @media di style.css).
+       Tombolnya memakai class "tab-btn" yang SAMA dengan tab-bar desktop supaya
+       switchTab() di app.js (yang query semua .tab-btn) otomatis meng-highlight
+       tombol yang benar di kedua set tanpa perlu ubah js/app.js sama sekali. -->
+  <nav class="mobile-bottom-nav">
+    <button class="tab-btn tab-btn-bottom active" onclick="switchTab('auto')">
+      <span class="tbb-icon">🎓</span><span class="tbb-label">Daily Report</span>
+    </button>
+    <button class="tab-btn tab-btn-bottom" onclick="switchTab('exam')">
+      <span class="tbb-icon">📝</span><span class="tbb-label">Exam Report</span>
+    </button>
+    <button class="tab-btn tab-btn-bottom" onclick="switchTab('murid')">
+      <span class="tbb-icon">👥</span><span class="tbb-label">Kelola Murid</span>
+    </button>
+  </nav>
+
   <div id="health-check-modal" class="hc-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="hc-modal-title">
     <div class="hc-modal-box">
       <div class="hc-modal-header">

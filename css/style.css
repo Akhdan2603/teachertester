@@ -95,8 +95,8 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:linear-gradient(135de
 /* Form */
 .form-row{display:flex;gap:14px;}
 .form-group{flex:1;display:flex;flex-direction:column;gap:8px;}
-label{font-size:12px;font-weight:700;color:var(--slate2);letter-spacing:.3px;text-transform:uppercase;}
-input[type="text"],input[type="date"],input[type="file"],textarea,select{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;color:var(--slate);background:var(--bg);transition:all .3s cubic-bezier(.4,0,.2,1);}
+label{font-size:12px;font-weight:700;color:var(--slate2);letter-spacing:.3px;text-transform:uppercase;display:block;}
+input[type="text"],input[type="date"],input[type="file"],input[type="number"],input[type="email"],input[type="tel"],input[type="password"],textarea,select{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;color:var(--slate);background:var(--bg);transition:all .3s cubic-bezier(.4,0,.2,1);}
 input:focus,textarea:focus,select:focus{outline:none;border-color:var(--g500);box-shadow:0 0 0 4px rgba(34,197,94,.1);background:var(--white);transform:translateY(-1px);}
 select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;}
 input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--muted);}
@@ -524,12 +524,15 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
 .badge-teens{background:#ede9fe;color:#5b21b6;}
 
 /* Responsive Web Layout */
+.mobile-bottom-nav{display:none;}
+
 @media (max-width: 1200px) {
   .tab-content.active {
     flex-direction: column;
   }
   .sidebar, .sidebar-col-1, .sidebar-col-2 {
     width: 100%;
+    min-width: 0;
     position: static;
     max-height: none;
   }
@@ -538,12 +541,19 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
   }
 }
 @media (max-width: 768px) {
-  .topnav {
-    padding: 0 16px;
-    height: 64px;
+  .topnav-main {
+    padding: 10px 16px;
+    gap: 10px;
   }
+  .topnav-logo { height: 28px; }
   .topnav h1 {
-    font-size: 16px;
+    font-size: 15px;
+  }
+  .topnav-subtitle {
+    display: none; /* judul panjang bikin header 2-baris di layar sempit — disembunyikan, bukan dipotong/overflow */
+  }
+  .topnav-strip {
+    padding: 6px 16px;
   }
   .card {
     padding: 18px;
@@ -554,6 +564,42 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
   }
   /* DO NOT modify .rpt-header, .rpt-photos, or #auto-report-preview width inside media queries so export canvas is never distorted on mobile! */
 }
+
+/* ============================================================
+   MODE MOBILE APP — di bawah 640px, tab-bar atas (segmented pill di
+   topnav-strip) diganti bottom navigation bar ala app native, mengikuti
+   mockup mobile (daily_report_mobile_v2 dkk). Tombolnya tetap class
+   .tab-btn yang sama (lihat komentar di index.html) jadi switchTab() di
+   app.js tidak perlu tahu apa-apa soal perbedaan ini.
+   ============================================================ */
+@media (max-width: 640px) {
+  .topnav-strip { display: none; }
+
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
+    background: rgba(255,255,255,.97);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -4px 16px rgba(0,0,0,.06);
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
+  }
+  .tab-btn-bottom {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    gap: 2px; padding: 6px 2px; border-radius: 12px;
+    font-size: 10.5px; font-weight: 700; background: transparent; color: var(--muted);
+  }
+  .tab-btn-bottom .tbb-icon { font-size: 18px; line-height: 1; }
+  .tab-btn-bottom .tbb-label { white-space: nowrap; }
+  .tab-btn-bottom.active { color: var(--g700); background: var(--g50); }
+  .tab-btn-bottom:hover:not(.active) { background: transparent; color: var(--muted); }
+
+  /* Kasih ruang di bawah supaya konten terakhir (termasuk footer & modal
+     trigger) tidak ketutup bottom nav yang fixed. */
+  .app-layout { padding-bottom: 84px; }
+  .app-footer { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+}
+
 /* Breakpoint tambahan untuk HP entry-level layar sangat sempit (audit
    QA/QC — sebelumnya cuma ada 1200px & 768px, belum pernah diverifikasi
    di viewport 360-390px yang umum di HP entry-level). Bukan mengubah
@@ -563,7 +609,9 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
    sempit. */
 @media (max-width: 480px) {
   .app-layout {
-    padding: 0 12px 24px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 0;
     gap: 16px;
   }
   .card {
@@ -579,17 +627,30 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
   .topnav h1 {
     font-size: 14px;
   }
+  .hari-pill-grid {
+    gap: 4px;
+  }
+  .hari-pill {
+    font-size: 10px;
+    padding: 7px 0;
+  }
+  .sidebar-col-1, .sidebar-col-2 { min-width: 0; }
+  #teacher-badge .teacher-name { max-width: 74px; overflow: hidden; text-overflow: ellipsis; }
+  .murid-add-row select, .murid-add-row input, .murid-add-row button {
+    flex: 1 1 100%;
+  }
 }
 /* ============================================================
    AUTH GATE — login PIN overlay
    ============================================================ */
-body:not(.auth-ok) .topnav, body:not(.auth-ok) .tab-bar, body:not(.auth-ok) .app-layout, body:not(.auth-ok) .app-footer {
+body:not(.auth-ok) .topnav, body:not(.auth-ok) .tab-bar, body:not(.auth-ok) .app-layout, body:not(.auth-ok) .app-footer, body:not(.auth-ok) .mobile-bottom-nav {
   display: none;
 }
 #auth-overlay {
   position: fixed; inset: 0; z-index: 1000;
   background: linear-gradient(135deg, var(--bg) 0%, #f0fdf4 100%);
   display: flex; align-items: center; justify-content: center;
+  padding: 20px;
 }
 .auth-box {
   background: var(--white); border-radius: var(--radius);
@@ -676,7 +737,7 @@ body:not(.auth-ok) .topnav, body:not(.auth-ok) .tab-bar, body:not(.auth-ok) .app
 }
 .murid-add-row select, .murid-add-row input {
   padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm);
-  font-size: 13px; flex: 1; min-width: 140px;
+  font-size: 13px; flex: 1 1 140px; width: auto; min-width: 140px;
 }
 .murid-empty { color: var(--muted); font-size: 13px; padding: 8px 0; }
 .murid-kelas-block { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }

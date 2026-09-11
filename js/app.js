@@ -54,12 +54,15 @@ function toggleZoomMode(tab) {
 
 window.addEventListener('resize', fitPreviewScale);
 
-/** Pindah tab aktif (Daily Auto Report / Exam Report / Kelola Murid) — toggle class .active di tab-bar & tab-content. */
+/** Pindah tab aktif (Daily Auto Report / Exam Report / Kelola Murid) — toggle class .active di semua tombol tab (desktop tab-bar & mobile bottom-nav sekaligus, keduanya pakai class .tab-btn) & tab-content yang sesuai. */
 function switchTab(tab) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
-  if (window.event && window.event.target) window.event.target.classList.add('active');
+  // Highlight SEMUA tombol (desktop + mobile) yang memanggil tab ini, bukan cuma
+  // yang diklik — supaya kalau viewport di-resize lintas breakpoint di tengah
+  // sesi, set tombol yang sedang tersembunyi tetap punya state .active yang benar.
+  document.querySelectorAll(`.tab-btn[onclick*="switchTab('${tab}')"]`).forEach(el => el.classList.add('active'));
   setTimeout(fitPreviewScale, 50);
 }
 
