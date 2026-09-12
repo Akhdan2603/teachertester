@@ -798,11 +798,18 @@ body:not(.auth-ok) .topnav, body:not(.auth-ok) .tab-bar, body:not(.auth-ok) .app
 
 /* ============================================================
    DYNAMIC PHOTO GRID — kolase ala referensi desain (foto pertama besar
-   kalau ada 3+), pakai flexbox + trik padding-top (BUKAN CSS Grid atau
-   properti `aspect-ratio`) supaya konsisten dengan hasil render
-   html2canvas saat export PDF/PNG (html2canvas historically kurang solid
-   dukungan CSS Grid & aspect-ratio modern, sedangkan flexbox + box-model
-   klasik jauh lebih aman/terprediksi hasilnya).
+   kalau ada 3+).
+   PENTING: ukuran tiap foto TIDAK diatur lewat persentase/aspect-ratio
+   CSS (pernah dicoba, hasilnya beda antara preview browser vs PNG hasil
+   html2canvas — html2canvas salah hitung tinggi dari trik ::before +
+   padding-top%, sehingga foto keliatan stretch/lebih tinggi di file yang
+   didownload walau preview di web sudah benar). Solusinya: lebar & tinggi
+   tiap foto dihitung PERSIS dalam pixel oleh computePhotoLayout() di
+   photo-manager.js lalu ditulis sebagai inline style width/height pada
+   tiap .photo-thumb-wrap. Karena angka pixel-nya eksplisit (bukan hasil
+   perhitungan ulang CSS/layout engine), preview di layar dan hasil
+   PNG/PDF html2canvas dijamin identik — keduanya cuma "membaca" style
+   yang sama, tidak ada ruang untuk beda hasil hitung.
    ============================================================ */
 .rpt-photos-grid {
   display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 10px;
@@ -811,26 +818,19 @@ body:not(.auth-ok) .topnav, body:not(.auth-ok) .tab-bar, body:not(.auth-ok) .app
 .photo-thumb-wrap {
   position: relative; overflow: hidden; border-radius: 12px;
   background: #f1f5f9; border: 1px solid var(--border); box-shadow: var(--shadow-sm);
-  flex: 1 1 240px;
+  flex: 0 0 auto; /* lebar/tinggi datang dari inline style, bukan flex-basis otomatis */
 }
-.photo-thumb-wrap::before { content: ''; display: block; padding-top: 75%; } /* default 4:3 */
 .photo-thumb-wrap img {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   object-fit: cover; display: block;
 }
-/* 1 foto: hero lebar penuh, rasio 16:9-ish */
-.rpt-photos-grid.count-1 .photo-thumb-wrap { flex-basis: 100%; }
-.rpt-photos-grid.count-1 .photo-thumb-wrap::before { padding-top: 52%; }
-/* 2 foto: berdampingan, rasio 16:10 */
-.rpt-photos-grid.count-2 .photo-thumb-wrap { flex-basis: calc(50% - 6px); }
-.rpt-photos-grid.count-2 .photo-thumb-wrap::before { padding-top: 62.5%; }
-/* 3+ foto: 2 foto pertama jadi baris "hero" (7/5 kolom, 16:10), sisanya
-   jadi tile 3-per-baris (4:3) — persis pola galeri di referensi desain. */
-.rpt-photos-grid.count-ge3 .photo-thumb-wrap { flex-basis: calc(33.333% - 8px); }
-.rpt-photos-grid.count-ge3 .photo-thumb-wrap:nth-child(1) { flex-basis: calc(58.333% - 6px); }
-.rpt-photos-grid.count-ge3 .photo-thumb-wrap:nth-child(1)::before { padding-top: 62.5%; }
-.rpt-photos-grid.count-ge3 .photo-thumb-wrap:nth-child(2) { flex-basis: calc(41.666% - 6px); }
-.rpt-photos-grid.count-ge3 .photo-thumb-wrap:nth-child(2)::before { padding-top: 62.5%; }
+/* Grid INPUT di sidebar (bukan target export) — cukup responsif sederhana
+   pakai CSS biasa, tidak perlu pixel-perfect karena ini cuma widget edit,
+   bukan yang di-capture html2canvas. Grid untuk laporan/export
+   (#auto-photo-grid, tanpa class ini) ukurannya di-set exact lewat inline
+   style oleh computePhotoLayout() di photo-manager.js — lihat komentar di
+   atas kenapa itu perlu untuk grid yang satu itu. */
+.photo-grid-input .photo-thumb-wrap { width: calc(50% - 6px) !important; height: 110px !important; flex: 0 0 auto; }
 /* .btn-photo-overlay-del didefinisikan sekali saja di bagian "Form" di
    atas (audit QA/QC BUG-4) — dulu didefinisikan ULANG di sini dengan
    ukuran 22x22px yang menang lewat cascade (muncul lebih akhir di

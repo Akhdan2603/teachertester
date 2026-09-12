@@ -82,27 +82,70 @@ function removePhotoAt(isAuto, index) {
   toast('Foto dihapus', 'success');
 }
 
-/** Render ulang grid thumbnail foto di 2 tempat (form input & preview report) dari `autoPhotoData[]`, sembunyikan section kalau kosong. Grid dikasih class `count-1`/`count-2`/`count-ge3` supaya CSS bisa bikin layout kolase (foto pertama lebih besar) tanpa hardcode ke jumlah foto tertentu. */
+// Lebar konten laporan yang di-export: kanvas #auto-report-preview SELALU
+// 1000px (lihat catatan "DO NOT modify" di css/style.css), dikurangi
+// padding kiri+kanan .rpt-body (40px+40px) = 920px. Kalau salah satu dari
+// dua angka itu diubah di CSS, angka ini WAJIB ikut disesuaikan.
+const RPT_CONTENT_WIDTH = 920;
+const RPT_GRID_GAP = 12;
+
+/**
+ * Hitung lebar & tinggi PERSIS (dalam pixel) untuk tiap foto di grid
+ * laporan, supaya cocok 1:1 antara preview di browser dan hasil
+ * download PNG/PDF (html2canvas). Lihat komentar panjang di css/style.css
+ * bagian "DYNAMIC PHOTO GRID" untuk kenapa ini tidak dihitung lewat CSS
+ * persentase/aspect-ratio biasa.
+ * - 1 foto  → hero lebar penuh (rasio ~1.92:1)
+ * - 2 foto  → berdampingan sama besar (rasio 16:10)
+ * - 3+ foto → 2 foto pertama jadi baris "hero" (tinggi sama, lebar ~58/42),
+ *             sisanya jadi tile 3-per-baris (rasio 4:3)
+ */
+function computePhotoLayout(n) {
+  const W = RPT_CONTENT_WIDTH, G = RPT_GRID_GAP;
+  const layout = [];
+  if (n <= 0) return layout;
+  if (n === 1) {
+    layout.push({ w: W, h: Math.round(W * 0.52) });
+    return layout;
+  }
+  if (n === 2) {
+    const w = Math.floor((W - G) / 2);
+    const h = Math.round(w * 0.625);
+    layout.push({ w, h }, { w: W - G - w, h });
+    return layout;
+  }
+  // 3+ foto: baris hero (2 foto pertama, tinggi seragam)
+  const heroH = 320;
+  const w0 = Math.round(heroH * 16 / 10);
+  const w1 = W - G - w0;
+  layout.push({ w: w0, h: heroH }, { w: w1, h: heroH });
+  // Baris tile: sisanya, 3 per baris, rasio 4:3
+  const tileW = Math.floor((W - G * 2) / 3);
+  const tileH = Math.round(tileW * 0.75);
+  for (let i = 2; i < n; i++) layout.push({ w: tileW, h: tileH });
+  return layout;
+}
+
+/** Render ulang grid thumbnail foto di 2 tempat (form input & preview report) dari `autoPhotoData[]`, sembunyikan section kalau kosong. Grid laporan (`auto-photo-grid`) dapat ukuran exact-pixel dari computePhotoLayout(); grid input sidebar (`auto-photo-grid-input`) pakai ukuran seragam sederhana (diatur CSS `.photo-grid-input`, lihat style.css) karena bukan target export. */
 function renderPhotoGrid() {
   const arr = autoPhotoData;
-  const gridIds = ['auto-photo-grid-input', 'auto-photo-grid'];
   const section = document.getElementById('auto-photo-section');
-  const countClass = arr.length === 1 ? 'count-1' : arr.length === 2 ? 'count-2' : 'count-ge3';
+  const layout = computePhotoLayout(arr.length);
 
-  const thumbHtml = arr.map((src, i) => `
-    <div class="photo-thumb-wrap">
+  const buildThumb = (src, i, sized) => {
+    const sizeStyle = sized ? ` style="width:${layout[i].w}px;height:${layout[i].h}px"` : '';
+    return `
+    <div class="photo-thumb-wrap"${sizeStyle}>
       <img src="${src}" alt="Photo ${i + 1}">
       <button type="button" class="btn-photo-overlay-del" data-html2canvas-ignore="true" onclick="removePhotoAt(true, ${i})" title="Remove Photo" aria-label="Remove photo ${i + 1}">✕</button>
-    </div>`).join('');
+    </div>`;
+  };
 
-  gridIds.forEach(id => {
-    const grid = document.getElementById(id);
-    if (grid) {
-      grid.innerHTML = thumbHtml;
-      grid.classList.remove('count-1', 'count-2', 'count-ge3');
-      if (arr.length) grid.classList.add(countClass);
-    }
-  });
+  const inputGrid = document.getElementById('auto-photo-grid-input');
+  if (inputGrid) inputGrid.innerHTML = arr.map((src, i) => buildThumb(src, i, false)).join('');
+
+  const reportGrid = document.getElementById('auto-photo-grid');
+  if (reportGrid) reportGrid.innerHTML = arr.map((src, i) => buildThumb(src, i, true)).join('');
 
   const countBadge = document.getElementById('auto-photo-count-badge');
   if (countBadge) countBadge.textContent = `${arr.length} ${arr.length === 1 ? 'Photo' : 'Photos'} Loaded`;
