@@ -539,10 +539,15 @@ function onJadwalKelasChange() {
   toast(`${students.length} murid dimuat untuk kelas ${kelasName}.`, 'success');
 }
 
-// Dipanggil auth.js setelah login sukses (opsional hook, saat ini belum
-// dipakai untuk apa-apa secara default, disediakan untuk pengembangan lanjut)
+// Dipanggil auth.js setelah login sukses — dipakai untuk auto-sync jadwal hari
+// ini begitu guru berhasil login, supaya "Muat Murid Otomatis" tidak perlu
+// diklik manual lagi (pill hari ini sudah di-highlight duluan oleh
+// autoHighlightTodayHariPill() di app.js sebelum login pun selesai).
 function onLoginSuccess(teacherName) {
-  // placeholder — bisa dipakai nanti misal auto-set default Hari = hari ini
+  const hari = document.getElementById('jadwal-hari-select')?.value;
+  if (hari && typeof loadMuridFromJadwal === 'function') {
+    loadMuridFromJadwal();
+  }
 }
 
 // ============================================================

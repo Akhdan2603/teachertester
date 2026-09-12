@@ -69,13 +69,19 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:linear-gradient(135de
    kolom 1 (jadwal/bahasa/foto/ekspor) lebih ramping, kolom 2 (info kelas + generate
    murid) sedikit lebih lebar, kolom 3 tetap .preview-area (flex:1) tak berubah. */
 .sidebar-col-1{width:25%;min-width:270px;}
-.sidebar-col-2{width:32%;min-width:330px;}
+/* Kolom Student Data & Generate tidak boleh ikut sticky+max-height+overflow
+   dari .sidebar dasar — isinya TUMBUH sesuai jumlah murid yang ditambahkan,
+   jadi kalau tetap sticky+capped, murid-murid di bawah bisa "terjebak" dalam
+   area scroll internal yang sempit dan sulit terlihat/dijangkau (bug nyata
+   yang dilaporkan user: murid seakan hilang/kartu kepotong di desktop).
+   Biarkan kolom ini mengalir & scroll normal bersama halaman. */
+.sidebar-col-2{width:32%;min-width:330px;position:static;max-height:none;overflow-y:visible;align-self:flex-start;}
 .card-grow{flex:1;display:flex;flex-direction:column;min-height:260px;}
 .card-grow .students-list{flex:1;}
 
 /* Cards */
-.card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:26px;transition:all .3s cubic-bezier(.4,0,.2,1);animation:cardSlideIn .5s ease-out forwards;opacity:0;}
-@keyframes cardSlideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:26px;transition:all .3s cubic-bezier(.4,0,.2,1);animation:cardSlideIn .5s ease-out forwards;}
+@keyframes cardSlideIn{from{opacity:.4;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .card:nth-child(1){animation-delay:.1s}.card:nth-child(2){animation-delay:.2s}.card:nth-child(3){animation-delay:.3s}.card:nth-child(4){animation-delay:.4s}
 .card:hover{border-color:var(--g300);box-shadow:var(--shadow-lg);transform:translateY(-2px);}
 .card-title{font-size:12px;font-weight:800;color:var(--g700);text-transform:uppercase;letter-spacing:1px;margin-bottom:18px;display:flex;align-items:center;gap:10px;padding-bottom:12px;}
@@ -128,7 +134,7 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
 
 /* Auto-generate section in student card */
 .auto-gen-row{display:flex;flex-direction:column;gap:8px;}
-.auto-gen-selectors{display:flex;gap:8px;}
+.auto-gen-selectors{display:flex;gap:8px;flex-wrap:wrap;}
 .auto-gen-selectors select{font-size:12px;padding:8px 10px;padding-right:30px;}
 .btn-generate{width:100%;padding:10px;background:linear-gradient(135deg,var(--g700),var(--g900));color:white;border:none;border-radius:var(--radius-sm);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px;}
 .btn-generate:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(34,197,94,.3);}

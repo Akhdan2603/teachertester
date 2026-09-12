@@ -164,6 +164,12 @@ function pickHariPill(btnEl, hariValue) {
   if (sel) sel.value = hariValue;
   document.querySelectorAll('.hari-pill').forEach(b => b.classList.remove('active'));
   if (btnEl) btnEl.classList.add('active');
+  // Auto-sync: begitu hari dipilih, langsung tarik jadwal & murid hari itu —
+  // guru tidak perlu klik "Muat Murid Otomatis" lagi secara manual.
+  // loadMuridFromJadwal() didefinisikan di auto-tab.js (dimuat setelah app.js),
+  // tapi karena ini dipanggil saat user KLIK (bukan saat script pertama kali
+  // jalan), semua script sudah pasti selesai dimuat di titik ini — aman.
+  if (typeof loadMuridFromJadwal === 'function') loadMuridFromJadwal();
 }
 
 /** Auto-sync: highlight pill hari ini saat halaman dibuka (Auto-sync badge di kartu jadwal). Sabtu tetap didukung karena app ini beroperasi Senin-Sabtu; kalau hari ini Minggu, tidak ada pill yang di-highlight (tidak ada kelas). */
