@@ -159,16 +159,14 @@
             <div class="blob blob-br"></div>
             <div class="blob blob-bl"></div>
 
-            <!-- Executive Header Banner (wave-style, mengikuti mockup "printable document") -->
+            <!-- Executive Header Banner — persis referensi: logo & judul di tengah,
+                 pill "Class • Date" gaya kaca (translucent) di DALAM header gelap. -->
             <div class="rpt-header rc">
               <div class="rpt-header-blob-a"></div>
               <div class="rpt-header-blob-b"></div>
               <div class="rpt-header-brand"><img src="timedoor_logo_putih.webp" class="rpt-logo-img" alt="Timedoor Academy"></div>
-              <div class="rpt-title" id="auto-rpt-title">Student<br><span>Progress Report</span></div>
+              <div class="rpt-title" id="auto-rpt-title">Student Progress Report</div>
               <p class="rpt-header-subtitle">Timedoor Academy — Class Report</p>
-              <div class="rpt-header-curve"></div>
-            </div>
-            <div class="rpt-meta-row rc">
               <div class="rpt-meta-pillbar">
                 <span><span id="auto-label-kelas">Class</span>: <strong id="aprev-kelas">BGR-CE-01</strong></span>
                 <span class="rpt-meta-sep">•</span>
@@ -177,9 +175,15 @@
             </div>
 
             <!-- Documentation Activity Photos -->
+            <div class="rpt-body rc">
             <div class="rpt-section rc" id="auto-photo-section" style="display:none;">
               <div class="rpt-section-header">
-                <span>📸</span><span id="auto-photo-sec-title">Classroom Activity Snapshots</span>
+                <span class="rpt-section-icon">📸</span>
+                <div class="rpt-section-heading">
+                  <div class="rpt-section-title" id="auto-photo-sec-title">Documentation Gallery</div>
+                  <div class="rpt-section-subtitle" id="auto-photo-sec-subtitle">Classroom Activity Snapshots</div>
+                </div>
+                <span class="rpt-section-badge" id="auto-photo-count-badge">0 Photos Loaded</span>
               </div>
               <div class="rpt-photos-grid" id="auto-photo-grid"></div>
             </div>
@@ -187,16 +191,25 @@
             <!-- Student Progress Stream -->
             <div class="rpt-section rc">
               <div class="rpt-section-header">
-                <span>🎓</span><span id="auto-progress-sec-title">Student Learning & Progress</span>
+                <span class="rpt-section-icon">🎓</span>
+                <div class="rpt-section-heading">
+                  <div class="rpt-section-title" id="auto-progress-sec-title">Student Learning & Progress Stream</div>
+                  <div class="rpt-section-subtitle" id="auto-progress-sec-subtitle">Instructor Observations</div>
+                </div>
+                <span class="rpt-section-badge rpt-section-badge-check" id="auto-verified-badge">✓ <span>Evaluations</span></span>
               </div>
               <div class="rpt-stream-wrap">
-                <div class="timeline-track"></div>
                 <div class="rpt-stream-list" id="aprev-tbody"></div>
-                <div class="rpt-legend" id="auto-legend">
-                  <span class="legend-item"><span class="legend-dot dot-done"></span> <span id="auto-legend-done">Completed Lesson</span></span>
-                  <span class="legend-item"><span class="legend-dot dot-progress"></span> <span id="auto-legend-prog">In Progress</span></span>
-                </div>
               </div>
+            </div>
+
+            <!-- Certification footer — HANYA baris identitas Timedoor Academy, TIDAK
+                 ada klaim "verified by" atau link audit palsu karena sistem approval
+                 semacam itu belum benar-benar ada di aplikasi ini. -->
+            <div class="rpt-cert-footer rc">
+              <span class="rpt-cert-icon">🛡️</span>
+              <span id="auto-cert-text">Timedoor Academy Progress Report</span>
+            </div>
             </div>
 
             </div>

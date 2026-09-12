@@ -197,14 +197,17 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
   background: var(--white);
   position: relative;
   overflow: hidden;
-  padding: 38px 42px;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 22px;
   border-radius: 24px;
   transform-origin: top left;
   transition: transform .15s ease-out;
 }
+/* Header full-bleed (nempel tepi kiri/kanan/atas), body di bawahnya yang
+   punya padding — mengikuti struktur referensi desain (article > header +
+   div.p-10), bukan 1 padding seragam untuk semua kayak sebelumnya. */
+.rpt-body { padding: 34px 40px 40px; display: flex; flex-direction: column; gap: 28px; }
 .blob{position:absolute;z-index:0;pointer-events:none;animation:blobFloat 8s ease-in-out infinite;}
 @keyframes blobFloat{0%,100%{transform:translate(0,0)}25%{transform:translate(10px,-10px)}50%{transform:translate(-5px,15px)}75%{transform:translate(8px,5px)}}
 .blob-tl{top:-80px;left:-80px;width:280px;height:280px;background:var(--g500);border-radius:60% 40% 55% 45% / 50% 60% 40% 50%;opacity:.08;}
@@ -216,9 +219,9 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
 /* Executive Header — wave/organic "printable document" banner (mockup preview) */
 .rpt-header {
   position: relative;
-  background: linear-gradient(90deg, #175d3f, #228355 55%, #2ea46d);
+  background: linear-gradient(135deg, #09472d 0%, #0d5c3a 50%, #166534 100%);
   border-radius: 18px 18px 0 0;
-  padding: 26px 24px 30px;
+  padding: 30px 24px 26px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -226,47 +229,45 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
   color: white;
   overflow: hidden;
 }
-.rpt-header-blob-a{position:absolute;top:-48px;right:-48px;width:180px;height:180px;background:rgba(255,255,255,.1);border-radius:50%;filter:blur(18px);pointer-events:none;}
-.rpt-header-blob-b{position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;background:rgba(20,83,45,.2);border-radius:50%;filter:blur(16px);pointer-events:none;}
-.rpt-header-brand{position:relative;z-index:2;margin-bottom:6px;}
-.rpt-header-brand img{height:26px;width:auto;display:block;margin:0 auto;filter:brightness(0) invert(1);}
+.rpt-header-blob-a{position:absolute;top:-56px;right:-56px;width:200px;height:200px;background:rgba(34,197,94,.2);border-radius:50%;filter:blur(24px);pointer-events:none;}
+.rpt-header-blob-b{position:absolute;bottom:-56px;left:-56px;width:200px;height:200px;background:rgba(74,222,128,.15);border-radius:50%;filter:blur(24px);pointer-events:none;}
+.rpt-header-brand{position:relative;z-index:2;margin-bottom:14px;}
+.rpt-header-brand img{height:30px;width:auto;display:block;margin:0 auto;filter:brightness(0) invert(1);}
 .rpt-title {
   position: relative; z-index: 2;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
   color: white;
   letter-spacing: -0.5px;
   line-height: 1.2;
-  margin-top: 2px;
 }
-.rpt-title span {
-  color: #ffffff;
-}
-.rpt-header-subtitle{position:relative;z-index:2;font-size:11px;font-weight:600;color:#dcfce7;letter-spacing:.3px;margin-top:4px;}
-.rpt-header-curve{position:absolute;left:0;right:0;bottom:-1px;height:16px;background:var(--white);border-radius:24px 24px 0 0;}
+.rpt-header-subtitle{position:relative;z-index:2;font-size:12px;font-weight:500;color:rgba(220,252,231,.9);letter-spacing:.2px;margin-top:3px;}
 
-/* Meta pill row (Class • Date) — sekarang di bawah header, mengikuti mockup */
-.rpt-meta-row{display:flex;justify-content:center;margin-top:-6px;}
-.rpt-meta-pillbar{display:inline-flex;align-items:center;gap:10px;background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:7px 18px;font-size:12px;font-weight:600;color:var(--slate2);box-shadow:var(--shadow-sm);}
-.rpt-meta-pillbar strong{color:var(--g800);font-weight:800;}
-.rpt-meta-sep{color:#cbd5e1;}
+/* Meta pill (Class • Date) — pill kaca translucent DI DALAM header gelap,
+   persis referensi desain (bukan pill terpisah di bawah header lagi). */
+.rpt-meta-pillbar{position:relative;z-index:2;display:inline-flex;align-items:center;gap:10px;margin-top:18px;background:rgba(255,255,255,.15);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:7px 20px;font-size:12.5px;font-weight:600;color:#fff;}
+.rpt-meta-pillbar strong{color:#fff;font-weight:800;}
+.rpt-meta-sep{color:rgba(255,255,255,.5);}
 
 /* Sections */
 .rpt-section {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 .rpt-section-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12.5px;
-  font-weight: 800;
-  color: #15803d;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
+  gap: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
 }
+.rpt-section-icon{flex-shrink:0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;background:var(--g50);border:1px solid var(--g100);border-radius:9px;font-size:14px;}
+.rpt-section-heading{flex:1;min-width:0;}
+.rpt-section-title{font-size:15px;font-weight:800;color:var(--slate);letter-spacing:-.2px;line-height:1.2;}
+.rpt-section-subtitle{font-size:11.5px;font-weight:500;color:var(--muted);margin-top:2px;}
+.rpt-section-badge{flex-shrink:0;font-size:10.5px;font-weight:700;letter-spacing:.3px;color:var(--g800);background:var(--g50);border:1px solid var(--g200);padding:4px 11px;border-radius:999px;white-space:nowrap;}
+.rpt-section-badge-check{display:inline-flex;align-items:center;gap:5px;}
 
 /* Documentation Gallery Photos */
 .rpt-photos {
@@ -344,6 +345,7 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
   transition: all 0.2s ease;
 }
 .rpt-student-card:hover{border-color:var(--g300);}
+.rpt-student-card.is-progress-card{background:rgba(255,251,235,.4);border-color:#fde68a;}
 .rpt-card-status{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;}
 .rpt-status-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;box-shadow:0 2px 6px rgba(0,0,0,.12);}
 .rpt-status-avatar.is-done{background:var(--g600);}
@@ -464,6 +466,10 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
   box-shadow: 0 1px 2px rgba(22, 163, 74, 0.06);
   white-space: nowrap;
 }
+.lesson-pill-progress {
+  background: #fffbeb; color: #92400e; border-color: #fde68a;
+  box-shadow: 0 1px 2px rgba(180, 83, 9, 0.06);
+}
 
 .card-progress-col {
   flex: 1;
@@ -505,17 +511,21 @@ input[type="file"]{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--m
   background: #f59e0b;
 }
 
-/* Footer Brand */
-.rpt-footer {
+/* Footer Brand — baris sertifikasi sederhana (icon + nama institusi),
+   TIDAK ada klaim "verified by" atau link audit karena sistem approval
+   semacam itu belum ada di aplikasi. */
+.rpt-cert-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding-top: 12px;
+  gap: 8px;
+  padding-top: 14px;
   border-top: 1px solid var(--border);
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 600;
   color: var(--muted);
 }
+.rpt-cert-icon { font-size: 13px; }
 
 /* Toast */
 #toast{position:fixed;bottom:28px;right:28px;background:var(--slate);color:white;padding:14px 20px;border-radius:12px;font-size:14px;font-weight:600;box-shadow:var(--shadow-xl);display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(10px) translateX(400px);transition:all .3s cubic-bezier(.4,0,.2,1);z-index:9999;pointer-events:none;}
@@ -787,29 +797,40 @@ body:not(.auth-ok) .topnav, body:not(.auth-ok) .tab-bar, body:not(.auth-ok) .app
 }
 
 /* ============================================================
-   DYNAMIC PHOTO GRID — unlimited foto, tidak stretch (object-fit: contain)
+   DYNAMIC PHOTO GRID — kolase ala referensi desain (foto pertama besar
+   kalau ada 3+), pakai flexbox + trik padding-top (BUKAN CSS Grid atau
+   properti `aspect-ratio`) supaya konsisten dengan hasil render
+   html2canvas saat export PDF/PNG (html2canvas historically kurang solid
+   dukungan CSS Grid & aspect-ratio modern, sedangkan flexbox + box-model
+   klasik jauh lebih aman/terprediksi hasilnya).
    ============================================================ */
 .rpt-photos-grid {
-  /* PENTING: auto-fit (bukan auto-fill) — auto-fill tetap mereservasi
-     kolom kosong walau cuma ada 1 foto (jadinya kelihatan kecil di pojok),
-     auto-fit collapse kolom kosong itu sehingga foto tunggal melebar
-     penuh mengisi baris. object-fit:contain di bawah tetap menjaga foto
-     tidak stretch/gepeng. */
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 10px; margin-bottom: 10px;
+  display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 10px;
 }
 .rpt-photos-grid:empty { display: none; margin-bottom: 0; }
 .photo-thumb-wrap {
-  position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden;
-  background: #f1f5f9; border: 1.5px solid #bbf7d0;
-  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.1);
+  position: relative; overflow: hidden; border-radius: 12px;
+  background: #f1f5f9; border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  flex: 1 1 240px;
 }
+.photo-thumb-wrap::before { content: ''; display: block; padding-top: 75%; } /* default 4:3 */
 .photo-thumb-wrap img {
-  width: 100%; height: 100%;
-  object-fit: contain; /* PENTING: jangan pakai 'cover' — itu yang bikin foto crop/stretch */
-  background: #f1f5f2;
-  display: block;
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
 }
+/* 1 foto: hero lebar penuh, rasio 16:9-ish */
+.rpt-photos-grid.count-1 .photo-thumb-wrap { flex-basis: 100%; }
+.rpt-photos-grid.count-1 .photo-thumb-wrap::before { padding-top: 52%; }
+/* 2 foto: berdampingan, rasio 16:10 */
+.rpt-photos-grid.count-2 .photo-thumb-wrap { flex-basis: calc(50% - 6px); }
+.rpt-photos-grid.count-2 .photo-thumb-wrap::before { padding-top: 62.5%; }
+/* 3+ foto: 2 foto pertama jadi baris "hero" (7/5 kolom, 16:10), sisanya
+   jadi tile 3-per-baris (4:3) — persis pola galeri di referensi desain. */
+.rpt-photos-grid.count-ge3 .photo-thumb-wrap { flex-basis: calc(33.333% - 8px); }
+.rpt-photos-grid.count-ge3 .photo-thumb-wrap:nth-child(1) { flex-basis: calc(58.333% - 6px); }
+.rpt-photos-grid.count-ge3 .photo-thumb-wrap:nth-child(1)::before { padding-top: 62.5%; }
+.rpt-photos-grid.count-ge3 .photo-thumb-wrap:nth-child(2) { flex-basis: calc(41.666% - 6px); }
+.rpt-photos-grid.count-ge3 .photo-thumb-wrap:nth-child(2)::before { padding-top: 62.5%; }
 /* .btn-photo-overlay-del didefinisikan sekali saja di bagian "Form" di
    atas (audit QA/QC BUG-4) — dulu didefinisikan ULANG di sini dengan
    ukuran 22x22px yang menang lewat cascade (muncul lebih akhir di

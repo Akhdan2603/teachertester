@@ -82,11 +82,12 @@ function removePhotoAt(isAuto, index) {
   toast('Foto dihapus', 'success');
 }
 
-/** Render ulang grid thumbnail foto di 2 tempat (form input & preview report) dari `autoPhotoData[]`, sembunyikan section kalau kosong. */
+/** Render ulang grid thumbnail foto di 2 tempat (form input & preview report) dari `autoPhotoData[]`, sembunyikan section kalau kosong. Grid dikasih class `count-1`/`count-2`/`count-ge3` supaya CSS bisa bikin layout kolase (foto pertama lebih besar) tanpa hardcode ke jumlah foto tertentu. */
 function renderPhotoGrid() {
   const arr = autoPhotoData;
   const gridIds = ['auto-photo-grid-input', 'auto-photo-grid'];
   const section = document.getElementById('auto-photo-section');
+  const countClass = arr.length === 1 ? 'count-1' : arr.length === 2 ? 'count-2' : 'count-ge3';
 
   const thumbHtml = arr.map((src, i) => `
     <div class="photo-thumb-wrap">
@@ -96,8 +97,15 @@ function renderPhotoGrid() {
 
   gridIds.forEach(id => {
     const grid = document.getElementById(id);
-    if (grid) grid.innerHTML = thumbHtml;
+    if (grid) {
+      grid.innerHTML = thumbHtml;
+      grid.classList.remove('count-1', 'count-2', 'count-ge3');
+      if (arr.length) grid.classList.add(countClass);
+    }
   });
+
+  const countBadge = document.getElementById('auto-photo-count-badge');
+  if (countBadge) countBadge.textContent = `${arr.length} ${arr.length === 1 ? 'Photo' : 'Photos'} Loaded`;
 
   if (section) section.style.display = arr.length === 0 ? 'none' : '';
   fitPreviewScale();

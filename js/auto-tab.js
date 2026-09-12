@@ -30,7 +30,7 @@ const LANG_UI = {
     waTitle: 'Preview Pesan WhatsApp',
     tip: '<strong>Cara pakai:</strong> Masukkan nama siswa → pilih kriteria, course, dan status lesson → klik ⚡ Generate untuk auto-generate teks progress.',
     previewLabel: 'Live Preview — Report',
-    rptTitle: 'Laporan Progress<br><span>Siswa</span>',
+    rptTitle: 'Laporan Progress Siswa',
     labelKelas: 'Kelas',
     labelTanggal: 'Tanggal',
     photo1: 'Foto 1', photo2: 'Foto 2',
@@ -72,7 +72,7 @@ const LANG_UI = {
     waTitle: 'WhatsApp Message Preview',
     tip: '<strong>How to use:</strong> Enter student name → choose level, course, and lesson status → click ⚡ Generate to auto-create progress text.',
     previewLabel: 'Live Preview — Report',
-    rptTitle: 'Student<br><span>Progress Report</span>',
+    rptTitle: 'Student Progress Report',
     labelKelas: 'Class',
     labelTanggal: 'Date',
     photo1: 'Photo 1', photo2: 'Photo 2',
@@ -142,15 +142,18 @@ function setLang(lang){
   if(autoLabelTanggal) autoLabelTanggal.textContent = L.labelTanggal;
   
   const photoSecTitle = document.getElementById('auto-photo-sec-title');
-  if(photoSecTitle) photoSecTitle.textContent = lang === 'id' ? 'Foto Dokumentasi Kegiatan' : 'Classroom Activity Snapshots';
+  if(photoSecTitle) photoSecTitle.textContent = lang === 'id' ? 'Galeri Dokumentasi' : 'Documentation Gallery';
+  const photoSecSubtitle = document.getElementById('auto-photo-sec-subtitle');
+  if(photoSecSubtitle) photoSecSubtitle.textContent = lang === 'id' ? 'Cuplikan Aktivitas Kelas' : 'Classroom Activity Snapshots';
   const progressSecTitle = document.getElementById('auto-progress-sec-title');
-  if(progressSecTitle) progressSecTitle.textContent = lang === 'id' ? 'Progress & Perkembangan Siswa' : 'Student Learning & Progress';
-  
-  const autoLegendDone = document.getElementById('auto-legend-done');
-  if(autoLegendDone) autoLegendDone.textContent = lang === 'id' ? 'Selesai Lesson' : 'Completed Lesson';
-  const autoLegendProg = document.getElementById('auto-legend-prog');
-  if(autoLegendProg) autoLegendProg.textContent = lang === 'id' ? 'Dalam Proses' : 'In Progress';
-  
+  if(progressSecTitle) progressSecTitle.textContent = lang === 'id' ? 'Progress & Perkembangan Siswa' : 'Student Learning & Progress Stream';
+  const progressSecSubtitle = document.getElementById('auto-progress-sec-subtitle');
+  if(progressSecSubtitle) progressSecSubtitle.textContent = lang === 'id' ? 'Catatan Pengajar' : 'Instructor Observations';
+  const verifiedBadge = document.getElementById('auto-verified-badge');
+  if(verifiedBadge) verifiedBadge.lastElementChild.textContent = lang === 'id' ? 'Evaluasi' : 'Evaluations';
+  const certText = document.getElementById('auto-cert-text');
+  if(certText) certText.textContent = lang === 'id' ? 'Laporan Progress Timedoor Academy' : 'Timedoor Academy Progress Report';
+
   renderAutoInputs();
 }
 
@@ -616,7 +619,7 @@ function autoUpdateTable(){
     const lessonTag = getLessonTag(s);
     
     const div = document.createElement('div');
-    div.className = 'rpt-student-card';
+    div.className = 'rpt-student-card' + (isDone ? '' : ' is-progress-card');
     div.innerHTML = `
       <div class="rpt-card-status">
         <div class="rpt-status-avatar ${isDone ? 'is-done' : 'is-progress'}">${isDone ? '✓' : '●'}</div>
@@ -628,7 +631,7 @@ function autoUpdateTable(){
             <span class="student-name-text">${escHtml(s.nama) || '<em style="color:#94a3b8">—</em>'}</span>
             ${s.course ? `<span class="rpt-card-course">(${escHtml(s.course)})</span>` : ''}
           </div>
-          ${lessonTag ? `<span class="lesson-pill">${escHtml(lessonTag)}</span>` : ''}
+          ${lessonTag ? `<span class="lesson-pill ${isDone ? '' : 'lesson-pill-progress'}">${escHtml(lessonTag)}</span>` : ''}
         </div>
         <div class="card-progress-col">${formatProgressHTML(s.progress)}</div>
       </div>
