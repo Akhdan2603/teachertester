@@ -85,6 +85,51 @@ function getImageDims_(src) {
 }
 
 /**
+ * Template kolase grid foto untuk PDF, per JUMLAH foto (bukan formula
+ * kolom generik) — dipanggil oleh buildAndSavePDF(). Mengembalikan array
+ * rect {x,y,w,h} (mm) sejumlah `count`, sudah dalam urutan foto ke-1..N.
+ * Semua ukuran cuma menentukan BATAS SEL — foto digambar di dalamnya
+ * dengan scale "letterbox fit" (lihat pemanggil), jadi apapun geometri
+ * sel di sini, foto tidak akan pernah stretch/gepeng.
+ *   - 1 foto  → 1 panel lebar panorama
+ *   - 2 foto  → 2 panel berdampingan sama besar
+ *   - 3 foto  → 1 panel besar kiri + 2 panel kecil ditumpuk kanan
+ *   - 4 foto  → grid 2x2 sama besar
+ *   - 5+ foto → grid 3 kolom, baris terakhir rata kiri
+ */
+function getPhotoCellLayout_(count, x0, y0, contentW, gap) {
+  const cells = [];
+  if (count === 1) {
+    const w = contentW, h = Math.round(w * (9 / 22));
+    cells.push({ x: x0, y: y0, w, h });
+  } else if (count === 2) {
+    const w = (contentW - gap) / 2, h = 50;
+    cells.push({ x: x0, y: y0, w, h });
+    cells.push({ x: x0 + w + gap, y: y0, w, h });
+  } else if (count === 3) {
+    const bigW = contentW * 0.6, smallW = contentW - bigW - gap;
+    const bigH = 58, smallH = (bigH - gap) / 2;
+    cells.push({ x: x0, y: y0, w: bigW, h: bigH });
+    cells.push({ x: x0 + bigW + gap, y: y0, w: smallW, h: smallH });
+    cells.push({ x: x0 + bigW + gap, y: y0 + smallH + gap, w: smallW, h: smallH });
+  } else if (count === 4) {
+    const w = (contentW - gap) / 2, h = 42;
+    for (let i = 0; i < 4; i++) {
+      const row = Math.floor(i / 2), col = i % 2;
+      cells.push({ x: x0 + col * (w + gap), y: y0 + row * (h + gap), w, h });
+    }
+  } else {
+    const cols = 3, h = 40;
+    const w = (contentW - gap * (cols - 1)) / cols;
+    for (let i = 0; i < count; i++) {
+      const row = Math.floor(i / cols), col = i % cols;
+      cells.push({ x: x0 + col * (w + gap), y: y0 + row * (h + gap), w, h });
+    }
+  }
+  return cells;
+}
+
+/**
  * Susun & simpan PDF report (dipakai Daily Auto Report & Exam Report) —
  * gambar manual pakai jsPDF primitives (bukan screenshot html2canvas),
  * supaya teksnya tetap selectable/searchable di PDF hasil akhir, bukan
@@ -116,31 +161,31 @@ async function buildAndSavePDF({kelas, tanggal, photos, students, labels}) {
   let PHOTO_Y=44, photoBlockHeight=0;
 
   if (photoCount > 0) {
-    // Grid dinamis: 1 foto = 1 kolom lebar panorama, 2-4 foto = 2 kolom,
-    // >4 foto = 3 kolom. Tiap foto di-fit (bukan di-stretch) di dalam sel-nya
-    // — rasio aslinya dijaga, sisa ruang di sel jadi "letterbox" kosong,
-    // supaya foto tidak pernah gepeng/melar.
-    const cols = photoCount === 1 ? 1 : (photoCount <= 4 ? 2 : 3);
-    const rowsCount = Math.ceil(photoCount / cols);
-    const cellW = (W - MARGIN * 2 - GAP * (cols - 1)) / cols;
-    const cellH = cols === 1 ? Math.round(cellW * (9 / 22)) : 42;
+    // Template kolase per JUMLAH foto (bukan formula kolom generik lagi) —
+    // supaya hasilnya punya komposisi yang enak dilihat mirip galeri di
+    // preview web, sekaligus tetap 100% tidak stretch: tiap foto SELALU
+    // digambar pakai getImageDims_() + Math.min(cellW/w, cellH/h) — scale
+    // "letterbox fit" yang menjaga rasio asli foto, tidak pernah
+    // melar/gepeng, apapun rasio aslinya. Sisa ruang kosong di sel (kalau
+    // rasio foto beda dari sel) dibiarkan sebagai letterbox abu-abu muda,
+    // bukan dipaksa mengisi penuh dengan cara men-distorsi gambar.
+    const contentW = W - MARGIN * 2;
+    const cells = getPhotoCellLayout_(photoCount, MARGIN, PHOTO_Y, contentW, GAP);
 
     for (let idx = 0; idx < photoCount; idx++) {
-      const row = Math.floor(idx / cols), col = idx % cols;
-      const cellX = MARGIN + col * (cellW + GAP);
-      const cellY = PHOTO_Y + row * (cellH + GAP);
+      const cell = cells[idx];
       const src = photoSrcs[idx];
-
-      doc.setFillColor(248, 250, 252); doc.rect(cellX, cellY, cellW, cellH, 'F'); // background letterbox
+      doc.setFillColor(248, 250, 252); doc.roundedRect(cell.x, cell.y, cell.w, cell.h, 1.5, 1.5, 'F');
 
       const dims = await getImageDims_(src);
-      const scale = Math.min(cellW / dims.w, cellH / dims.h);
+      const scale = Math.min(cell.w / dims.w, cell.h / dims.h);
       const drawW = dims.w * scale, drawH = dims.h * scale;
-      const offX = cellX + (cellW - drawW) / 2, offY = cellY + (cellH - drawH) / 2;
+      const offX = cell.x + (cell.w - drawW) / 2, offY = cell.y + (cell.h - drawH) / 2;
       const fmt = src.startsWith('data:image/png') ? 'PNG' : 'JPEG';
       doc.addImage(src, fmt, offX, offY, drawW, drawH);
     }
-    photoBlockHeight = rowsCount * cellH + (rowsCount - 1) * GAP;
+    const maxBottom = Math.max(...cells.map(c => c.y + c.h));
+    photoBlockHeight = maxBottom - PHOTO_Y;
   }
 
   const TABLE_X=MARGIN,TABLE_W=W-MARGIN*2,COL_NAME_W=44,COL_LESSON_W=32;
